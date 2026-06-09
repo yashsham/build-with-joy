@@ -5,6 +5,7 @@ import Link from "next/link";
 const LinkNext = Link;
 import { useApp } from "@/lib/context";
 import Navbar from "@/components/Navbar";
+import AdSlider from "@/components/AdSlider";
 import { 
   MessageCircle, Phone, MapPin, Sparkles, ShieldCheck, Clock, Award, Star, 
   Users, Heart, Scissors, Flower2, Hand, Crown, Search, ChevronRight, 
@@ -86,11 +87,11 @@ export default function Home() {
     "hydraglo-facials": {
       title: "HydraGlo Facials",
       items: [
-        { name: "HydraGlo Facials", slug: "hydraglo", image: "/assets/service-hydraglo.png" },
-        { name: "HydraGlo Clean-Up", slug: "hydraglo", image: "/assets/service-hydraglo.png" },
-        { name: "Body Polishing", slug: "spa-massage", image: "/assets/service-spa.jpg" },
-        { name: "Intimate Care", slug: "female-salon", image: "/assets/service-nails.jpg" },
-        { name: "Add On", slug: "hydraglo", image: "/assets/service-hydraglo.png" },
+        { name: "HydraGlo Facials", slug: "hydraglo", image: "/assets/sub-hydra-facial.png" },
+        { name: "HydraGlo Clean-Up", slug: "hydraglo", image: "/assets/sub-hydra-cleanup.png" },
+        { name: "Body Polishing", slug: "spa-massage", image: "/assets/sub-body-polishing.png" },
+        { name: "Intimate Care", slug: "female-salon", image: "/assets/sub-intimate-care.png" },
+        { name: "Add On", slug: "hydraglo", image: "/assets/sub-add-on.png" },
       ]
     },
     "laser-treatments": {
@@ -128,9 +129,9 @@ export default function Home() {
 
   // Categories list based on gender (matching Explore Our Categories grid)
   const womenCategoriesList = [
-    { id: "salon-for-women", name: "Salon for Women", image: "/assets/service-hair.jpg" },
-    { id: "spa-for-women", name: "Spa for Women", image: "/assets/service-spa.jpg" },
-    { id: "hydraglo-facials", name: "HydraGlo Facials", image: "/assets/service-hydraglo.png", isMostBooked: true },
+    { id: "salon-for-women", name: "Salon for Women", image: "/assets/cat-salon-women.png" },
+    { id: "spa-for-women", name: "Spa for Women", image: "/assets/cat-spa-women.png" },
+    { id: "hydraglo-facials", name: "HydraGlo Facials", image: "/assets/cat-hydraglo.png", isMostBooked: true },
     { id: "laser-treatments", name: "Laser Treatments", image: "/assets/service-laser.png" },
     { id: "body-toning", name: "Body Toning", image: "/assets/service-deep.jpg" },
     { id: "makeup-styling", name: "Makeup & Styling", image: "/assets/service-bridal.jpg" },
@@ -344,6 +345,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* AD SLIDER BANNER */}
+      <AdSlider />
+
       {/* EXPLORE OUR CATEGORIES SECTION */}
       <section id="explore-categories" className="py-14 md:py-20 bg-black scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
@@ -385,51 +389,83 @@ export default function Home() {
           </div>
 
           {/* Categories Circle/Avatar Grid */}
+          <AnimatePresence mode="wait">
           {activeGender === "female" ? (
-            <div className="grid grid-cols-3 md:grid-cols-3 gap-6 max-w-2xl mx-auto justify-items-center">
-              {womenCategoriesList.map((cat) => (
-                <button
+            <motion.div
+              key="female-grid"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.35 }}
+              className="grid grid-cols-3 md:grid-cols-3 gap-6 max-w-2xl mx-auto justify-items-center"
+            >
+              {womenCategoriesList.map((cat, i) => (
+                <motion.button
                   key={cat.id}
+                  initial={{ opacity: 0, scale: 0.85 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.35, delay: i * 0.07 }}
                   onClick={() => setActivePopupCategory(cat.id)}
                   className="flex flex-col items-center text-center group cursor-pointer w-24 sm:w-28"
                 >
-                  <div className="relative h-20 w-20 sm:h-24 sm:w-24 rounded-full overflow-hidden bg-gold-600/5 border border-white/15 p-1 group-hover:border-gold-600/50 shadow-md transition duration-300">
+                  {/* Light blue circle background like reference images */}
+                  <div className="relative h-20 w-20 sm:h-24 sm:w-24 rounded-full overflow-hidden shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_0_20px_rgba(201,168,76,0.3)]"
+                    style={{ background: "linear-gradient(135deg, #dbeafe 0%, #e0f2fe 60%, #bfdbfe 100%)" }}
+                  >
                     {cat.isMostBooked && (
-                      <span className="absolute -top-1 left-1/2 -translate-x-1/2 z-10 bg-gold-600 text-dark text-[7px] font-black uppercase px-1.5 py-0.5 rounded-full tracking-wider">
-                        POPULAR
+                      <span className="absolute -top-1 left-1/2 -translate-x-1/2 z-10 bg-gold-600 text-dark text-[7px] font-black uppercase px-1.5 py-0.5 rounded-full tracking-wider whitespace-nowrap shadow">
+                        Most Booked
                       </span>
                     )}
-                    <div className="w-full h-full rounded-full overflow-hidden relative">
-                      <img src={cat.image} alt={cat.name} className="w-full h-full object-cover grayscale-[10%] group-hover:scale-105 transition duration-500" />
-                      <div className="absolute inset-0 bg-gold-600/5" />
-                    </div>
+                    <img
+                      src={cat.image}
+                      alt={cat.name}
+                      className="w-full h-full object-cover object-top group-hover:scale-110 transition duration-500"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = "/assets/service-facial.jpg";
+                      }}
+                    />
                   </div>
                   <span className="text-[11px] font-bold text-white/80 group-hover:text-gold-600 mt-2.5 leading-snug transition">
                     {cat.name}
                   </span>
-                </button>
+                </motion.button>
               ))}
-            </div>
+            </motion.div>
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto justify-items-center">
-              {menCategoriesList.map((cat) => (
-                <LinkNext
+            <motion.div
+              key="male-grid"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.35 }}
+              className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto justify-items-center"
+            >
+              {menCategoriesList.map((cat, i) => (
+                <motion.div
                   key={cat.id}
-                  href={`/services?gender=male&category=${cat.slug}`}
-                  className="flex flex-col items-center text-center group cursor-pointer w-24 sm:w-28"
+                  initial={{ opacity: 0, scale: 0.85 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.35, delay: i * 0.07 }}
                 >
-                  <div className="h-20 w-20 sm:h-24 sm:w-24 rounded-full overflow-hidden bg-gold-600/5 border border-white/15 p-1 group-hover:border-gold-600/50 shadow-md transition duration-300">
-                    <div className="w-full h-full rounded-full overflow-hidden">
-                      <img src={cat.image} alt={cat.name} className="w-full h-full object-cover grayscale-[15%] group-hover:scale-105 transition duration-500" />
+                  <LinkNext
+                    href={`/services?gender=male&category=${cat.slug}`}
+                    className="flex flex-col items-center text-center group cursor-pointer w-24 sm:w-28"
+                  >
+                    <div className="h-20 w-20 sm:h-24 sm:w-24 rounded-full overflow-hidden shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_0_20px_rgba(201,168,76,0.3)]"
+                      style={{ background: "linear-gradient(135deg, #dbeafe 0%, #e0f2fe 60%, #bfdbfe 100%)" }}
+                    >
+                      <img src={cat.image} alt={cat.name} className="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
                     </div>
-                  </div>
-                  <span className="text-[11px] font-bold text-white/80 group-hover:text-gold-600 mt-2.5 leading-snug transition">
-                    {cat.name}
-                  </span>
-                </LinkNext>
+                    <span className="text-[11px] font-bold text-white/80 group-hover:text-gold-600 mt-2.5 leading-snug transition">
+                      {cat.name}
+                    </span>
+                  </LinkNext>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           )}
+          </AnimatePresence>
         </div>
       </section>
 
@@ -977,10 +1013,17 @@ export default function Home() {
                       onClick={() => setActivePopupCategory(null)}
                       className="flex flex-col items-center text-center group cursor-pointer"
                     >
-                      <div className="h-16 w-16 sm:h-20 sm:w-20 rounded-full overflow-hidden bg-gold-600/5 border border-white/10 p-0.5 group-hover:border-gold-600/40 shadow-sm transition">
-                        <div className="w-full h-full rounded-full overflow-hidden">
-                          <img src={sub.image} alt={sub.name} className="w-full h-full object-cover grayscale-[10%]" />
-                        </div>
+                      <div className="h-16 w-16 sm:h-20 sm:w-20 rounded-full overflow-hidden shadow-md transition duration-300 group-hover:scale-105 group-hover:shadow-[0_0_15px_rgba(201,168,76,0.25)]"
+                        style={{ background: "linear-gradient(135deg, #dbeafe 0%, #e0f2fe 60%, #bfdbfe 100%)" }}
+                      >
+                        <img 
+                          src={sub.image} 
+                          alt={sub.name} 
+                          className="w-full h-full object-cover group-hover:scale-110 transition duration-500" 
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).src = "/assets/service-facial.jpg";
+                          }}
+                        />
                       </div>
                       <span className="text-[10px] font-bold text-white/70 group-hover:text-gold-600 mt-2 transition leading-tight">
                         {sub.name}
