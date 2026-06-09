@@ -68,20 +68,20 @@ export default function Home() {
     "salon-for-women": {
       title: "Salon for Women",
       items: [
-        { name: "Waxing", slug: "waxing", image: "/assets/service-nails.jpg" },
-        { name: "Clean-Up", slug: "facial-cleanup", image: "/assets/service-facial.jpg" },
-        { name: "Body Polishing", slug: "female-salon", image: "/assets/service-spa.jpg" },
-        { name: "Bleach, Dtan & Scrub", slug: "female-salon", image: "/assets/service-facial.jpg" },
-        { name: "Mani-Pedi", slug: "female-salon", image: "/assets/service-nails.jpg" },
-        { name: "Hair", slug: "hair", image: "/assets/service-hair.jpg" },
-        { name: "Facial", slug: "facial-cleanup", image: "/assets/service-facial.jpg" },
-        { name: "Threading & Face Wax", slug: "female-salon", image: "/assets/service-hair.jpg" },
+        { name: "Waxing", slug: "waxing", image: "/assets/unique-service-42.jpg" },
+        { name: "Clean-Up", slug: "facial-cleanup", image: "/assets/unique-service-45.jpg" },
+        { name: "Body Polishing", slug: "female-salon", image: "/assets/unique-service-14.jpg" },
+        { name: "Bleach, Dtan & Scrub", slug: "female-salon", image: "/assets/unique-service-1.jpg" },
+        { name: "Mani-Pedi", slug: "female-salon", image: "/assets/unique-service-41.jpg" },
+        { name: "Hair", slug: "hair", image: "/assets/unique-service-9.jpg" },
+        { name: "Facial", slug: "facial-cleanup", image: "/assets/unique-service-40.jpg" },
+        { name: "Threading & Face Wax", slug: "female-salon", image: "/assets/unique-service-43.jpg" },
       ]
     },
     "spa-for-women": {
       title: "Spa for Women",
       items: [
-        { name: "Spa Services", slug: "spa-massage", image: "/assets/service-spa.jpg" },
+        { name: "Spa Services", slug: "spa-massage", image: "/assets/sub-spa-services.png" },
       ]
     },
     "hydraglo-facials": {
@@ -97,32 +97,32 @@ export default function Home() {
     "laser-treatments": {
       title: "Laser Treatments",
       items: [
-        { name: "Packages", slug: "laser", image: "/assets/service-laser.png" },
-        { name: "Laser Hair Reduction", slug: "laser", image: "/assets/service-laser.png" },
-        { name: "Laser Facials", slug: "laser", image: "/assets/service-laser.png" },
-        { name: "Laser Body Polishing", slug: "laser", image: "/assets/service-laser.png" },
-        { name: "Add-Ons", slug: "laser", image: "/assets/service-laser.png" },
+        { name: "Packages", slug: "laser", image: "/assets/sub-laser-packages.png" },
+        { name: "Laser Hair Reduction", slug: "laser", image: "/assets/sub-laser-hair-reduction.png" },
+        { name: "Laser Facials", slug: "laser", image: "/assets/sub-laser-facials.png" },
+        { name: "Laser Body Polishing", slug: "laser", image: "/assets/sub-laser-body-polishing.png" },
+        { name: "Add-Ons", slug: "laser", image: "/assets/sub-laser-addons.png" },
       ]
     },
     "body-toning": {
       title: "Body Toning",
       items: [
-        { name: "Packages", slug: "spa-massage", image: "/assets/service-spa.jpg" },
-        { name: "Face & Body Toning", slug: "spa-massage", image: "/assets/service-deep.jpg" },
+        { name: "Packages", slug: "spa-massage", image: "/assets/sub-toning-packages.png" },
+        { name: "Face & Body Toning", slug: "spa-massage", image: "/assets/sub-face-body-toning.png" },
       ]
     },
     "makeup-styling": {
       title: "Makeup & Styling",
       items: [
-        { name: "Party Makeup", slug: "bridal", image: "/assets/service-bridal.jpg" },
-        { name: "Eye Makeup", slug: "bridal", image: "/assets/service-bridal.jpg" },
-        { name: "Best Packages", slug: "bridal", image: "/assets/service-bridal.jpg" },
-        { name: "Wedding Packages", slug: "bridal", image: "/assets/service-bridal.jpg" },
-        { name: "Hair Style", slug: "bridal", image: "/assets/service-hair.jpg" },
-        { name: "Saree Draping", slug: "bridal", image: "/assets/service-mehendi.jpg" },
-        { name: "Engagement Makeup", slug: "bridal", image: "/assets/service-bridal.jpg" },
-        { name: "Bridal Makeup", slug: "bridal", image: "/assets/service-bridal.jpg" },
-        { name: "Add On", slug: "bridal", image: "/assets/service-bridal.jpg" },
+        { name: "Party Makeup", slug: "bridal", image: "/assets/sub-party-makeup.png" },
+        { name: "Eye Makeup", slug: "bridal", image: "/assets/sub-eye-makeup.png" },
+        { name: "Best Packages", slug: "bridal", image: "/assets/sub-best-packages.png" },
+        { name: "Wedding Packages", slug: "bridal", image: "/assets/sub-wedding-packages.png" },
+        { name: "Hair Style", slug: "bridal", image: "/assets/sub-hair-style.png" },
+        { name: "Saree Draping", slug: "bridal", image: "/assets/sub-saree-draping.png" },
+        { name: "Engagement Makeup", slug: "bridal", image: "/assets/sub-engagement-makeup.png" },
+        { name: "Bridal Makeup", slug: "bridal", image: "/assets/sub-bridal-makeup.png" },
+        { name: "Add On", slug: "bridal", image: "/assets/sub-add-on-makeup.png" },
       ]
     }
   };
@@ -132,35 +132,35 @@ export default function Home() {
     { id: "salon-for-women", name: "Salon for Women", image: "/assets/cat-salon-women.png" },
     { id: "spa-for-women", name: "Spa for Women", image: "/assets/cat-spa-women.png" },
     { id: "hydraglo-facials", name: "HydraGlo Facials", image: "/assets/cat-hydraglo.png", isMostBooked: true },
-    { id: "laser-treatments", name: "Laser Treatments", image: "/assets/service-laser.png" },
-    { id: "body-toning", name: "Body Toning", image: "/assets/service-deep.jpg" },
-    { id: "makeup-styling", name: "Makeup & Styling", image: "/assets/service-bridal.jpg" },
+    { id: "laser-treatments", name: "Laser Treatments", image: "/assets/cat-laser.png" },
+    { id: "body-toning", name: "Body Toning", image: "/assets/cat-body-toning.png" },
+    { id: "makeup-styling", name: "Makeup & Styling", image: "/assets/cat-makeup.png" },
   ];
 
   const menCategoriesList = [
-    { id: "male-grooming", name: "Male Grooming", image: "/assets/service-malegrooming.png", slug: "male-grooming" },
-    { id: "male-spa", name: "Male Spa", image: "/assets/service-spa.jpg", slug: "spa-massage" },
-    { id: "male-hair", name: "Premium Hair Spa", image: "/assets/service-hair.jpg", slug: "hair" },
-    { id: "male-hydraglo", name: "HydraGlo Facials", image: "/assets/service-hydraglo.png", slug: "hydraglo" },
+    { id: "male-grooming", name: "Male Grooming", image: "/assets/unique-service-37.jpg", slug: "male-grooming" },
+    { id: "male-spa", name: "Male Spa", image: "/assets/unique-service-36.jpg", slug: "spa-massage" },
+    { id: "male-hair", name: "Premium Hair Spa", image: "/assets/unique-service-35.jpg", slug: "hair" },
+    { id: "male-hydraglo", name: "HydraGlo Facials", image: "/assets/unique-service-38.jpg", slug: "hydraglo" },
   ];
 
   // Most Booked services
   const mostBookedServices = {
     salon: [
-      { id: "premium-honey-wax-arms-legs", name: "Premium Honey Full Arms + Half Legs Waxing", price: 399, discountPrice: 299, duration: 45, image: "/assets/service-nails.jpg", badge: "Most Booked" },
-      { id: "o3-glow-facial", name: "O3+ Glow Facial (9 Steps)", price: 2199, discountPrice: 1899, duration: 60, image: "/assets/service-facial.jpg", badge: "9-Step Ritual" },
-      { id: "threading-eyebrow-upperlip", name: "Threading (Eyebrows + Upper Lip)", price: 99, discountPrice: 59, duration: 15, image: "/assets/service-hair.jpg", badge: "Express Care" },
-      { id: "loreal-hair-spa", name: "L'Oreal Hair Spa & Nutrition", price: 1199, discountPrice: 899, duration: 50, image: "/assets/service-hair.jpg", badge: "4 Free Gifts" },
+      { id: "premium-honey-wax-arms-legs", name: "Premium Honey Full Arms + Half Legs Waxing", price: 399, discountPrice: 299, duration: 45, image: "/assets/unique-service-42.jpg", badge: "Most Booked" },
+      { id: "o3-glow-facial", name: "O3+ Glow Facial (9 Steps)", price: 2199, discountPrice: 1899, duration: 60, image: "/assets/unique-service-40.jpg", badge: "9-Step Ritual" },
+      { id: "threading-eyebrow-upperlip", name: "Threading (Eyebrows + Upper Lip)", price: 99, discountPrice: 59, duration: 15, image: "/assets/unique-service-43.jpg", badge: "Express Care" },
+      { id: "loreal-hair-spa", name: "L'Oreal Hair Spa & Nutrition", price: 1199, discountPrice: 899, duration: 50, image: "/assets/unique-service-44.jpg", badge: "4 Free Gifts" },
     ],
     spa: [
-      { id: "aroma-therapy-body-massage", name: "Aroma Therapy Full Body Massage", price: 1799, discountPrice: 1499, duration: 75, image: "/assets/service-spa.jpg", badge: "Sensory Healing" },
-      { id: "deep-tissue-stress-relief", name: "Deep Tissue Stress Relief Massage", price: 2299, discountPrice: 1899, duration: 90, image: "/assets/service-spa.jpg", badge: "Hot Towel" },
-      { id: "swedish-back-shoulder-massage", name: "Swedish Back & Shoulder Massage", price: 999, discountPrice: 799, duration: 45, image: "/assets/service-spa.jpg", badge: "Pain Relief" },
+      { id: "aroma-therapy-body-massage", name: "Aroma Therapy Full Body Massage", price: 1799, discountPrice: 1499, duration: 75, image: "/assets/unique-service-16.jpg", badge: "Sensory Healing" },
+      { id: "deep-tissue-stress-relief", name: "Deep Tissue Stress Relief Massage", price: 2299, discountPrice: 1899, duration: 90, image: "/assets/unique-service-14.jpg", badge: "Hot Towel" },
+      { id: "swedish-back-shoulder-massage", name: "Swedish Back & Shoulder Massage", price: 999, discountPrice: 799, duration: 45, image: "/assets/unique-service-17.jpg", badge: "Pain Relief" },
     ],
     hydraglo: [
-      { id: "classic-hydraglo", name: "Classic HydraGlo Skin Infusion Facial", price: 2999, discountPrice: 2499, duration: 60, image: "/assets/service-hydraglo.png", badge: "Most Booked" },
-      { id: "superbright-hydraglo", name: "SuperBright HydraGlo with Vitamin C", price: 3999, discountPrice: 3199, duration: 75, image: "/assets/service-hydraglo.png", badge: "Glass Skin" },
-      { id: "agedefying-hydraglo", name: "Age-Defying Gold-Peptide HydraGlo", price: 4999, discountPrice: 3999, duration: 90, image: "/assets/service-hydraglo.png", badge: "US-FDA Approved" },
+      { id: "classic-hydraglo", name: "Classic HydraGlo Skin Infusion Facial", price: 2999, discountPrice: 2499, duration: 60, image: "/assets/unique-service-32.jpg", badge: "Most Booked" },
+      { id: "superbright-hydraglo", name: "SuperBright HydraGlo with Vitamin C", price: 3999, discountPrice: 3199, duration: 75, image: "/assets/unique-service-33.jpg", badge: "Glass Skin" },
+      { id: "agedefying-hydraglo", name: "Age-Defying Gold-Peptide HydraGlo", price: 4999, discountPrice: 3999, duration: 90, image: "/assets/unique-service-30.jpg", badge: "US-FDA Approved" },
     ]
   };
 
