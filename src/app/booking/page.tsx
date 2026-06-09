@@ -150,24 +150,24 @@ export default function BookingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white pb-32">
+    <div className="min-h-screen bg-black text-white pb-32 overflow-x-hidden">
       <Navbar />
 
-      <div className="max-w-7xl mx-auto px-6 pt-28">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-24 md:pt-28">
         {/* Step Indicator Header */}
-        <div className="flex items-center justify-between border-b border-white/10 pb-6 mb-10">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-5 md:pb-6 mb-6 md:mb-10">
           <div>
-            <h1 className="font-heading text-2xl md:text-4xl text-white">Booking Checkout</h1>
+            <h1 className="font-heading text-xl sm:text-2xl md:text-4xl text-white">Booking Checkout</h1>
             <p className="text-[10px] text-white/40 luxe-subtitle tracking-widest mt-1">Glow at home</p>
           </div>
 
           {/* Progress Indicators */}
-          <div className="flex items-center gap-2 md:gap-4 text-xs">
-            <span className={`font-semibold ${step >= 1 ? "text-gold-600" : "text-white/30"}`}>1. Cart</span>
+          <div className="flex items-center gap-2 text-xs">
+            <span className={`text-[11px] font-semibold ${step >= 1 ? "text-gold-600" : "text-white/30"}`}>1. Cart</span>
             <ChevronRight className="w-3 h-3 text-white/20" />
-            <span className={`font-semibold ${step >= 2 ? "text-gold-600" : "text-white/30"}`}>2. Details</span>
+            <span className={`text-[11px] font-semibold ${step >= 2 ? "text-gold-600" : "text-white/30"}`}>2. Details</span>
             <ChevronRight className="w-3 h-3 text-white/20" />
-            <span className={`font-semibold ${step >= 3 ? "text-gold-600" : "text-white/30"}`}>3. Payment</span>
+            <span className={`text-[11px] font-semibold ${step >= 3 ? "text-gold-600" : "text-white/30"}`}>3. Pay</span>
           </div>
         </div>
 
@@ -184,9 +184,9 @@ export default function BookingPage() {
             </Link>
           </div>
         ) : (
-          <div className="grid lg:grid-cols-12 gap-10">
+          <div className="grid lg:grid-cols-12 gap-6 md:gap-10">
             {/* Main column */}
-            <div className="lg:col-span-8 space-y-8">
+            <div className="lg:col-span-8 space-y-6 md:space-y-8">
               {/* STEP 1: CART REVISION */}
               {step === 1 && (
                 <div className="space-y-4">

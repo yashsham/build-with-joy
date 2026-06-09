@@ -140,14 +140,14 @@ function ServicesCatalog() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white pb-32">
+    <div className="min-h-screen bg-black text-white pb-32 overflow-x-hidden">
       <Navbar />
 
-      <div className="max-w-7xl mx-auto px-6 pt-28">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-24 md:pt-28">
         {/* Header Toggle and Search */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-white/10 pb-8">
+        <div className="flex flex-col gap-5 border-b border-white/10 pb-6 md:pb-8">
           <div>
-            <h1 className="font-heading text-3xl md:text-5xl text-white">
+            <h1 className="font-heading text-2xl sm:text-3xl md:text-5xl text-white">
               Luxury At-Home <span className="text-gradient-gold italic">Services</span>
             </h1>
             <p className="mt-2 text-xs text-white/50 luxe-subtitle uppercase tracking-widest">
@@ -155,16 +155,16 @@ function ServicesCatalog() {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full">
             {/* Search Input */}
-            <div className="w-full sm:w-64 flex items-center gap-2 bg-[#0a0a0a] border border-white/10 rounded-full px-4 py-2.5">
+            <div className="flex-1 sm:max-w-xs flex items-center gap-2 bg-[#0a0a0a] border border-white/10 rounded-full px-4 py-3">
               <Search className="w-4 h-4 text-white/40 flex-shrink-0" />
               <input
                 type="text"
                 placeholder="Search services..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-transparent text-xs text-white placeholder:text-white/30 outline-none w-full"
+                className="bg-transparent text-sm text-white placeholder:text-white/30 outline-none w-full"
               />
               {searchQuery && (
                 <button onClick={() => setSearchQuery("")}>
@@ -174,7 +174,7 @@ function ServicesCatalog() {
             </div>
 
             {/* Gender Toggle */}
-            <div className="flex bg-[#0a0a0a] border border-white/10 rounded-full p-1 w-full sm:w-auto">
+            <div className="flex bg-[#0a0a0a] border border-white/10 rounded-full p-1">
               <button
                 onClick={() => handleGenderSwitch("female")}
                 className={`flex-1 sm:flex-none px-6 py-2.5 rounded-full text-[10px] font-bold tracking-widest luxe-subtitle transition-all ${
@@ -217,44 +217,65 @@ function ServicesCatalog() {
             </button>
           </div>
         ) : (
-          <div className="mt-8 grid lg:grid-cols-12 gap-10">
-            {/* Left sidebar subcategory list */}
-            <aside className="lg:col-span-3 space-y-2 lg:sticky lg:top-28 lg:h-[70vh] lg:overflow-y-auto pr-2 scrollbar-none">
-              <div className="text-xs text-white/40 font-bold uppercase tracking-widest luxe-subtitle mb-4">Categories</div>
-              {filteredCategories.map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => {
-                    setActiveCategorySlug(cat.slug);
-                    const el = document.getElementById(cat.slug);
-                    if (el) {
-                      el.scrollIntoView({ behavior: "smooth", block: "start" });
-                    }
-                  }}
-                  className={`w-full text-left px-4 py-3.5 rounded-xl border transition text-xs font-semibold flex items-center justify-between ${
-                    activeCategorySlug === cat.slug
-                      ? "border-gold-600/30 bg-gold-600/5 text-gold-600"
-                      : "border-white/5 bg-[#050505] text-white/60 hover:border-white/10 hover:text-white"
-                  }`}
-                >
-                  <span>{cat.name}</span>
-                  <span className="text-[10px] bg-white/5 text-white/40 px-2 py-0.5 rounded-full">{cat.services.length}</span>
-                </button>
-              ))}
+          <div className="mt-6 md:mt-8 flex flex-col lg:grid lg:grid-cols-12 gap-6 md:gap-10">
+            {/* Category Pills on mobile / Sidebar on desktop */}
+            <aside className="lg:col-span-3">
+              {/* Mobile: horizontal scroll pills */}
+              <div className="flex lg:hidden overflow-x-auto scrollbar-none gap-2 pb-2 -mx-1 px-1">
+                {filteredCategories.map((cat) => (
+                  <button
+                    key={cat.id}
+                    onClick={() => {
+                      setActiveCategorySlug(cat.slug);
+                      const el = document.getElementById(cat.slug);
+                      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }}
+                    className={`flex-shrink-0 px-4 py-2 rounded-full text-xs font-semibold transition-all ${
+                      activeCategorySlug === cat.slug
+                        ? "bg-gold-gradient text-dark font-bold"
+                        : "bg-[#0a0a0a] border border-white/10 text-white/60"
+                    }`}
+                  >
+                    {cat.name}
+                  </button>
+                ))}
+              </div>
+              {/* Desktop: vertical sidebar */}
+              <div className="hidden lg:block space-y-2 sticky top-28 h-[70vh] overflow-y-auto pr-2 scrollbar-none">
+                <div className="text-xs text-white/40 font-bold uppercase tracking-widest luxe-subtitle mb-4">Categories</div>
+                {filteredCategories.map((cat) => (
+                  <button
+                    key={cat.id}
+                    onClick={() => {
+                      setActiveCategorySlug(cat.slug);
+                      const el = document.getElementById(cat.slug);
+                      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }}
+                    className={`w-full text-left px-4 py-3.5 rounded-xl border transition text-xs font-semibold flex items-center justify-between ${
+                      activeCategorySlug === cat.slug
+                        ? "border-gold-600/30 bg-gold-600/5 text-gold-600"
+                        : "border-white/5 bg-[#050505] text-white/60 hover:border-white/10 hover:text-white"
+                    }`}
+                  >
+                    <span>{cat.name}</span>
+                    <span className="text-[10px] bg-white/5 text-white/40 px-2 py-0.5 rounded-full">{cat.services.length}</span>
+                  </button>
+                ))}
+              </div>
             </aside>
 
             {/* Services Cards List */}
-            <main className="lg:col-span-9 space-y-16">
+            <main className="lg:col-span-9 space-y-10 md:space-y-16">
               {filteredCategories.map((cat) => (
-                <section key={cat.id} id={cat.slug} className="scroll-mt-28 space-y-6">
-                  <div className="border-b border-white/5 pb-4">
-                    <h2 className="font-heading text-2xl md:text-3xl text-white">{cat.name}</h2>
+                <section key={cat.id} id={cat.slug} className="scroll-mt-28 space-y-5 md:space-y-6">
+                  <div className="border-b border-white/5 pb-3 md:pb-4">
+                    <h2 className="font-heading text-xl md:text-3xl text-white">{cat.name}</h2>
                     {cat.description && (
                       <p className="text-xs text-white/40 mt-1 leading-relaxed">{cat.description}</p>
                     )}
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                     {cat.services.map((svc) => {
                       const quantity = getServiceQuantity(svc.id);
                       return (

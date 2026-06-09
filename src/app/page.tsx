@@ -197,7 +197,7 @@ export default function Home() {
   const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-gold-600 selection:text-dark pb-20 md:pb-0">
+    <div className="min-h-screen bg-black text-white selection:bg-gold-600 selection:text-dark pb-20 md:pb-0 overflow-x-hidden">
       <Navbar />
 
       {/* STICKY SEARCH HEADER FOR MOBILE */}
@@ -226,7 +226,7 @@ export default function Home() {
       </div>
 
       {/* HERO HERO SECTION WITH VIDEO BACKGROUND */}
-      <section className="relative h-[80vh] md:h-screen w-full flex items-center justify-center overflow-hidden pt-20">
+      <section className="relative h-[85vh] md:h-screen w-full flex items-center justify-center overflow-hidden pt-16 md:pt-20">
         <div className="absolute inset-0 z-0">
           <video
             ref={videoRef}
@@ -250,7 +250,7 @@ export default function Home() {
           {isVideoMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
         </button>
 
-        <div className="relative z-10 text-center max-w-4xl mx-auto px-6 flex flex-col items-center">
+        <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6 flex flex-col items-center">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -265,7 +265,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.15] text-white tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.85)]"
+            className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] text-white tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.85)]"
           >
             Glow in the <span className="text-gradient-gold italic">Comfort</span> of <br className="hidden md:block" />
             Your Own Home.
@@ -303,16 +303,16 @@ export default function Home() {
             </LinkNext>
           </motion.div>
 
-          <div className="mt-8 flex gap-4">
+          <div className="mt-8 flex flex-wrap gap-3 justify-center">
             <button
               onClick={() => setChooseServiceOpen(true)}
-              className="px-6 py-3 rounded-full bg-gold-gradient text-dark text-xs font-bold shadow-[var(--shadow-gold-sm)] hover:scale-105 transition"
+              className="px-6 py-3 rounded-full bg-gold-gradient text-dark text-sm font-bold shadow-[var(--shadow-gold-sm)] hover:scale-105 active:scale-95 transition"
             >
               Book Service Now
             </button>
             <LinkNext
               href="/services"
-              className="px-6 py-3 rounded-full border border-white/15 hover:bg-white/5 transition text-xs text-white/80"
+              className="px-6 py-3 rounded-full border border-white/20 hover:bg-white/5 active:bg-white/10 transition text-sm text-white/80"
             >
               Explore Menu
             </LinkNext>
@@ -321,17 +321,17 @@ export default function Home() {
       </section>
 
       {/* MILESTONES SECTION */}
-      <section id="milestones" className="py-16 bg-[#050505] border-y border-white/5">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <section id="milestones" className="py-12 md:py-16 bg-[#050505] border-y border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             {milestones.map((m) => {
               const Icon = m.icon;
               return (
-                <div key={m.label} className="text-center">
+                <div key={m.label} className="text-center px-2">
                   <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full border border-gold-600/20 bg-gold-600/5 text-gold-600">
                     <Icon className="h-4 w-4" />
                   </div>
-                  <div className="font-heading text-3xl text-gradient-gold">
+                  <div className="font-heading text-2xl md:text-3xl text-gradient-gold">
                     {m.num}
                   </div>
                   <div className="mt-1 text-[9px] tracking-widest text-white/40 uppercase luxe-subtitle">
@@ -345,8 +345,8 @@ export default function Home() {
       </section>
 
       {/* EXPLORE OUR CATEGORIES SECTION */}
-      <section id="explore-categories" className="py-20 bg-black scroll-mt-24">
-        <div className="max-w-4xl mx-auto px-6">
+      <section id="explore-categories" className="py-14 md:py-20 bg-black scroll-mt-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center max-w-xl mx-auto mb-10">
             <h2 className="font-heading text-2xl md:text-4xl text-white">Explore Our Categories</h2>
             <p className="mt-2 text-xs text-white/50 leading-relaxed">
@@ -434,42 +434,42 @@ export default function Home() {
       </section>
 
       {/* MOST BOOKED SECTION */}
-      <section className="py-20 bg-[#040404] border-y border-white/5">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+      <section className="py-14 md:py-20 bg-[#040404] border-y border-white/5">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="flex flex-col gap-5 mb-8 md:mb-10">
             <div>
               <h2 className="font-heading text-2xl md:text-3xl text-white">Most Booked</h2>
               <p className="mt-1.5 text-xs text-white/45">Our signature beauty, cleanup and massage packages.</p>
             </div>
 
-            {/* Slider Tabs */}
-            <div className="flex bg-[#0a0a0a] border border-white/10 rounded-full p-1 self-start md:self-auto">
+            {/* Slider Tabs - scrollable on mobile */}
+            <div className="flex overflow-x-auto scrollbar-none -mx-1 px-1 pb-1 gap-2">
               <button
                 onClick={() => setMostBookedTab("salon")}
-                className={`px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all ${
+                className={`flex-shrink-0 px-4 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-wide transition-all ${
                   mostBookedTab === "salon" 
-                    ? "bg-gold-gradient text-dark font-black" 
-                    : "text-white/60 hover:text-white"
+                    ? "bg-gold-gradient text-dark font-black shadow-sm" 
+                    : "bg-[#0a0a0a] border border-white/10 text-white/60 hover:text-white"
                 }`}
               >
                 Salon for Women
               </button>
               <button
                 onClick={() => setMostBookedTab("spa")}
-                className={`px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all ${
+                className={`flex-shrink-0 px-4 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-wide transition-all ${
                   mostBookedTab === "spa" 
-                    ? "bg-gold-gradient text-dark font-black" 
-                    : "text-white/60 hover:text-white"
+                    ? "bg-gold-gradient text-dark font-black shadow-sm" 
+                    : "bg-[#0a0a0a] border border-white/10 text-white/60 hover:text-white"
                 }`}
               >
                 Spa for Women
               </button>
               <button
                 onClick={() => setMostBookedTab("hydraglo")}
-                className={`px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all ${
+                className={`flex-shrink-0 px-4 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-wide transition-all ${
                   mostBookedTab === "hydraglo" 
-                    ? "bg-gold-gradient text-dark font-black" 
-                    : "text-white/60 hover:text-white"
+                    ? "bg-gold-gradient text-dark font-black shadow-sm" 
+                    : "bg-[#0a0a0a] border border-white/10 text-white/60 hover:text-white"
                 }`}
               >
                 HydraGlo Facials
@@ -544,25 +544,25 @@ export default function Home() {
       </section>
 
       {/* MULTISESSION BANNER */}
-      <section className="py-16 bg-black">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="relative rounded-3xl overflow-hidden border border-white/5 bg-gradient-to-br from-yellow-950/20 via-black to-[#060606] p-8 md:p-12 text-center space-y-6">
+      <section className="py-12 md:py-16 bg-black">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="relative rounded-3xl overflow-hidden border border-white/5 bg-gradient-to-br from-yellow-950/20 via-black to-[#060606] p-6 sm:p-8 md:p-12 text-center space-y-5 md:space-y-6">
             <h3 className="font-heading text-xl md:text-2xl text-gradient-gold">More Relaxation, More Savings</h3>
             <p className="text-xs text-white/60 max-w-md mx-auto leading-relaxed">
               Unlock cumulative discounts with our multisession package. Perfect for regular routines.
             </p>
             
-            <div className="grid grid-cols-3 gap-4 max-w-lg mx-auto pt-3">
-              <div className="border border-gold-600/20 rounded-xl bg-gold-600/5 p-3 flex flex-col items-center">
-                <span className="text-xs text-white/40">2 Sessions</span>
+            <div className="grid grid-cols-3 gap-3 md:gap-4 max-w-lg mx-auto pt-3">
+              <div className="border border-gold-600/20 rounded-xl bg-gold-600/5 p-2.5 md:p-3 flex flex-col items-center">
+                <span className="text-[10px] md:text-xs text-white/40">2 Sessions</span>
                 <span className="text-sm font-bold text-gold-600 mt-1">₹300 OFF</span>
               </div>
-              <div className="border border-gold-600/20 rounded-xl bg-gold-600/5 p-3 flex flex-col items-center">
-                <span className="text-xs text-white/40">4 Sessions</span>
+              <div className="border border-gold-600/20 rounded-xl bg-gold-600/5 p-2.5 md:p-3 flex flex-col items-center">
+                <span className="text-[10px] md:text-xs text-white/40">4 Sessions</span>
                 <span className="text-sm font-bold text-gold-600 mt-1">₹700 OFF</span>
               </div>
-              <div className="border border-gold-600/20 rounded-xl bg-gold-600/5 p-3 flex flex-col items-center">
-                <span className="text-xs text-white/40">6 Sessions</span>
+              <div className="border border-gold-600/20 rounded-xl bg-gold-600/5 p-2.5 md:p-3 flex flex-col items-center">
+                <span className="text-[10px] md:text-xs text-white/40">6 Sessions</span>
                 <span className="text-sm font-bold text-gold-600 mt-1">₹1500 OFF</span>
               </div>
             </div>
@@ -603,8 +603,8 @@ export default function Home() {
       </section>
 
       {/* Flagship physical lounges section */}
-      <section className="py-20 relative overflow-hidden bg-[#020202]">
-        <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+      <section className="py-14 md:py-20 relative overflow-hidden bg-[#020202]">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           <div className="space-y-6">
             <div className="text-xs text-gold-600 luxe-subtitle">Visit Our Lounges</div>
             <h2 className="font-heading text-2xl md:text-4xl text-white leading-tight">
@@ -640,14 +640,14 @@ export default function Home() {
       </section>
 
       {/* CELEBRITIES STORIES SECTION */}
-      <section className="py-20 bg-[#050505] border-y border-white/5">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center max-w-xl mx-auto mb-12">
+      <section className="py-14 md:py-20 bg-[#050505] border-y border-white/5">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="text-center max-w-xl mx-auto mb-10 md:mb-12">
             <h2 className="font-heading text-2xl md:text-3xl text-white">Stories From the Best</h2>
             <p className="mt-1.5 text-xs text-white/50">Loved by leading creators and celebrity stylists.</p>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6 max-w-2xl mx-auto">
             <div className="rounded-2xl border border-white/5 bg-[#0a0a0a] p-5 flex flex-col items-center text-center space-y-4">
               <div className="h-28 w-28 rounded-full overflow-hidden border border-gold-600/20 bg-white/5">
                 <img src="/assets/service-bridal.jpg" alt="Ekta Kapoor" className="w-full h-full object-cover" />
@@ -678,8 +678,8 @@ export default function Home() {
       </section>
 
       {/* FAQ SECTION */}
-      <section className="py-20 bg-black">
-        <div className="max-w-3xl mx-auto px-6">
+      <section className="py-14 md:py-20 bg-black">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <div className="text-center max-w-xl mx-auto mb-12">
             <h2 className="font-heading text-2xl md:text-3xl text-white">Frequently Asked</h2>
           </div>
@@ -741,8 +741,8 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-black border-t border-white/10 pt-16 pb-28 md:pb-12 text-white/40 text-xs">
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-4 gap-12 mb-12">
+      <footer className="bg-black border-t border-white/10 pt-12 md:pt-16 pb-28 md:pb-12 text-white/40 text-xs">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-12">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <img src="/hermosa-logo.png" alt="Hermosa Logo" className="h-10 w-10 object-contain" />

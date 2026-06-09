@@ -5,9 +5,12 @@
 @layer base {
   * {
     border-color: #1e1e1e;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
   }
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
   body {
     background-color: #000000;
@@ -16,10 +19,20 @@
     background-image:
       radial-gradient(ellipse at top, rgba(201,168,76,0.08), transparent 60%),
       radial-gradient(ellipse at bottom right, rgba(122,100,22,0.06), transparent 50%);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   h1, h2, h3, h4 {
     font-family: var(--font-heading), serif;
     letter-spacing: -0.01em;
+  }
+  /* Improved tap targets for mobile */
+  button, a {
+    touch-action: manipulation;
+  }
+  input, select, textarea {
+    font-size: 16px; /* prevents iOS zoom on input focus */
   }
 }
 
@@ -52,5 +65,19 @@
     letter-spacing: 0.3em;
     text-transform: uppercase;
     font-weight: 500;
+  }
+
+  /* Scrollbar hiding utility */
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Safe area padding for notched iPhones */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
   }
 }
