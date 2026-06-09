@@ -77,10 +77,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Hermosa — Luxe Home Service in Bareilly" },
-      { name: "description", content: "Premium home cleaning & care in Bareilly. Trained, vetted staff. Spotless results, white-glove service. Book on WhatsApp." },
-      { property: "og:title", content: "Hermosa — Luxe Home Service" },
-      { property: "og:description", content: "Premium home cleaning & care in Bareilly. Spotless, white-glove service." },
+      { title: "Hermosa Luxe Home Service — At-Home Salon & Spa in Bareilly" },
+      { name: "description", content: "India's luxe at-home salon & spa. Female salon, spa, waxing, facial, bridal, makeup, mehendi & more — booked to your doorstep in Bareilly." },
+      { property: "og:title", content: "Hermosa Luxe Home Service" },
+      { property: "og:description", content: "At-home salon, spa, bridal & beauty services in Bareilly. Trained professionals. Premium products. Booked on WhatsApp." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -88,7 +88,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" },
     ],
   }),
 
