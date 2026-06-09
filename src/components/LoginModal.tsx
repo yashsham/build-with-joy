@@ -44,9 +44,8 @@ export default function LoginModal() {
     }
   };
 
-  const handleVerifyOtp = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!/^\d{4,6}$/.test(otpCode)) {
+  const verifyCode = async (code: string) => {
+    if (!/^\d{4,6}$/.test(code)) {
       toast.error("Please enter a valid OTP.");
       return;
     }
@@ -56,7 +55,7 @@ export default function LoginModal() {
       const res = await fetch("/api/otp/verify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone, otp: otpCode, newsletterConsent }),
+        body: JSON.stringify({ phone, otp: code, newsletterConsent }),
       });
       const data = await res.json();
       if (res.ok) {
@@ -68,12 +67,27 @@ export default function LoginModal() {
         setOtpCode("");
       } else {
         toast.error(data.error || "Incorrect OTP. Please try again.");
+        setOtpCode("");
       }
     } catch (err) {
       console.error(err);
       toast.error("Verification failed. Please try again.");
+      setOtpCode("");
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handleVerifyOtp = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await verifyCode(otpCode);
+  };
+
+  const handleOtpChange = async (val: string) => {
+    const cleanVal = val.replace(/\D/g, "").slice(0, 4);
+    setOtpCode(cleanVal);
+    if (cleanVal.length === 4 && !isSubmitting) {
+      await verifyCode(cleanVal);
     }
   };
 
@@ -168,8 +182,8 @@ export default function LoginModal() {
                   maxLength={4}
                   required
                   value={otpCode}
-                  onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, ""))}
-                  className="absolute inset-0 opacity-0 cursor-pointer w-full z-10"
+                  onChange={(e) => handleOtpChange(e.target.value)}
+                  className="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-10"
                   autoFocus
                 />
                 {/* 4 premium digit boxes */}
@@ -179,7 +193,7 @@ export default function LoginModal() {
                   return (
                     <div
                       key={index}
-                      className={`w-12 h-14 rounded-xl border flex items-center justify-center text-xl font-bold font-mono transition-all ${
+                      className={`pointer-events-none w-12 h-14 rounded-xl border flex items-center justify-center text-xl font-bold font-mono transition-all ${
                         isActive 
                           ? "border-gold-600 bg-gold-600/5 shadow-[0_0_10px_rgba(201,168,76,0.2)] text-white" 
                           : digit 
