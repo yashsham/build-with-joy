@@ -40,8 +40,8 @@ export default function ProfilePage() {
   useEffect(() => {
     if (!user) return;
 
-    async function fetchUserBookings() {
-      setLoading(true);
+    async function fetchUserBookings(isInitial = false) {
+      if (isInitial) setLoading(true);
       try {
         const res = await fetch(`/api/bookings/user?userId=${user.id}`);
         if (res.ok) {
@@ -51,10 +51,16 @@ export default function ProfilePage() {
       } catch (err) {
         console.error(err);
       } finally {
-        setLoading(false);
+        if (isInitial) setLoading(false);
       }
     }
-    fetchUserBookings();
+
+    fetchUserBookings(true);
+
+    // Poll every 4 seconds for real-time status/payment updates
+    const interval = setInterval(() => fetchUserBookings(false), 4000);
+
+    return () => clearInterval(interval);
   }, [user]);
 
   const handleLogout = () => {
