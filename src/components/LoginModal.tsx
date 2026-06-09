@@ -109,11 +109,12 @@ export default function LoginModal() {
         {!otpSent ? (
           <form onSubmit={handleSendOtp} className="space-y-6">
             <div className="space-y-2">
-              <label className="text-xs font-medium text-white/60 luxe-subtitle">Mobile Number</label>
+              <label className="text-[10px] font-bold text-white/40 uppercase tracking-widest luxe-subtitle">Mobile Number</label>
               <div className="flex rounded-xl border border-white/10 bg-white/5 overflow-hidden focus-within:border-gold-600/50 transition">
-                <span className="flex items-center px-4 border-r border-white/10 text-sm font-semibold text-white/70 bg-white/5">
-                  🇮🇳 +91
-                </span>
+                <div className="flex flex-col items-center justify-center px-4 border-r border-white/10 text-[10px] font-bold leading-tight bg-white/5 text-white/70 min-w-[64px]">
+                  <span className="text-white/40 text-[9px] uppercase tracking-wider">IN</span>
+                  <span className="text-white mt-0.5">+91</span>
+                </div>
                 <input
                   type="tel"
                   required
@@ -128,14 +129,22 @@ export default function LoginModal() {
             </div>
 
             <div className="flex items-start gap-3">
-              <input
-                type="checkbox"
+              <button
+                type="button"
                 id="newsletter"
-                checked={newsletterConsent}
-                onChange={(e) => setNewsletterConsent(e.target.checked)}
-                className="mt-1 h-4 w-4 rounded border-white/10 bg-white/5 text-gold-600 accent-gold-600"
-              />
-              <label htmlFor="newsletter" className="text-xs text-white/50 leading-relaxed cursor-pointer select-none">
+                onClick={() => setNewsletterConsent(!newsletterConsent)}
+                className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded border transition-all ${
+                  newsletterConsent 
+                    ? "border-gold-600 bg-gold-600 text-dark" 
+                    : "border-white/20 bg-transparent text-transparent"
+                }`}
+              >
+                <Check className="h-3 w-3 stroke-[3]" />
+              </button>
+              <label 
+                onClick={() => setNewsletterConsent(!newsletterConsent)}
+                className="text-xs text-white/50 leading-relaxed cursor-pointer select-none hover:text-white/70 transition"
+              >
                 Receive booking updates, luxury beauty insights, and exclusive gold-member offers on WhatsApp & Email.
               </label>
             </div>
@@ -150,17 +159,42 @@ export default function LoginModal() {
           </form>
         ) : (
           <form onSubmit={handleVerifyOtp} className="space-y-6">
-            <div className="space-y-2">
-              <label className="text-xs font-medium text-white/60 luxe-subtitle">Enter OTP Code</label>
-              <input
-                type="text"
-                required
-                maxLength={6}
-                placeholder="Enter 4 or 6-digit OTP"
-                value={otpCode}
-                onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, ""))}
-                className="w-full text-center tracking-widest font-mono text-lg rounded-xl border border-white/10 bg-white/5 px-4 py-3.5 text-white placeholder:text-white/20 outline-none focus:border-gold-600/50 transition"
-              />
+            <div className="space-y-3">
+              <label className="text-[10px] font-bold text-white/40 uppercase tracking-widest luxe-subtitle block text-center">Enter OTP Code</label>
+              <div className="relative flex justify-center gap-3 py-2">
+                {/* Hidden input to capture code */}
+                <input
+                  type="tel"
+                  maxLength={4}
+                  required
+                  value={otpCode}
+                  onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, ""))}
+                  className="absolute inset-0 opacity-0 cursor-pointer w-full z-10"
+                  autoFocus
+                />
+                {/* 4 premium digit boxes */}
+                {[0, 1, 2, 3].map((index) => {
+                  const digit = otpCode[index] || "";
+                  const isActive = otpCode.length === index || (otpCode.length === 4 && index === 3);
+                  return (
+                    <div
+                      key={index}
+                      className={`w-12 h-14 rounded-xl border flex items-center justify-center text-xl font-bold font-mono transition-all ${
+                        isActive 
+                          ? "border-gold-600 bg-gold-600/5 shadow-[0_0_10px_rgba(201,168,76,0.2)] text-white" 
+                          : digit 
+                            ? "border-white/20 bg-white/5 text-white" 
+                            : "border-white/10 bg-white/5 text-white/30"
+                      }`}
+                    >
+                      {digit}
+                      {isActive && otpCode.length === index && (
+                        <span className="w-0.5 h-6 bg-gold-600 animate-pulse absolute" />
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
 
             <div className="flex items-center justify-between text-xs">
