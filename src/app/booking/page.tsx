@@ -63,9 +63,6 @@ export default function BookingPage() {
 
   const handlePlaceOrder = async () => {
     setIsProcessing(true);
-    
-    // Simulate payment API delay
-    await new Promise((resolve) => setTimeout(resolve, 2000));
 
     try {
       const res = await fetch("/api/bookings", {
@@ -83,9 +80,34 @@ export default function BookingPage() {
 
       if (res.ok) {
         const data = await res.json();
-        setBookingCompleted(data.booking);
-        clearCart();
-        toast.success("Booking placed successfully!");
+        
+        if (paymentMethod === "cash") {
+          setBookingCompleted(data.booking);
+          clearCart();
+          toast.success("Booking placed successfully!");
+        } else {
+          // Stripe Online Payment Flow
+          toast.info("Initiating secure payment session...");
+          const stripeRes = await fetch("/api/stripe/checkout", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              bookingId: data.booking.id,
+              bookingNumber: data.booking.bookingNumber,
+              items: cart,
+              totalAmount: cartTotal,
+            }),
+          });
+          
+          if (stripeRes.ok) {
+            const stripeData = await stripeRes.json();
+            clearCart();
+            // Redirect to Stripe checkout page
+            window.location.href = stripeData.url;
+          } else {
+            toast.error("Stripe session creation failed. Please try again.");
+          }
+        }
       } else {
         toast.error("Failed to place booking. Please try again.");
       }
@@ -328,8 +350,8 @@ export default function BookingPage() {
                   </h3>
                   <div className="space-y-3">
                     {[
-                      { id: "upi", label: "Instant UPI (GPay / PhonePe)", desc: "Simulated Razorpay transaction for instant validation" },
-                      { id: "card", label: "Credit / Debit Card", desc: "Pay securely with Visa, Mastercard, or RuPay" },
+                      { id: "upi", label: "Instant UPI (GPay / PhonePe)", desc: "Pay securely via UPI on Stripe Checkout" },
+                      { id: "card", label: "Credit / Debit Card", desc: "Pay securely with Visa, Mastercard, or RuPay via Stripe" },
                       { id: "cash", label: "Cash On Service", desc: "Pay our beauty expert in cash or UPI after service" }
                     ].map((method) => (
                       <label 

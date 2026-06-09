@@ -51,12 +51,10 @@ export async function POST(request: Request) {
       userId,
       addressId,
       scheduledAt: parsedDate,
-      status: "confirmed",
+      status: paymentMethod === "cash" ? "confirmed" : "pending",
       totalAmount,
       discountAmount: 0,
-      paymentStatus: paymentMethod === "cash" ? "cash_on_service" : "paid",
-      paymentId: paymentMethod === "cash" ? null : `pay_mock_${Math.random().toString(36).substring(7)}`,
-      razorpayOrderId: paymentMethod === "cash" ? null : `order_mock_${Math.random().toString(36).substring(7)}`,
+      paymentStatus: paymentMethod === "cash" ? "cash_on_service" : "pending",
     }).returning();
 
     const booking = newBooking[0];
