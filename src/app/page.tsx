@@ -67,6 +67,8 @@ interface AdDetail {
   btnBg: string;
   btnTextColor: string;
   slug: string;
+  imageBg: string;
+  subBadge: string;
 }
 
 const adsData: AdDetail[] = [
@@ -82,7 +84,9 @@ const adsData: AdDetail[] = [
     textColor: "text-[#4A3E1B]",
     btnBg: "bg-[#8C6D1F]",
     btnTextColor: "text-white",
-    slug: "facial-cleanup"
+    slug: "facial-cleanup",
+    imageBg: "/assets/service-o3-glow-facial.png",
+    subBadge: "9-Step Oxygenating Ritual"
   },
   {
     id: "aroma-therapy-body-massage",
@@ -96,7 +100,9 @@ const adsData: AdDetail[] = [
     textColor: "text-[#3B2866]",
     btnBg: "bg-[#6345B5]",
     btnTextColor: "text-white",
-    slug: "spa-massage"
+    slug: "spa-massage",
+    imageBg: "/assets/service-aroma-therapy-body-massage.png",
+    subBadge: "Lavender & Jasmine Oils"
   },
   {
     id: "classic-hydraglo",
@@ -110,7 +116,9 @@ const adsData: AdDetail[] = [
     textColor: "text-[#1B4B66]",
     btnBg: "bg-[#1F7EAD]",
     btnTextColor: "text-white",
-    slug: "hydraglo"
+    slug: "hydraglo",
+    imageBg: "/assets/service-classic-hydraglo.png",
+    subBadge: "Deep Skin Water Infusion"
   },
   {
     id: "loreal-hair-spa",
@@ -124,7 +132,9 @@ const adsData: AdDetail[] = [
     textColor: "text-[#661B2B]",
     btnBg: "bg-[#B53E57]",
     btnTextColor: "text-white",
-    slug: "hair"
+    slug: "hair",
+    imageBg: "/assets/service-loreal-hair-spa.png",
+    subBadge: "Deep Conditioning Treatment"
   },
   {
     id: "deep-tissue-stress-relief",
@@ -138,7 +148,9 @@ const adsData: AdDetail[] = [
     textColor: "text-[#1E4D2B]",
     btnBg: "bg-[#2D8A46]",
     btnTextColor: "text-white",
-    slug: "spa-massage"
+    slug: "spa-massage",
+    imageBg: "/assets/service-deep-tissue-stress-relief.png",
+    subBadge: "Relieve Chronic Muscle Tension"
   },
   {
     id: "superbright-hydraglo",
@@ -152,7 +164,9 @@ const adsData: AdDetail[] = [
     textColor: "text-[#66461B]",
     btnBg: "bg-[#B57C3E]",
     btnTextColor: "text-white",
-    slug: "hydraglo"
+    slug: "hydraglo",
+    imageBg: "/assets/service-superbright-hydraglo.png",
+    subBadge: "Vitamin C Brightening"
   },
   {
     id: "agedefying-hydraglo",
@@ -166,7 +180,9 @@ const adsData: AdDetail[] = [
     textColor: "text-[#5C4516]",
     btnBg: "bg-[#A37E2F]",
     btnTextColor: "text-white",
-    slug: "hydraglo"
+    slug: "hydraglo",
+    imageBg: "/assets/service-agedefying-hydraglo.png",
+    subBadge: "Gold-Peptide Tightening"
   },
   {
     id: "threading-eyebrow-upperlip",
@@ -180,7 +196,9 @@ const adsData: AdDetail[] = [
     textColor: "text-[#1B521B]",
     btnBg: "bg-[#2A8F2A]",
     btnTextColor: "text-white",
-    slug: "female-salon"
+    slug: "female-salon",
+    imageBg: "/assets/service-threading-eyebrow-upperlip.png",
+    subBadge: "Eyebrows & Upper Lip"
   },
   {
     id: "premium-honey-wax-arms-legs",
@@ -194,7 +212,9 @@ const adsData: AdDetail[] = [
     textColor: "text-[#5C5716]",
     btnBg: "bg-[#A39B2F]",
     btnTextColor: "text-white",
-    slug: "female-salon"
+    slug: "female-salon",
+    imageBg: "/assets/service-premium-honey-wax-arms-legs.png",
+    subBadge: "Premium Smooth Waxing"
   },
   {
     id: "rica-liposoluble-legs-wax",
@@ -208,7 +228,9 @@ const adsData: AdDetail[] = [
     textColor: "text-[#52341B]",
     btnBg: "bg-[#8F5B2F]",
     btnTextColor: "text-white",
-    slug: "female-salon"
+    slug: "female-salon",
+    imageBg: "/assets/service-rica-liposoluble-legs-wax.png",
+    subBadge: "Pain-Free Liposoluble Wax"
   },
   {
     id: "rica-brazilian-bikini-wax",
@@ -222,7 +244,9 @@ const adsData: AdDetail[] = [
     textColor: "text-[#5C1635]",
     btnBg: "bg-[#A32F65]",
     btnTextColor: "text-white",
-    slug: "female-salon"
+    slug: "female-salon",
+    imageBg: "/assets/service-rica-brazilian-bikini-wax.png",
+    subBadge: "Hygienic & Sensitive Care"
   },
   {
     id: "swedish-back-shoulder-massage",
@@ -236,7 +260,9 @@ const adsData: AdDetail[] = [
     textColor: "text-[#164D5C]",
     btnBg: "bg-[#2F89A3]",
     btnTextColor: "text-white",
-    slug: "spa-massage"
+    slug: "spa-massage",
+    imageBg: "/assets/service-swedish-back-shoulder-massage.png",
+    subBadge: "Relieve Stiff Muscles"
   },
   {
     id: "lotus-radiant-gold-facial",
@@ -250,7 +276,9 @@ const adsData: AdDetail[] = [
     textColor: "text-[#54541B]",
     btnBg: "bg-[#91912E]",
     btnTextColor: "text-white",
-    slug: "facial-cleanup"
+    slug: "facial-cleanup",
+    imageBg: "/assets/service-lotus-radiant-gold-facial.png",
+    subBadge: "Instant 24K Bridal Glow"
   },
   {
     id: "cheryls-glowvera-facial",
@@ -264,7 +292,9 @@ const adsData: AdDetail[] = [
     textColor: "text-[#1C541C]",
     btnBg: "bg-[#2E912E]",
     btnTextColor: "text-white",
-    slug: "facial-cleanup"
+    slug: "facial-cleanup",
+    imageBg: "/assets/service-cheryls-glowvera-facial.png",
+    subBadge: "Aloe-Vera Cooling Calm"
   },
   {
     id: "sara-dtan-cleanup",
@@ -278,7 +308,9 @@ const adsData: AdDetail[] = [
     textColor: "text-[#474337]",
     btnBg: "bg-[#7A745F]",
     btnTextColor: "text-white",
-    slug: "facial-cleanup"
+    slug: "facial-cleanup",
+    imageBg: "/assets/service-sara-dtan-cleanup.png",
+    subBadge: "Deep Pore Tan Removal"
   },
   {
     id: "o3-shine-glow-cleanup",
@@ -292,7 +324,9 @@ const adsData: AdDetail[] = [
     textColor: "text-[#5C4524]",
     btnBg: "bg-[#9E773E]",
     btnTextColor: "text-white",
-    slug: "facial-cleanup"
+    slug: "facial-cleanup",
+    imageBg: "/assets/service-o3-shine-glow-cleanup.png",
+    subBadge: "Brightening Pore Clarification"
   },
   {
     id: "anti-acne-deep-cleansing",
@@ -306,7 +340,9 @@ const adsData: AdDetail[] = [
     textColor: "text-[#115C4E]",
     btnBg: "bg-[#1E9E87]",
     btnTextColor: "text-white",
-    slug: "facial-cleanup"
+    slug: "facial-cleanup",
+    imageBg: "/assets/service-anti-acne-deep-cleansing.png",
+    subBadge: "Pore Refiner & Clarifier"
   },
   {
     id: "keratin-therapy",
@@ -320,7 +356,9 @@ const adsData: AdDetail[] = [
     textColor: "text-[#473B25]",
     btnBg: "bg-[#806B43]",
     btnTextColor: "text-white",
-    slug: "hair"
+    slug: "hair",
+    imageBg: "/assets/service-keratin-therapy.png",
+    subBadge: "Frizz-Free Silk Shine"
   },
   {
     id: "hair-smoothening",
@@ -334,7 +372,9 @@ const adsData: AdDetail[] = [
     textColor: "text-[#3D3347]",
     btnBg: "bg-[#6A597D]",
     btnTextColor: "text-white",
-    slug: "hair"
+    slug: "hair",
+    imageBg: "/assets/service-hair-smoothening.png",
+    subBadge: "Silky Straight Matrix Finish"
   },
   {
     id: "global-hair-coloring",
@@ -348,7 +388,9 @@ const adsData: AdDetail[] = [
     textColor: "text-[#542B13]",
     btnBg: "bg-[#964E22]",
     btnTextColor: "text-white",
-    slug: "hair"
+    slug: "hair",
+    imageBg: "/assets/service-global-hair-coloring.png",
+    subBadge: "L'Oreal Ammonia-Free Shade"
   },
   {
     id: "womens-blowdry-styling",
@@ -362,7 +404,9 @@ const adsData: AdDetail[] = [
     textColor: "text-[#5C1635]",
     btnBg: "bg-[#A32F65]",
     btnTextColor: "text-white",
-    slug: "hair"
+    slug: "hair",
+    imageBg: "/assets/service-womens-blowdry-styling.png",
+    subBadge: "Glam Blowout & Volume"
   },
   {
     id: "luxury-bridal-hd-makeup",
@@ -376,7 +420,9 @@ const adsData: AdDetail[] = [
     textColor: "text-[#661B42]",
     btnBg: "bg-[#B53E75]",
     btnTextColor: "text-white",
-    slug: "bridal"
+    slug: "bridal",
+    imageBg: "/assets/service-luxury-bridal-hd-makeup.png",
+    subBadge: "Includes Draping & Hair Styling"
   },
   {
     id: "engagement-makeup",
@@ -390,7 +436,9 @@ const adsData: AdDetail[] = [
     textColor: "text-[#5C2337]",
     btnBg: "bg-[#9E3E61]",
     btnTextColor: "text-white",
-    slug: "bridal"
+    slug: "bridal",
+    imageBg: "/assets/service-engagement-makeup.png",
+    subBadge: "Stunning HD Occasion Look"
   },
   {
     id: "airbrush-bridal-makeup",
@@ -404,7 +452,9 @@ const adsData: AdDetail[] = [
     textColor: "text-[#134D66]",
     btnBg: "bg-[#258AB5]",
     btnTextColor: "text-white",
-    slug: "bridal"
+    slug: "bridal",
+    imageBg: "/assets/service-airbrush-bridal-makeup.png",
+    subBadge: "Silicon Airbrush Flawless Look"
   },
   {
     id: "saree-draping-hair-bun",
@@ -418,7 +468,9 @@ const adsData: AdDetail[] = [
     textColor: "text-[#5C1616]",
     btnBg: "bg-[#A32F2F]",
     btnTextColor: "text-white",
-    slug: "bridal"
+    slug: "bridal",
+    imageBg: "/assets/service-saree-draping-hair-bun.png",
+    subBadge: "Classic Draping & Bun Style"
   }
 ];
 
@@ -1056,9 +1108,12 @@ export default function Home() {
 
       {/* WEEKLY SPOTLIGHT ROTATING ADS (Different Dimensions: Landscape, Portrait, Banner) */}
       {(() => {
-        const weekIndex = typeof window !== "undefined" ? Math.min(3, Math.floor((new Date().getDate() - 1) / 7)) : 0;
-        const startIndex = weekIndex * 6;
-        const currentWeekAds = adsData.slice(startIndex, startIndex + 6);
+        const weekIndex = typeof window !== "undefined" ? Math.floor((new Date().getDate() - 1) / 7) : 0;
+        const startIndex = (weekIndex * 6) % adsData.length;
+        const currentWeekAds: AdDetail[] = [];
+        for (let i = 0; i < 6; i++) {
+          currentWeekAds.push(adsData[(startIndex + i) % adsData.length]);
+        }
         
         return (
           <section className="py-14 bg-black border-t border-white/5">
@@ -1078,246 +1133,340 @@ export default function Home() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* 1. Landscape Featured Banner (spans 2 columns) */}
                 {currentWeekAds[0] && (
-                  <div className={`md:col-span-2 rounded-3xl p-6 md:p-8 bg-gradient-to-br ${currentWeekAds[0].bgGradient} ${currentWeekAds[0].textColor} flex flex-col justify-between min-h-[260px] border border-white/10 shadow-lg relative overflow-hidden group`}>
-                    <div className="absolute right-6 top-6 px-3 py-1 rounded-full bg-black/5 border border-black/10 text-[9px] font-bold uppercase tracking-wider">
-                      {currentWeekAds[0].category}
-                    </div>
-                    <div className="space-y-3 max-w-md">
-                      <span className="text-[10px] font-black uppercase tracking-widest bg-black/15 px-2.5 py-1 rounded-md">
-                        {currentWeekAds[0].badge}
-                      </span>
-                      <h3 className="font-heading text-2xl md:text-3xl font-black mt-2 leading-tight">
-                        {currentWeekAds[0].title}
-                      </h3>
-                      <p className="text-[11px] opacity-80 leading-relaxed font-medium">
-                        {currentWeekAds[0].subtitle}
-                      </p>
-                    </div>
-                    <div className="mt-6 pt-4 border-t border-black/5 flex items-center justify-between">
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-2xl font-black">₹{currentWeekAds[0].discountPrice}</span>
-                        <span className="text-xs opacity-50 line-through">₹{currentWeekAds[0].originalPrice}</span>
-                      </div>
-                      <button
-                        onClick={() => {
-                          addToCart({ 
-                            id: currentWeekAds[0].id, 
-                            name: currentWeekAds[0].title, 
-                            price: currentWeekAds[0].originalPrice, 
-                            discountPrice: currentWeekAds[0].discountPrice 
-                          });
-                          toast.success(`${currentWeekAds[0].title} added to cart`);
+                  <div className={`md:col-span-2 rounded-3xl p-6 md:p-8 bg-gradient-to-br ${currentWeekAds[0].bgGradient} ${currentWeekAds[0].textColor} flex flex-col justify-between min-h-[280px] border border-white/10 shadow-lg relative overflow-hidden group`}>
+                    {/* Visual Image Background (Linear Fade on Right) */}
+                    <div className="absolute right-0 top-0 bottom-0 w-full md:w-1/2 h-full opacity-35 md:opacity-100 mix-blend-multiply md:mix-blend-normal pointer-events-none z-0">
+                      <img
+                        src={currentWeekAds[0].imageBg}
+                        alt={currentWeekAds[0].title}
+                        className="w-full h-full object-cover object-center select-none"
+                        style={{
+                          maskImage: "linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0))",
+                          WebkitMaskImage: "linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0))"
                         }}
-                        className={`px-6 py-2.5 rounded-full ${currentWeekAds[0].btnBg} ${currentWeekAds[0].btnTextColor} text-[10px] font-black tracking-widest uppercase hover:scale-105 transition shadow-md`}
-                      >
-                        Book Now
-                      </button>
+                      />
+                    </div>
+
+                    <div className="relative z-10 flex flex-col justify-between h-full min-h-[230px] flex-grow">
+                      <div>
+                        <div className="flex flex-wrap gap-2 items-center">
+                          <span className="px-2.5 py-0.5 rounded-full bg-gold-600/10 border border-gold-600/20 text-[9px] font-bold tracking-wider text-gold-700 uppercase">
+                            {currentWeekAds[0].category}
+                          </span>
+                          {currentWeekAds[0].subBadge && (
+                            <span className="px-2.5 py-0.5 rounded-full bg-black/5 border border-black/10 text-[9px] font-bold text-black/60 uppercase">
+                              {currentWeekAds[0].subBadge}
+                            </span>
+                          )}
+                        </div>
+                        <div className="space-y-2 max-w-xs md:max-w-md mt-4">
+                          <span className="text-[9px] font-black uppercase tracking-widest bg-black/10 text-black/75 px-2.5 py-0.5 rounded-md">
+                            {currentWeekAds[0].badge}
+                          </span>
+                          <h3 className="font-heading text-2xl md:text-3xl font-black mt-2 leading-tight tracking-tight">
+                            {currentWeekAds[0].title}
+                          </h3>
+                          <p className="text-[11px] opacity-80 leading-relaxed font-semibold">
+                            {currentWeekAds[0].subtitle}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="mt-6 pt-4 border-t border-black/5 flex items-center justify-between">
+                        <div className="flex items-baseline gap-2">
+                          <span className="text-2xl font-black">₹{currentWeekAds[0].discountPrice}</span>
+                          <span className="text-xs opacity-50 line-through">₹{currentWeekAds[0].originalPrice}</span>
+                        </div>
+                        <button
+                          onClick={() => {
+                            addToCart({ 
+                              id: currentWeekAds[0].id, 
+                              name: currentWeekAds[0].title, 
+                              price: currentWeekAds[0].originalPrice, 
+                              discountPrice: currentWeekAds[0].discountPrice 
+                            });
+                            toast.success(`${currentWeekAds[0].title} added to cart`);
+                          }}
+                          className={`px-6 py-2.5 rounded-full ${currentWeekAds[0].btnBg} ${currentWeekAds[0].btnTextColor} text-[10px] font-black tracking-widest uppercase hover:scale-105 transition shadow-md`}
+                        >
+                          Book Now
+                        </button>
+                      </div>
                     </div>
                   </div>
                 )}
 
                 {/* 2. Portrait Poster 1 */}
                 {currentWeekAds[1] && (
-                  <div className={`rounded-3xl p-6 bg-gradient-to-br ${currentWeekAds[1].bgGradient} ${currentWeekAds[1].textColor} flex flex-col justify-between min-h-[260px] border border-white/10 shadow-lg relative overflow-hidden text-center`}>
-                    <div className="absolute left-1/2 -translate-x-1/2 top-4 px-2.5 py-0.5 rounded-full bg-black/5 border border-black/10 text-[8px] font-bold uppercase tracking-wider whitespace-nowrap">
-                      {currentWeekAds[1].category}
-                    </div>
-                    <div className="space-y-3 pt-6 flex-grow flex flex-col justify-center items-center">
-                      <span className="text-[9px] font-black uppercase tracking-widest bg-black/15 px-2 py-0.5 rounded">
-                        {currentWeekAds[1].badge}
-                      </span>
-                      <h3 className="font-heading text-xl font-black leading-tight mt-1">
-                        {currentWeekAds[1].title}
-                      </h3>
-                      <p className="text-[10px] opacity-75 leading-relaxed font-medium max-w-[180px]">
-                        {currentWeekAds[1].subtitle}
-                      </p>
-                    </div>
-                    <div className="mt-4 pt-3 border-t border-black/5 flex flex-col items-center gap-2">
-                      <div className="flex items-baseline gap-1.5 justify-center">
-                        <span className="text-xl font-black">₹{currentWeekAds[1].discountPrice}</span>
-                        <span className="text-xs opacity-50 line-through">₹{currentWeekAds[1].originalPrice}</span>
+                  <div className={`rounded-3xl bg-gradient-to-br ${currentWeekAds[1].bgGradient} ${currentWeekAds[1].textColor} flex flex-col justify-between min-h-[360px] border border-white/10 shadow-lg relative overflow-hidden group`}>
+                    {/* Top Image */}
+                    <div className="w-full h-[160px] relative overflow-hidden flex-shrink-0">
+                      <img
+                        src={currentWeekAds[1].imageBg}
+                        alt={currentWeekAds[1].title}
+                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                      <div className="absolute top-3 left-3 px-2 py-0.5 rounded bg-black/60 border border-white/10 text-[8px] font-bold text-white uppercase tracking-wider">
+                        {currentWeekAds[1].category}
                       </div>
-                      <button
-                        onClick={() => {
-                          addToCart({ 
-                            id: currentWeekAds[1].id, 
-                            name: currentWeekAds[1].title, 
-                            price: currentWeekAds[1].originalPrice, 
-                            discountPrice: currentWeekAds[1].discountPrice 
-                          });
-                          toast.success(`${currentWeekAds[1].title} added to cart`);
-                        }}
-                        className={`w-full py-2.5 rounded-full ${currentWeekAds[1].btnBg} ${currentWeekAds[1].btnTextColor} text-[9px] font-black tracking-widest uppercase hover:scale-102 transition shadow-md`}
-                      >
-                        Book Now
-                      </button>
+                      {currentWeekAds[1].badge && (
+                        <div className="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-gold-600 text-[8px] font-bold text-dark uppercase tracking-wider">
+                          {currentWeekAds[1].badge}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Bottom Details */}
+                    <div className="p-5 flex-grow flex flex-col justify-between">
+                      <div className="space-y-1 text-center">
+                        <h3 className="font-heading text-lg font-black leading-snug">
+                          {currentWeekAds[1].title}
+                        </h3>
+                        {currentWeekAds[1].subBadge && (
+                          <p className="text-[8px] opacity-75 font-bold uppercase tracking-wider">
+                            {currentWeekAds[1].subBadge}
+                          </p>
+                        )}
+                        <p className="text-[10px] opacity-80 leading-relaxed max-w-[190px] mx-auto mt-1">
+                          {currentWeekAds[1].subtitle}
+                        </p>
+                      </div>
+
+                      <div className="mt-4 pt-3 border-t border-black/5 flex flex-col items-center gap-2">
+                        <div className="flex items-baseline gap-1.5 justify-center">
+                          <span className="text-xl font-black">₹{currentWeekAds[1].discountPrice}</span>
+                          <span className="text-xs opacity-50 line-through">₹{currentWeekAds[1].originalPrice}</span>
+                        </div>
+                        <button
+                          onClick={() => {
+                            addToCart({ 
+                              id: currentWeekAds[1].id, 
+                              name: currentWeekAds[1].title, 
+                              price: currentWeekAds[1].originalPrice, 
+                              discountPrice: currentWeekAds[1].discountPrice 
+                            });
+                            toast.success(`${currentWeekAds[1].title} added to cart`);
+                          }}
+                          className={`w-full py-2.5 rounded-full ${currentWeekAds[1].btnBg} ${currentWeekAds[1].btnTextColor} text-[9px] font-black tracking-widest uppercase hover:scale-102 transition shadow-md`}
+                        >
+                          Book Now
+                        </button>
+                      </div>
                     </div>
                   </div>
                 )}
 
                 {/* 3. Portrait Poster 2 */}
                 {currentWeekAds[2] && (
-                  <div className={`rounded-3xl p-6 bg-gradient-to-br ${currentWeekAds[2].bgGradient} ${currentWeekAds[2].textColor} flex flex-col justify-between min-h-[260px] border border-white/10 shadow-lg relative overflow-hidden text-center`}>
-                    <div className="absolute left-1/2 -translate-x-1/2 top-4 px-2.5 py-0.5 rounded-full bg-black/5 border border-black/10 text-[8px] font-bold uppercase tracking-wider whitespace-nowrap">
-                      {currentWeekAds[2].category}
-                    </div>
-                    <div className="space-y-3 pt-6 flex-grow flex flex-col justify-center items-center">
-                      <span className="text-[9px] font-black uppercase tracking-widest bg-black/15 px-2 py-0.5 rounded">
-                        {currentWeekAds[2].badge}
-                      </span>
-                      <h3 className="font-heading text-xl font-black leading-tight mt-1">
-                        {currentWeekAds[2].title}
-                      </h3>
-                      <p className="text-[10px] opacity-75 leading-relaxed font-medium max-w-[180px]">
-                        {currentWeekAds[2].subtitle}
-                      </p>
-                    </div>
-                    <div className="mt-4 pt-3 border-t border-black/5 flex flex-col items-center gap-2">
-                      <div className="flex items-baseline gap-1.5 justify-center">
-                        <span className="text-xl font-black">₹{currentWeekAds[2].discountPrice}</span>
-                        <span className="text-xs opacity-50 line-through">₹{currentWeekAds[2].originalPrice}</span>
+                  <div className={`rounded-3xl bg-gradient-to-br ${currentWeekAds[2].bgGradient} ${currentWeekAds[2].textColor} flex flex-col justify-between min-h-[360px] border border-white/10 shadow-lg relative overflow-hidden group`}>
+                    {/* Top Image */}
+                    <div className="w-full h-[160px] relative overflow-hidden flex-shrink-0">
+                      <img
+                        src={currentWeekAds[2].imageBg}
+                        alt={currentWeekAds[2].title}
+                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                      <div className="absolute top-3 left-3 px-2 py-0.5 rounded bg-black/60 border border-white/10 text-[8px] font-bold text-white uppercase tracking-wider">
+                        {currentWeekAds[2].category}
                       </div>
-                      <button
-                        onClick={() => {
-                          addToCart({ 
-                            id: currentWeekAds[2].id, 
-                            name: currentWeekAds[2].title, 
-                            price: currentWeekAds[2].originalPrice, 
-                            discountPrice: currentWeekAds[2].discountPrice 
-                          });
-                          toast.success(`${currentWeekAds[2].title} added to cart`);
-                        }}
-                        className={`w-full py-2.5 rounded-full ${currentWeekAds[2].btnBg} ${currentWeekAds[2].btnTextColor} text-[9px] font-black tracking-widest uppercase hover:scale-102 transition shadow-md`}
-                      >
-                        Book Now
-                      </button>
+                      {currentWeekAds[2].badge && (
+                        <div className="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-gold-600 text-[8px] font-bold text-dark uppercase tracking-wider">
+                          {currentWeekAds[2].badge}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Bottom Details */}
+                    <div className="p-5 flex-grow flex flex-col justify-between">
+                      <div className="space-y-1 text-center">
+                        <h3 className="font-heading text-lg font-black leading-snug">
+                          {currentWeekAds[2].title}
+                        </h3>
+                        {currentWeekAds[2].subBadge && (
+                          <p className="text-[8px] opacity-75 font-bold uppercase tracking-wider">
+                            {currentWeekAds[2].subBadge}
+                          </p>
+                        )}
+                        <p className="text-[10px] opacity-80 leading-relaxed max-w-[190px] mx-auto mt-1">
+                          {currentWeekAds[2].subtitle}
+                        </p>
+                      </div>
+
+                      <div className="mt-4 pt-3 border-t border-black/5 flex flex-col items-center gap-2">
+                        <div className="flex items-baseline gap-1.5 justify-center">
+                          <span className="text-xl font-black">₹{currentWeekAds[2].discountPrice}</span>
+                          <span className="text-xs opacity-50 line-through">₹{currentWeekAds[2].originalPrice}</span>
+                        </div>
+                        <button
+                          onClick={() => {
+                            addToCart({ 
+                              id: currentWeekAds[2].id, 
+                              name: currentWeekAds[2].title, 
+                              price: currentWeekAds[2].originalPrice, 
+                              discountPrice: currentWeekAds[2].discountPrice 
+                            });
+                            toast.success(`${currentWeekAds[2].title} added to cart`);
+                          }}
+                          className={`w-full py-2.5 rounded-full ${currentWeekAds[2].btnBg} ${currentWeekAds[2].btnTextColor} text-[9px] font-black tracking-widest uppercase hover:scale-102 transition shadow-md`}
+                        >
+                          Book Now
+                        </button>
+                      </div>
                     </div>
                   </div>
                 )}
 
                 {/* 4. Express Ad 1 (Banner Strip) */}
                 {currentWeekAds[3] && (
-                  <div className={`rounded-3xl p-5 bg-gradient-to-r ${currentWeekAds[3].bgGradient} ${currentWeekAds[3].textColor} flex flex-col justify-between border border-white/10 shadow-sm relative overflow-hidden`}>
-                    <div className="flex items-start justify-between">
-                      <span className="text-[8px] font-bold uppercase tracking-wider opacity-60">
-                        {currentWeekAds[3].category}
-                      </span>
-                      <span className="text-[8px] font-bold uppercase tracking-wider bg-black/5 px-2 py-0.5 rounded">
-                        {currentWeekAds[3].badge}
-                      </span>
-                    </div>
-                    <div className="my-3">
-                      <h4 className="font-heading text-sm font-black leading-tight">
-                        {currentWeekAds[3].title}
-                      </h4>
-                      <p className="text-[9px] opacity-75 line-clamp-1 mt-1 font-medium">
-                        {currentWeekAds[3].subtitle}
-                      </p>
-                    </div>
-                    <div className="flex items-center justify-between mt-2 pt-2 border-t border-black/5">
-                      <div className="flex items-baseline gap-1">
-                        <span className="text-base font-black">₹{currentWeekAds[3].discountPrice}</span>
-                        <span className="text-[9px] opacity-50 line-through">₹{currentWeekAds[3].originalPrice}</span>
+                  <div className={`rounded-3xl p-5 bg-gradient-to-r ${currentWeekAds[3].bgGradient} ${currentWeekAds[3].textColor} flex gap-4 items-center border border-white/10 shadow-sm relative overflow-hidden group`}>
+                    <div className="flex-1 flex flex-col justify-between h-full min-h-[105px]">
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[8px] font-bold uppercase tracking-wider opacity-60">
+                            {currentWeekAds[3].category}
+                          </span>
+                          <span className="text-[8px] font-bold uppercase tracking-wider bg-black/5 px-2 py-0.5 rounded">
+                            {currentWeekAds[3].badge}
+                          </span>
+                        </div>
+                        <h4 className="font-heading text-sm font-black leading-tight mt-1 group-hover:text-gold-600 transition">
+                          {currentWeekAds[3].title}
+                        </h4>
+                        <p className="text-[9px] opacity-75 line-clamp-1 mt-0.5 font-medium">
+                          {currentWeekAds[3].subtitle}
+                        </p>
                       </div>
-                      <button
-                        onClick={() => {
-                          addToCart({ 
-                            id: currentWeekAds[3].id, 
-                            name: currentWeekAds[3].title, 
-                            price: currentWeekAds[3].originalPrice, 
-                            discountPrice: currentWeekAds[3].discountPrice 
-                          });
-                          toast.success(`${currentWeekAds[3].title} added to cart`);
-                        }}
-                        className={`px-3.5 py-1.5 rounded-full ${currentWeekAds[3].btnBg} ${currentWeekAds[3].btnTextColor} text-[8px] font-black tracking-widest uppercase hover:scale-105 transition`}
-                      >
-                        Add
-                      </button>
+                      <div className="flex items-center justify-between mt-2 pt-2 border-t border-black/5">
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-base font-black">₹{currentWeekAds[3].discountPrice}</span>
+                          <span className="text-[9px] opacity-50 line-through">₹{currentWeekAds[3].originalPrice}</span>
+                        </div>
+                        <button
+                          onClick={() => {
+                            addToCart({ 
+                              id: currentWeekAds[3].id, 
+                              name: currentWeekAds[3].title, 
+                              price: currentWeekAds[3].originalPrice, 
+                              discountPrice: currentWeekAds[3].discountPrice 
+                            });
+                            toast.success(`${currentWeekAds[3].title} added to cart`);
+                          }}
+                          className={`px-3.5 py-1.5 rounded-full ${currentWeekAds[3].btnBg} ${currentWeekAds[3].btnTextColor} text-[8px] font-black tracking-widest uppercase hover:scale-105 transition`}
+                        >
+                          Add
+                        </button>
+                      </div>
+                    </div>
+                    <div className="w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0 border border-black/5 relative">
+                      <img
+                        src={currentWeekAds[3].imageBg}
+                        alt={currentWeekAds[3].title}
+                        className="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500 select-none"
+                      />
                     </div>
                   </div>
                 )}
 
                 {/* 5. Express Ad 2 (Banner Strip) */}
                 {currentWeekAds[4] && (
-                  <div className={`rounded-3xl p-5 bg-gradient-to-r ${currentWeekAds[4].bgGradient} ${currentWeekAds[4].textColor} flex flex-col justify-between border border-white/10 shadow-sm relative overflow-hidden`}>
-                    <div className="flex items-start justify-between">
-                      <span className="text-[8px] font-bold uppercase tracking-wider opacity-60">
-                        {currentWeekAds[4].category}
-                      </span>
-                      <span className="text-[8px] font-bold uppercase tracking-wider bg-black/5 px-2 py-0.5 rounded">
-                        {currentWeekAds[4].badge}
-                      </span>
-                    </div>
-                    <div className="my-3">
-                      <h4 className="font-heading text-sm font-black leading-tight">
-                        {currentWeekAds[4].title}
-                      </h4>
-                      <p className="text-[9px] opacity-75 line-clamp-1 mt-1 font-medium">
-                        {currentWeekAds[4].subtitle}
-                      </p>
-                    </div>
-                    <div className="flex items-center justify-between mt-2 pt-2 border-t border-black/5">
-                      <div className="flex items-baseline gap-1">
-                        <span className="text-base font-black">₹{currentWeekAds[4].discountPrice}</span>
-                        <span className="text-[9px] opacity-50 line-through">₹{currentWeekAds[4].originalPrice}</span>
+                  <div className={`rounded-3xl p-5 bg-gradient-to-r ${currentWeekAds[4].bgGradient} ${currentWeekAds[4].textColor} flex gap-4 items-center border border-white/10 shadow-sm relative overflow-hidden group`}>
+                    <div className="flex-1 flex flex-col justify-between h-full min-h-[105px]">
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[8px] font-bold uppercase tracking-wider opacity-60">
+                            {currentWeekAds[4].category}
+                          </span>
+                          <span className="text-[8px] font-bold uppercase tracking-wider bg-black/5 px-2 py-0.5 rounded">
+                            {currentWeekAds[4].badge}
+                          </span>
+                        </div>
+                        <h4 className="font-heading text-sm font-black leading-tight mt-1 group-hover:text-gold-600 transition">
+                          {currentWeekAds[4].title}
+                        </h4>
+                        <p className="text-[9px] opacity-75 line-clamp-1 mt-0.5 font-medium">
+                          {currentWeekAds[4].subtitle}
+                        </p>
                       </div>
-                      <button
-                        onClick={() => {
-                          addToCart({ 
-                            id: currentWeekAds[4].id, 
-                            name: currentWeekAds[4].title, 
-                            price: currentWeekAds[4].originalPrice, 
-                            discountPrice: currentWeekAds[4].discountPrice 
-                          });
-                          toast.success(`${currentWeekAds[4].title} added to cart`);
-                        }}
-                        className={`px-3.5 py-1.5 rounded-full ${currentWeekAds[4].btnBg} ${currentWeekAds[4].btnTextColor} text-[8px] font-black tracking-widest uppercase hover:scale-105 transition`}
-                      >
-                        Add
-                      </button>
+                      <div className="flex items-center justify-between mt-2 pt-2 border-t border-black/5">
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-base font-black">₹{currentWeekAds[4].discountPrice}</span>
+                          <span className="text-[9px] opacity-50 line-through">₹{currentWeekAds[4].originalPrice}</span>
+                        </div>
+                        <button
+                          onClick={() => {
+                            addToCart({ 
+                              id: currentWeekAds[4].id, 
+                              name: currentWeekAds[4].title, 
+                              price: currentWeekAds[4].originalPrice, 
+                              discountPrice: currentWeekAds[4].discountPrice 
+                            });
+                            toast.success(`${currentWeekAds[4].title} added to cart`);
+                          }}
+                          className={`px-3.5 py-1.5 rounded-full ${currentWeekAds[4].btnBg} ${currentWeekAds[4].btnTextColor} text-[8px] font-black tracking-widest uppercase hover:scale-105 transition`}
+                        >
+                          Add
+                        </button>
+                      </div>
+                    </div>
+                    <div className="w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0 border border-black/5 relative">
+                      <img
+                        src={currentWeekAds[4].imageBg}
+                        alt={currentWeekAds[4].title}
+                        className="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500 select-none"
+                      />
                     </div>
                   </div>
                 )}
 
                 {/* 6. Express Ad 3 (Banner Strip) */}
                 {currentWeekAds[5] && (
-                  <div className={`rounded-3xl p-5 bg-gradient-to-r ${currentWeekAds[5].bgGradient} ${currentWeekAds[5].textColor} flex flex-col justify-between border border-white/10 shadow-sm relative overflow-hidden`}>
-                    <div className="flex items-start justify-between">
-                      <span className="text-[8px] font-bold uppercase tracking-wider opacity-60">
-                        {currentWeekAds[5].category}
-                      </span>
-                      <span className="text-[8px] font-bold uppercase tracking-wider bg-black/5 px-2 py-0.5 rounded">
-                        {currentWeekAds[5].badge}
-                      </span>
-                    </div>
-                    <div className="my-3">
-                      <h4 className="font-heading text-sm font-black leading-tight">
-                        {currentWeekAds[5].title}
-                      </h4>
-                      <p className="text-[9px] opacity-75 line-clamp-1 mt-1 font-medium">
-                        {currentWeekAds[5].subtitle}
-                      </p>
-                    </div>
-                    <div className="flex items-center justify-between mt-2 pt-2 border-t border-black/5">
-                      <div className="flex items-baseline gap-1">
-                        <span className="text-base font-black">₹{currentWeekAds[5].discountPrice}</span>
-                        <span className="text-[9px] opacity-50 line-through">₹{currentWeekAds[5].originalPrice}</span>
+                  <div className={`rounded-3xl p-5 bg-gradient-to-r ${currentWeekAds[5].bgGradient} ${currentWeekAds[5].textColor} flex gap-4 items-center border border-white/10 shadow-sm relative overflow-hidden group`}>
+                    <div className="flex-1 flex flex-col justify-between h-full min-h-[105px]">
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[8px] font-bold uppercase tracking-wider opacity-60">
+                            {currentWeekAds[5].category}
+                          </span>
+                          <span className="text-[8px] font-bold uppercase tracking-wider bg-black/5 px-2 py-0.5 rounded">
+                            {currentWeekAds[5].badge}
+                          </span>
+                        </div>
+                        <h4 className="font-heading text-sm font-black leading-tight mt-1 group-hover:text-gold-600 transition">
+                          {currentWeekAds[5].title}
+                        </h4>
+                        <p className="text-[9px] opacity-75 line-clamp-1 mt-0.5 font-medium">
+                          {currentWeekAds[5].subtitle}
+                        </p>
                       </div>
-                      <button
-                        onClick={() => {
-                          addToCart({ 
-                            id: currentWeekAds[5].id, 
-                            name: currentWeekAds[5].title, 
-                            price: currentWeekAds[5].originalPrice, 
-                            discountPrice: currentWeekAds[5].discountPrice 
-                          });
-                          toast.success(`${currentWeekAds[5].title} added to cart`);
-                        }}
-                        className={`px-3.5 py-1.5 rounded-full ${currentWeekAds[5].btnBg} ${currentWeekAds[5].btnTextColor} text-[8px] font-black tracking-widest uppercase hover:scale-105 transition`}
-                      >
-                        Add
-                      </button>
+                      <div className="flex items-center justify-between mt-2 pt-2 border-t border-black/5">
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-base font-black">₹{currentWeekAds[5].discountPrice}</span>
+                          <span className="text-[9px] opacity-50 line-through">₹{currentWeekAds[5].originalPrice}</span>
+                        </div>
+                        <button
+                          onClick={() => {
+                            addToCart({ 
+                              id: currentWeekAds[5].id, 
+                              name: currentWeekAds[5].title, 
+                              price: currentWeekAds[5].originalPrice, 
+                              discountPrice: currentWeekAds[5].discountPrice 
+                            });
+                            toast.success(`${currentWeekAds[5].title} added to cart`);
+                          }}
+                          className={`px-3.5 py-1.5 rounded-full ${currentWeekAds[5].btnBg} ${currentWeekAds[5].btnTextColor} text-[8px] font-black tracking-widest uppercase hover:scale-105 transition`}
+                        >
+                          Add
+                        </button>
+                      </div>
+                    </div>
+                    <div className="w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0 border border-black/5 relative">
+                      <img
+                        src={currentWeekAds[5].imageBg}
+                        alt={currentWeekAds[5].title}
+                        className="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500 select-none"
+                      />
                     </div>
                   </div>
                 )}
