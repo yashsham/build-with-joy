@@ -3,14 +3,32 @@
 @tailwind utilities;
 
 @layer base {
+  /* Custom Premium Scrollbar for Luxury Theme */
+  ::-webkit-scrollbar {
+    width: 6px; /* Sleek, thin width */
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #050505; /* Blends with the dark theme */
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15); /* Subtle semi-transparent indicator */
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(201, 168, 76, 0.4); /* Elegant gold glow on hover */
+  }
+
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.15) #050505;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
   * {
     border-color: #1e1e1e;
     -webkit-tap-highlight-color: transparent;
     box-sizing: border-box;
-  }
-  html {
-    scroll-behavior: smooth;
-    overflow-x: hidden;
   }
   body {
     background-color: #000000;
