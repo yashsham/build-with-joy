@@ -43,10 +43,13 @@ export default function Navbar() {
 
         {/* Location badge (Locked to Bareilly) */}
         <div>
-          <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-gold-600/30 bg-black/40 text-xs font-semibold text-gold-600 cursor-default">
+          <Link
+            href="/#lounge"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-gold-600/30 bg-black/40 text-xs font-semibold text-gold-600 hover:border-gold-600/60 hover:bg-gold-600/10 hover:scale-[1.02] transition duration-300"
+          >
             <MapPin className="w-3.5 h-3.5" />
             <span>{currentCityName}</span>
-          </div>
+          </Link>
         </div>
 
         {/* Desktop Links */}

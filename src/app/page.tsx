@@ -138,29 +138,29 @@ export default function Home() {
   ];
 
   const menCategoriesList = [
-    { id: "male-grooming", name: "Male Grooming", image: "/assets/unique-service-37.jpg", slug: "male-grooming" },
-    { id: "male-spa", name: "Male Spa", image: "/assets/unique-service-36.jpg", slug: "spa-massage" },
-    { id: "male-hair", name: "Premium Hair Spa", image: "/assets/unique-service-35.jpg", slug: "hair" },
-    { id: "male-hydraglo", name: "HydraGlo Facials", image: "/assets/unique-service-38.jpg", slug: "hydraglo" },
+    { id: "male-grooming", name: "Male Grooming", image: "/assets/service-mens-haircut-styling.png", slug: "male-grooming" },
+    { id: "male-spa", name: "Male Spa", image: "/assets/service-mens-body-massage.png", slug: "spa-massage" },
+    { id: "male-hair", name: "Premium Hair Spa", image: "/assets/service-mens-head-shoulder-massage.png", slug: "hair" },
+    { id: "male-hydraglo", name: "HydraGlo Facials", image: "/assets/service-mens-charcoal-facial.png", slug: "hydraglo" },
   ];
 
   // Most Booked services
   const mostBookedServices = {
     salon: [
-      { id: "premium-honey-wax-arms-legs", name: "Premium Honey Full Arms + Half Legs Waxing", price: 399, discountPrice: 299, duration: 45, image: "/assets/unique-service-42.jpg", badge: "Most Booked" },
-      { id: "o3-glow-facial", name: "O3+ Glow Facial (9 Steps)", price: 2199, discountPrice: 1899, duration: 60, image: "/assets/unique-service-40.jpg", badge: "9-Step Ritual" },
-      { id: "threading-eyebrow-upperlip", name: "Threading (Eyebrows + Upper Lip)", price: 99, discountPrice: 59, duration: 15, image: "/assets/unique-service-43.jpg", badge: "Express Care" },
-      { id: "loreal-hair-spa", name: "L'Oreal Hair Spa & Nutrition", price: 1199, discountPrice: 899, duration: 50, image: "/assets/unique-service-44.jpg", badge: "4 Free Gifts" },
+      { id: "premium-honey-wax-arms-legs", name: "Premium Honey Full Arms + Half Legs Waxing", price: 399, discountPrice: 299, duration: 45, image: "/assets/service-premium-honey-wax-arms-legs.png", badge: "Most Booked" },
+      { id: "o3-glow-facial", name: "O3+ Glow Facial (9 Steps)", price: 2199, discountPrice: 1899, duration: 60, image: "/assets/service-o3-glow-facial.png", badge: "9-Step Ritual" },
+      { id: "threading-eyebrow-upperlip", name: "Threading (Eyebrows + Upper Lip)", price: 99, discountPrice: 59, duration: 15, image: "/assets/service-threading-eyebrow-upperlip.png", badge: "Express Care" },
+      { id: "loreal-hair-spa", name: "L'Oreal Hair Spa & Nutrition", price: 1199, discountPrice: 899, duration: 50, image: "/assets/service-loreal-hair-spa.png", badge: "4 Free Gifts" },
     ],
     spa: [
-      { id: "aroma-therapy-body-massage", name: "Aroma Therapy Full Body Massage", price: 1799, discountPrice: 1499, duration: 75, image: "/assets/unique-service-16.jpg", badge: "Sensory Healing" },
-      { id: "deep-tissue-stress-relief", name: "Deep Tissue Stress Relief Massage", price: 2299, discountPrice: 1899, duration: 90, image: "/assets/unique-service-14.jpg", badge: "Hot Towel" },
-      { id: "swedish-back-shoulder-massage", name: "Swedish Back & Shoulder Massage", price: 999, discountPrice: 799, duration: 45, image: "/assets/unique-service-17.jpg", badge: "Pain Relief" },
+      { id: "aroma-therapy-body-massage", name: "Aroma Therapy Full Body Massage", price: 1799, discountPrice: 1499, duration: 75, image: "/assets/service-aroma-therapy-body-massage.png", badge: "Sensory Healing" },
+      { id: "deep-tissue-stress-relief", name: "Deep Tissue Stress Relief Massage", price: 2299, discountPrice: 1899, duration: 90, image: "/assets/service-deep-tissue-stress-relief.png", badge: "Hot Towel" },
+      { id: "swedish-back-shoulder-massage", name: "Swedish Back & Shoulder Massage", price: 999, discountPrice: 799, duration: 45, image: "/assets/service-swedish-back-shoulder-massage.png", badge: "Pain Relief" },
     ],
     hydraglo: [
-      { id: "classic-hydraglo", name: "Classic HydraGlo Skin Infusion Facial", price: 2999, discountPrice: 2499, duration: 60, image: "/assets/unique-service-32.jpg", badge: "Most Booked" },
-      { id: "superbright-hydraglo", name: "SuperBright HydraGlo with Vitamin C", price: 3999, discountPrice: 3199, duration: 75, image: "/assets/unique-service-33.jpg", badge: "Glass Skin" },
-      { id: "agedefying-hydraglo", name: "Age-Defying Gold-Peptide HydraGlo", price: 4999, discountPrice: 3999, duration: 90, image: "/assets/unique-service-30.jpg", badge: "US-FDA Approved" },
+      { id: "classic-hydraglo", name: "Classic HydraGlo Skin Infusion Facial", price: 2999, discountPrice: 2499, duration: 60, image: "/assets/service-classic-hydraglo.png", badge: "Most Booked" },
+      { id: "superbright-hydraglo", name: "SuperBright HydraGlo with Vitamin C", price: 3999, discountPrice: 3199, duration: 75, image: "/assets/service-superbright-hydraglo.png", badge: "Glass Skin" },
+      { id: "agedefying-hydraglo", name: "Age-Defying Gold-Peptide HydraGlo", price: 4999, discountPrice: 3999, duration: 90, image: "/assets/service-agedefying-hydraglo.png", badge: "US-FDA Approved" },
     ]
   };
 
@@ -639,7 +639,7 @@ export default function Home() {
       </section>
 
       {/* Flagship physical lounges section */}
-      <section className="py-14 md:py-20 relative overflow-hidden bg-[#020202]">
+      <section id="lounge" className="py-14 md:py-20 relative overflow-hidden bg-[#020202] scroll-mt-24">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           <div className="space-y-6">
             <div className="text-xs text-gold-600 luxe-subtitle">Visit Our Lounges</div>
@@ -686,8 +686,8 @@ export default function Home() {
       </section>
 
       {/* CELEBRITIES STORIES SECTION */}
-      <section className="py-14 md:py-20 bg-[#050505] border-y border-white/5">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+      <section id="press" className="py-14 md:py-20 bg-[#050505] border-y border-white/5 scroll-mt-24">
+        <div id="reviews" className="max-w-4xl mx-auto px-4 sm:px-6 scroll-mt-24">
           <div className="text-center max-w-xl mx-auto mb-10 md:mb-12">
             <h2 className="font-heading text-2xl md:text-3xl text-white">Stories From the Best</h2>
             <p className="mt-1.5 text-xs text-white/50">Loved by leading creators and celebrity stylists.</p>
@@ -696,7 +696,7 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6 max-w-2xl mx-auto">
             <div className="rounded-2xl border border-white/5 bg-[#0a0a0a] p-5 flex flex-col items-center text-center space-y-4">
               <div className="h-28 w-28 rounded-full overflow-hidden border border-gold-600/20 bg-white/5">
-                <img src="/assets/service-bridal.jpg" alt="Ekta Kapoor" className="w-full h-full object-cover" />
+                <img src="/assets/media-ekta.png" alt="Ekta Kapoor" className="w-full h-full object-cover" />
               </div>
               <div>
                 <h4 className="text-xs font-bold text-gold-600 uppercase tracking-widest luxe-subtitle">Ekta Kapoor</h4>
@@ -709,7 +709,7 @@ export default function Home() {
 
             <div className="rounded-2xl border border-white/5 bg-[#0a0a0a] p-5 flex flex-col items-center text-center space-y-4">
               <div className="h-28 w-28 rounded-full overflow-hidden border border-gold-600/20 bg-white/5">
-                <img src="/assets/service-spa.jpg" alt="Divyanka Tripathi" className="w-full h-full object-cover animate-grayscale" />
+                <img src="/assets/media-divyanka.png" alt="Divyanka Tripathi" className="w-full h-full object-cover" />
               </div>
               <div>
                 <h4 className="text-xs font-bold text-gold-600 uppercase tracking-widest luxe-subtitle">Divyanka Tripathi</h4>
