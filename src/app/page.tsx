@@ -54,6 +54,374 @@ const loungeImages = [
   }
 ];
 
+interface AdDetail {
+  id: string;
+  title: string;
+  subtitle: string;
+  category: string;
+  originalPrice: number;
+  discountPrice: number;
+  badge: string;
+  bgGradient: string;
+  textColor: string;
+  btnBg: string;
+  btnTextColor: string;
+  slug: string;
+}
+
+const adsData: AdDetail[] = [
+  {
+    id: "o3-glow-facial",
+    title: "O3+ Glow Facial",
+    subtitle: "Premium 9-step facial for ultimate radiance & glow",
+    category: "Facial Care",
+    originalPrice: 2199,
+    discountPrice: 1899,
+    badge: "Flat ₹300 OFF",
+    bgGradient: "from-[#FFFDF5] to-[#FFF8E7]",
+    textColor: "text-[#4A3E1B]",
+    btnBg: "bg-[#8C6D1F]",
+    btnTextColor: "text-white",
+    slug: "facial-cleanup"
+  },
+  {
+    id: "aroma-therapy-body-massage",
+    title: "Aroma Therapy Massage",
+    subtitle: "Full body relaxation with natural essential oils",
+    category: "Spa Massage",
+    originalPrice: 1799,
+    discountPrice: 1499,
+    badge: "Sensory Healing",
+    bgGradient: "from-[#FDFBFF] to-[#F3EEFF]",
+    textColor: "text-[#3B2866]",
+    btnBg: "bg-[#6345B5]",
+    btnTextColor: "text-white",
+    slug: "spa-massage"
+  },
+  {
+    id: "classic-hydraglo",
+    title: "Classic HydraGlo",
+    subtitle: "Deep skin infusion facial for instant hydration",
+    category: "HydraGlo",
+    originalPrice: 2999,
+    discountPrice: 2499,
+    badge: "15% Special OFF",
+    bgGradient: "from-[#F5FCFF] to-[#E5F5FD]",
+    textColor: "text-[#1B4B66]",
+    btnBg: "bg-[#1F7EAD]",
+    btnTextColor: "text-white",
+    slug: "hydraglo"
+  },
+  {
+    id: "loreal-hair-spa",
+    title: "L'Oreal Hair Spa",
+    subtitle: "Nourishing therapy + 4 free grooming gifts",
+    category: "Hair Care",
+    originalPrice: 1199,
+    discountPrice: 899,
+    badge: "4 Free Gifts",
+    bgGradient: "from-[#FFF8F9] to-[#FFF0F2]",
+    textColor: "text-[#661B2B]",
+    btnBg: "bg-[#B53E57]",
+    btnTextColor: "text-white",
+    slug: "hair"
+  },
+  {
+    id: "deep-tissue-stress-relief",
+    title: "Deep Tissue Massage",
+    subtitle: "Undo chronic muscle tension with hot towels",
+    category: "Spa Massage",
+    originalPrice: 2299,
+    discountPrice: 1899,
+    badge: "Hot Towel Ritual",
+    bgGradient: "from-[#F8FFF9] to-[#ECFDF0]",
+    textColor: "text-[#1E4D2B]",
+    btnBg: "bg-[#2D8A46]",
+    btnTextColor: "text-white",
+    slug: "spa-massage"
+  },
+  {
+    id: "superbright-hydraglo",
+    title: "SuperBright HydraGlo",
+    subtitle: "Vitamin C infused treatment for radiant glass skin",
+    category: "HydraGlo",
+    originalPrice: 3999,
+    discountPrice: 3199,
+    badge: "Glass Skin Glow",
+    bgGradient: "from-[#FFFDF5] to-[#FFF5E5]",
+    textColor: "text-[#66461B]",
+    btnBg: "bg-[#B57C3E]",
+    btnTextColor: "text-white",
+    slug: "hydraglo"
+  },
+  {
+    id: "agedefying-hydraglo",
+    title: "Age-Defying Gold HydraGlo",
+    subtitle: "Gold-peptide premium treatment for skin tightening",
+    category: "HydraGlo",
+    originalPrice: 4999,
+    discountPrice: 3999,
+    badge: "US-FDA Approved",
+    bgGradient: "from-[#FFFDF5] to-[#FFF1D6]",
+    textColor: "text-[#5C4516]",
+    btnBg: "bg-[#A37E2F]",
+    btnTextColor: "text-white",
+    slug: "hydraglo"
+  },
+  {
+    id: "threading-eyebrow-upperlip",
+    title: "Express Threading",
+    subtitle: "Eyebrows & upper lip shaping in 15 minutes",
+    category: "Grooming",
+    originalPrice: 99,
+    discountPrice: 59,
+    badge: "Save 40%",
+    bgGradient: "from-[#F6FFF6] to-[#E3FFE3]",
+    textColor: "text-[#1B521B]",
+    btnBg: "bg-[#2A8F2A]",
+    btnTextColor: "text-white",
+    slug: "female-salon"
+  },
+  {
+    id: "premium-honey-wax-arms-legs",
+    title: "Honey Full Arms & Legs",
+    subtitle: "Premium smooth honey waxing combo",
+    category: "Waxing",
+    originalPrice: 399,
+    discountPrice: 299,
+    badge: "Most Booked Combo",
+    bgGradient: "from-[#FFFFF2] to-[#FFFEE0]",
+    textColor: "text-[#5C5716]",
+    btnBg: "bg-[#A39B2F]",
+    btnTextColor: "text-white",
+    slug: "female-salon"
+  },
+  {
+    id: "rica-liposoluble-legs-wax",
+    title: "Rica Legs Waxing",
+    subtitle: "Pain-free liposoluble wax for full legs",
+    category: "Waxing",
+    originalPrice: 499,
+    discountPrice: 399,
+    badge: "20% Special OFF",
+    bgGradient: "from-[#FFFBF5] to-[#FFF3E0]",
+    textColor: "text-[#52341B]",
+    btnBg: "bg-[#8F5B2F]",
+    btnTextColor: "text-white",
+    slug: "female-salon"
+  },
+  {
+    id: "rica-brazilian-bikini-wax",
+    title: "Rica Brazilian Waxing",
+    subtitle: "Maximum hygiene & premium sensitive skin care",
+    category: "Waxing",
+    originalPrice: 1199,
+    discountPrice: 899,
+    badge: "Flat ₹300 OFF",
+    bgGradient: "from-[#FFFBFC] to-[#FFF0F3]",
+    textColor: "text-[#5C1635]",
+    btnBg: "bg-[#A32F65]",
+    btnTextColor: "text-white",
+    slug: "female-salon"
+  },
+  {
+    id: "swedish-back-shoulder-massage",
+    title: "Swedish Back & Shoulder",
+    subtitle: "Relieve neck and back stiffness in 45 Mins",
+    category: "Spa Massage",
+    originalPrice: 999,
+    discountPrice: 799,
+    badge: "Instant Relief",
+    bgGradient: "from-[#F5FDFF] to-[#E0F8FF]",
+    textColor: "text-[#164D5C]",
+    btnBg: "bg-[#2F89A3]",
+    btnTextColor: "text-white",
+    slug: "spa-massage"
+  },
+  {
+    id: "lotus-radiant-gold-facial",
+    title: "Lotus Radiant Gold",
+    subtitle: "Special gold facial kit for instant bridal glow",
+    category: "Facial Care",
+    originalPrice: 1999,
+    discountPrice: 1599,
+    badge: "Bridal Favorite",
+    bgGradient: "from-[#FFFFF0] to-[#FFFEE0]",
+    textColor: "text-[#54541B]",
+    btnBg: "bg-[#91912E]",
+    btnTextColor: "text-white",
+    slug: "facial-cleanup"
+  },
+  {
+    id: "cheryls-glowvera-facial",
+    title: "Cheryl's GlowVera",
+    subtitle: "Aloe-vera based cooling facial for sun defense",
+    category: "Facial Care",
+    originalPrice: 1599,
+    discountPrice: 1299,
+    badge: "Sun Damage Defense",
+    bgGradient: "from-[#F7FFF7] to-[#E6FFE6]",
+    textColor: "text-[#1C541C]",
+    btnBg: "bg-[#2E912E]",
+    btnTextColor: "text-white",
+    slug: "facial-cleanup"
+  },
+  {
+    id: "sara-dtan-cleanup",
+    title: "Sara D-Tan Cleanup",
+    subtitle: "Deep pore tan removal cleanup for face & neck",
+    category: "Cleanup",
+    originalPrice: 899,
+    discountPrice: 699,
+    badge: "22% Flat OFF",
+    bgGradient: "from-[#FAF9F5] to-[#F0EDE6]",
+    textColor: "text-[#474337]",
+    btnBg: "bg-[#7A745F]",
+    btnTextColor: "text-white",
+    slug: "facial-cleanup"
+  },
+  {
+    id: "o3-shine-glow-cleanup",
+    title: "O3+ Shine & Glow Cleanup",
+    subtitle: "Brightening cleanup for instant brightness",
+    category: "Cleanup",
+    originalPrice: 1099,
+    discountPrice: 899,
+    badge: "Instant Glow",
+    bgGradient: "from-[#FFFEFC] to-[#FFF6EB]",
+    textColor: "text-[#5C4524]",
+    btnBg: "bg-[#9E773E]",
+    btnTextColor: "text-white",
+    slug: "facial-cleanup"
+  },
+  {
+    id: "anti-acne-deep-cleansing",
+    title: "Anti-Acne Deep Cleansing",
+    subtitle: "Pore refining treatment to prevent breakouts",
+    category: "Facial Care",
+    originalPrice: 1799,
+    discountPrice: 1499,
+    badge: "Clear Skin Guarantee",
+    bgGradient: "from-[#F2FCFA] to-[#E1F7F4]",
+    textColor: "text-[#115C4E]",
+    btnBg: "bg-[#1E9E87]",
+    btnTextColor: "text-white",
+    slug: "facial-cleanup"
+  },
+  {
+    id: "keratin-therapy",
+    title: "Premium Keratin Therapy",
+    subtitle: "Frizz-free smoothness & deep keratin rebuilding",
+    category: "Hair Therapy",
+    originalPrice: 3499,
+    discountPrice: 2499,
+    badge: "Save ₹1,000",
+    bgGradient: "from-[#FCF9F2] to-[#F5ECE0]",
+    textColor: "text-[#473B25]",
+    btnBg: "bg-[#806B43]",
+    btnTextColor: "text-white",
+    slug: "hair"
+  },
+  {
+    id: "hair-smoothening",
+    title: "L'Oreal Hair Smoothening",
+    subtitle: "Silky straight hair styling using MATRIX/L'Oreal",
+    category: "Hair Styling",
+    originalPrice: 4999,
+    discountPrice: 3999,
+    badge: "Premium Straightening",
+    bgGradient: "from-[#FAF9FB] to-[#F1EEF4]",
+    textColor: "text-[#3D3347]",
+    btnBg: "bg-[#6A597D]",
+    btnTextColor: "text-white",
+    slug: "hair"
+  },
+  {
+    id: "global-hair-coloring",
+    title: "Global Hair Coloring",
+    subtitle: "Full global hair coloring using L'Oreal ammonia-free colors",
+    category: "Hair Color",
+    originalPrice: 2199,
+    discountPrice: 1699,
+    badge: "Flat ₹500 OFF",
+    bgGradient: "from-[#FCF6F2] to-[#F7E5DB]",
+    textColor: "text-[#542B13]",
+    btnBg: "bg-[#964E22]",
+    btnTextColor: "text-white",
+    slug: "hair"
+  },
+  {
+    id: "womens-blowdry-styling",
+    title: "Blowdry & Hair Styling",
+    subtitle: "Glamorous blowout & styling for party-ready hair",
+    category: "Hair Styling",
+    originalPrice: 399,
+    discountPrice: 299,
+    badge: "Quick Makeover",
+    bgGradient: "from-[#FFF7FA] to-[#FFE0EB]",
+    textColor: "text-[#5C1635]",
+    btnBg: "bg-[#A32F65]",
+    btnTextColor: "text-white",
+    slug: "hair"
+  },
+  {
+    id: "luxury-bridal-hd-makeup",
+    title: "Luxury Bridal HD Makeup",
+    subtitle: "Flawless HD makeup including draping & hair styling",
+    category: "Bridal Makeup",
+    originalPrice: 9999,
+    discountPrice: 7999,
+    badge: "Luxury Package",
+    bgGradient: "from-[#FFF8FA] to-[#FFF0F4]",
+    textColor: "text-[#661B42]",
+    btnBg: "bg-[#B53E75]",
+    btnTextColor: "text-white",
+    slug: "bridal"
+  },
+  {
+    id: "engagement-makeup",
+    title: "Engagement Makeup",
+    subtitle: "Stunning HD look for engagement & pre-wedding events",
+    category: "Occasion Makeup",
+    originalPrice: 5999,
+    discountPrice: 4999,
+    badge: "Save ₹1,000",
+    bgGradient: "from-[#FCF5F7] to-[#F7E1E7]",
+    textColor: "text-[#5C2337]",
+    btnBg: "bg-[#9E3E61]",
+    btnTextColor: "text-white",
+    slug: "bridal"
+  },
+  {
+    id: "airbrush-bridal-makeup",
+    title: "Airbrush Bridal Makeup",
+    subtitle: "Ultra high definition silicon airbrush makeup",
+    category: "Bridal Makeup",
+    originalPrice: 14999,
+    discountPrice: 11999,
+    badge: "Premium HD Glow",
+    bgGradient: "from-[#F2FBFF] to-[#DDF3FF]",
+    textColor: "text-[#134D66]",
+    btnBg: "bg-[#258AB5]",
+    btnTextColor: "text-white",
+    slug: "bridal"
+  },
+  {
+    id: "saree-draping-hair-bun",
+    title: "Saree Draping & Hair Bun",
+    subtitle: "Classic saree draping + neat traditional hair bun styling",
+    category: "Styling",
+    originalPrice: 799,
+    discountPrice: 599,
+    badge: "Flat ₹200 OFF",
+    bgGradient: "from-[#FFF5F5] to-[#FFE0E0]",
+    textColor: "text-[#5C1616]",
+    btnBg: "bg-[#A32F2F]",
+    btnTextColor: "text-white",
+    slug: "bridal"
+  }
+];
+
 export default function Home() {
   const [activeGender, setActiveGender] = useState<"female" | "male">("female");
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
@@ -82,6 +450,32 @@ export default function Home() {
       videoRef.current.muted = isVideoMuted;
     }
   }, [isVideoMuted]);
+
+  // Refer Now Modal States & Submissions
+  const [isReferOpen, setIsReferOpen] = useState(false);
+  const [referStep, setReferStep] = useState<"form" | "success">("form");
+  const [referType, setReferType] = useState<"partner" | "customer">("customer");
+  const [referForm, setReferForm] = useState({
+    yourName: "",
+    yourPhone: "",
+    friendName: "",
+    friendPhone: "",
+    friendRole: "beautician",
+  });
+
+  const handleReferSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const newReferral = {
+      ...referForm,
+      type: referType,
+      date: new Date().toLocaleDateString(),
+      status: "Pending Verification"
+    };
+    const existing = JSON.parse(localStorage.getItem("hermosa_referrals") || "[]");
+    localStorage.setItem("hermosa_referrals", JSON.stringify([newReferral, ...existing]));
+    setReferStep("success");
+    toast.success("Referral registered successfully!");
+  };
 
   // Drag-to-scroll for Most Booked section on desktop
   const mostBookedScrollRef = useRef<HTMLDivElement>(null);
@@ -660,41 +1054,278 @@ export default function Home() {
         </div>
       </section>
 
-      {/* MULTISESSION BANNER */}
-      <section className="py-12 md:py-16 bg-black">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <div className="relative rounded-3xl overflow-hidden border border-white/5 bg-gradient-to-br from-yellow-950/20 via-black to-[#060606] p-6 sm:p-8 md:p-12 text-center space-y-5 md:space-y-6">
-            <h3 className="font-heading text-xl md:text-2xl text-gradient-gold">More Relaxation, More Savings</h3>
-            <p className="text-xs text-white/60 max-w-md mx-auto leading-relaxed">
-              Unlock cumulative discounts with our multisession package. Perfect for regular routines.
-            </p>
-            
-            <div className="grid grid-cols-3 gap-3 md:gap-4 max-w-lg mx-auto pt-3">
-              <div className="border border-gold-600/20 rounded-xl bg-gold-600/5 p-2.5 md:p-3 flex flex-col items-center">
-                <span className="text-[10px] md:text-xs text-white/40">2 Sessions</span>
-                <span className="text-sm font-bold text-gold-600 mt-1">₹300 OFF</span>
+      {/* WEEKLY SPOTLIGHT ROTATING ADS (Different Dimensions: Landscape, Portrait, Banner) */}
+      {(() => {
+        const weekIndex = typeof window !== "undefined" ? Math.min(3, Math.floor((new Date().getDate() - 1) / 7)) : 0;
+        const startIndex = weekIndex * 6;
+        const currentWeekAds = adsData.slice(startIndex, startIndex + 6);
+        
+        return (
+          <section className="py-14 bg-black border-t border-white/5">
+            <div className="max-w-5xl mx-auto px-4 sm:px-6">
+              <div className="text-center max-w-xl mx-auto mb-10">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-gold-600/30 bg-gold-600/5 text-[9px] text-gold-500 font-bold uppercase tracking-wider luxe-subtitle">
+                  <Sparkles className="w-3.5 h-3.5 text-gold-500" /> Weekly Rotating Spotlight Deals
+                </span>
+                <h2 className="font-heading text-2xl md:text-3xl text-white mt-3 leading-tight">
+                  This Week's <span className="text-gradient-gold italic">Exclusive Offers</span>
+                </h2>
+                <p className="mt-1.5 text-xs text-white/50">
+                  Premium deals updated weekly. Add directly to your cart to lock in these special rates!
+                </p>
               </div>
-              <div className="border border-gold-600/20 rounded-xl bg-gold-600/5 p-2.5 md:p-3 flex flex-col items-center">
-                <span className="text-[10px] md:text-xs text-white/40">4 Sessions</span>
-                <span className="text-sm font-bold text-gold-600 mt-1">₹700 OFF</span>
-              </div>
-              <div className="border border-gold-600/20 rounded-xl bg-gold-600/5 p-2.5 md:p-3 flex flex-col items-center">
-                <span className="text-[10px] md:text-xs text-white/40">6 Sessions</span>
-                <span className="text-sm font-bold text-gold-600 mt-1">₹1500 OFF</span>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* 1. Landscape Featured Banner (spans 2 columns) */}
+                {currentWeekAds[0] && (
+                  <div className={`md:col-span-2 rounded-3xl p-6 md:p-8 bg-gradient-to-br ${currentWeekAds[0].bgGradient} ${currentWeekAds[0].textColor} flex flex-col justify-between min-h-[260px] border border-white/10 shadow-lg relative overflow-hidden group`}>
+                    <div className="absolute right-6 top-6 px-3 py-1 rounded-full bg-black/5 border border-black/10 text-[9px] font-bold uppercase tracking-wider">
+                      {currentWeekAds[0].category}
+                    </div>
+                    <div className="space-y-3 max-w-md">
+                      <span className="text-[10px] font-black uppercase tracking-widest bg-black/15 px-2.5 py-1 rounded-md">
+                        {currentWeekAds[0].badge}
+                      </span>
+                      <h3 className="font-heading text-2xl md:text-3xl font-black mt-2 leading-tight">
+                        {currentWeekAds[0].title}
+                      </h3>
+                      <p className="text-[11px] opacity-80 leading-relaxed font-medium">
+                        {currentWeekAds[0].subtitle}
+                      </p>
+                    </div>
+                    <div className="mt-6 pt-4 border-t border-black/5 flex items-center justify-between">
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-2xl font-black">₹{currentWeekAds[0].discountPrice}</span>
+                        <span className="text-xs opacity-50 line-through">₹{currentWeekAds[0].originalPrice}</span>
+                      </div>
+                      <button
+                        onClick={() => {
+                          addToCart({ 
+                            id: currentWeekAds[0].id, 
+                            name: currentWeekAds[0].title, 
+                            price: currentWeekAds[0].originalPrice, 
+                            discountPrice: currentWeekAds[0].discountPrice 
+                          });
+                          toast.success(`${currentWeekAds[0].title} added to cart`);
+                        }}
+                        className={`px-6 py-2.5 rounded-full ${currentWeekAds[0].btnBg} ${currentWeekAds[0].btnTextColor} text-[10px] font-black tracking-widest uppercase hover:scale-105 transition shadow-md`}
+                      >
+                        Book Now
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* 2. Portrait Poster 1 */}
+                {currentWeekAds[1] && (
+                  <div className={`rounded-3xl p-6 bg-gradient-to-br ${currentWeekAds[1].bgGradient} ${currentWeekAds[1].textColor} flex flex-col justify-between min-h-[260px] border border-white/10 shadow-lg relative overflow-hidden text-center`}>
+                    <div className="absolute left-1/2 -translate-x-1/2 top-4 px-2.5 py-0.5 rounded-full bg-black/5 border border-black/10 text-[8px] font-bold uppercase tracking-wider whitespace-nowrap">
+                      {currentWeekAds[1].category}
+                    </div>
+                    <div className="space-y-3 pt-6 flex-grow flex flex-col justify-center items-center">
+                      <span className="text-[9px] font-black uppercase tracking-widest bg-black/15 px-2 py-0.5 rounded">
+                        {currentWeekAds[1].badge}
+                      </span>
+                      <h3 className="font-heading text-xl font-black leading-tight mt-1">
+                        {currentWeekAds[1].title}
+                      </h3>
+                      <p className="text-[10px] opacity-75 leading-relaxed font-medium max-w-[180px]">
+                        {currentWeekAds[1].subtitle}
+                      </p>
+                    </div>
+                    <div className="mt-4 pt-3 border-t border-black/5 flex flex-col items-center gap-2">
+                      <div className="flex items-baseline gap-1.5 justify-center">
+                        <span className="text-xl font-black">₹{currentWeekAds[1].discountPrice}</span>
+                        <span className="text-xs opacity-50 line-through">₹{currentWeekAds[1].originalPrice}</span>
+                      </div>
+                      <button
+                        onClick={() => {
+                          addToCart({ 
+                            id: currentWeekAds[1].id, 
+                            name: currentWeekAds[1].title, 
+                            price: currentWeekAds[1].originalPrice, 
+                            discountPrice: currentWeekAds[1].discountPrice 
+                          });
+                          toast.success(`${currentWeekAds[1].title} added to cart`);
+                        }}
+                        className={`w-full py-2.5 rounded-full ${currentWeekAds[1].btnBg} ${currentWeekAds[1].btnTextColor} text-[9px] font-black tracking-widest uppercase hover:scale-102 transition shadow-md`}
+                      >
+                        Book Now
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* 3. Portrait Poster 2 */}
+                {currentWeekAds[2] && (
+                  <div className={`rounded-3xl p-6 bg-gradient-to-br ${currentWeekAds[2].bgGradient} ${currentWeekAds[2].textColor} flex flex-col justify-between min-h-[260px] border border-white/10 shadow-lg relative overflow-hidden text-center`}>
+                    <div className="absolute left-1/2 -translate-x-1/2 top-4 px-2.5 py-0.5 rounded-full bg-black/5 border border-black/10 text-[8px] font-bold uppercase tracking-wider whitespace-nowrap">
+                      {currentWeekAds[2].category}
+                    </div>
+                    <div className="space-y-3 pt-6 flex-grow flex flex-col justify-center items-center">
+                      <span className="text-[9px] font-black uppercase tracking-widest bg-black/15 px-2 py-0.5 rounded">
+                        {currentWeekAds[2].badge}
+                      </span>
+                      <h3 className="font-heading text-xl font-black leading-tight mt-1">
+                        {currentWeekAds[2].title}
+                      </h3>
+                      <p className="text-[10px] opacity-75 leading-relaxed font-medium max-w-[180px]">
+                        {currentWeekAds[2].subtitle}
+                      </p>
+                    </div>
+                    <div className="mt-4 pt-3 border-t border-black/5 flex flex-col items-center gap-2">
+                      <div className="flex items-baseline gap-1.5 justify-center">
+                        <span className="text-xl font-black">₹{currentWeekAds[2].discountPrice}</span>
+                        <span className="text-xs opacity-50 line-through">₹{currentWeekAds[2].originalPrice}</span>
+                      </div>
+                      <button
+                        onClick={() => {
+                          addToCart({ 
+                            id: currentWeekAds[2].id, 
+                            name: currentWeekAds[2].title, 
+                            price: currentWeekAds[2].originalPrice, 
+                            discountPrice: currentWeekAds[2].discountPrice 
+                          });
+                          toast.success(`${currentWeekAds[2].title} added to cart`);
+                        }}
+                        className={`w-full py-2.5 rounded-full ${currentWeekAds[2].btnBg} ${currentWeekAds[2].btnTextColor} text-[9px] font-black tracking-widest uppercase hover:scale-102 transition shadow-md`}
+                      >
+                        Book Now
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* 4. Express Ad 1 (Banner Strip) */}
+                {currentWeekAds[3] && (
+                  <div className={`rounded-3xl p-5 bg-gradient-to-r ${currentWeekAds[3].bgGradient} ${currentWeekAds[3].textColor} flex flex-col justify-between border border-white/10 shadow-sm relative overflow-hidden`}>
+                    <div className="flex items-start justify-between">
+                      <span className="text-[8px] font-bold uppercase tracking-wider opacity-60">
+                        {currentWeekAds[3].category}
+                      </span>
+                      <span className="text-[8px] font-bold uppercase tracking-wider bg-black/5 px-2 py-0.5 rounded">
+                        {currentWeekAds[3].badge}
+                      </span>
+                    </div>
+                    <div className="my-3">
+                      <h4 className="font-heading text-sm font-black leading-tight">
+                        {currentWeekAds[3].title}
+                      </h4>
+                      <p className="text-[9px] opacity-75 line-clamp-1 mt-1 font-medium">
+                        {currentWeekAds[3].subtitle}
+                      </p>
+                    </div>
+                    <div className="flex items-center justify-between mt-2 pt-2 border-t border-black/5">
+                      <div className="flex items-baseline gap-1">
+                        <span className="text-base font-black">₹{currentWeekAds[3].discountPrice}</span>
+                        <span className="text-[9px] opacity-50 line-through">₹{currentWeekAds[3].originalPrice}</span>
+                      </div>
+                      <button
+                        onClick={() => {
+                          addToCart({ 
+                            id: currentWeekAds[3].id, 
+                            name: currentWeekAds[3].title, 
+                            price: currentWeekAds[3].originalPrice, 
+                            discountPrice: currentWeekAds[3].discountPrice 
+                          });
+                          toast.success(`${currentWeekAds[3].title} added to cart`);
+                        }}
+                        className={`px-3.5 py-1.5 rounded-full ${currentWeekAds[3].btnBg} ${currentWeekAds[3].btnTextColor} text-[8px] font-black tracking-widest uppercase hover:scale-105 transition`}
+                      >
+                        Add
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* 5. Express Ad 2 (Banner Strip) */}
+                {currentWeekAds[4] && (
+                  <div className={`rounded-3xl p-5 bg-gradient-to-r ${currentWeekAds[4].bgGradient} ${currentWeekAds[4].textColor} flex flex-col justify-between border border-white/10 shadow-sm relative overflow-hidden`}>
+                    <div className="flex items-start justify-between">
+                      <span className="text-[8px] font-bold uppercase tracking-wider opacity-60">
+                        {currentWeekAds[4].category}
+                      </span>
+                      <span className="text-[8px] font-bold uppercase tracking-wider bg-black/5 px-2 py-0.5 rounded">
+                        {currentWeekAds[4].badge}
+                      </span>
+                    </div>
+                    <div className="my-3">
+                      <h4 className="font-heading text-sm font-black leading-tight">
+                        {currentWeekAds[4].title}
+                      </h4>
+                      <p className="text-[9px] opacity-75 line-clamp-1 mt-1 font-medium">
+                        {currentWeekAds[4].subtitle}
+                      </p>
+                    </div>
+                    <div className="flex items-center justify-between mt-2 pt-2 border-t border-black/5">
+                      <div className="flex items-baseline gap-1">
+                        <span className="text-base font-black">₹{currentWeekAds[4].discountPrice}</span>
+                        <span className="text-[9px] opacity-50 line-through">₹{currentWeekAds[4].originalPrice}</span>
+                      </div>
+                      <button
+                        onClick={() => {
+                          addToCart({ 
+                            id: currentWeekAds[4].id, 
+                            name: currentWeekAds[4].title, 
+                            price: currentWeekAds[4].originalPrice, 
+                            discountPrice: currentWeekAds[4].discountPrice 
+                          });
+                          toast.success(`${currentWeekAds[4].title} added to cart`);
+                        }}
+                        className={`px-3.5 py-1.5 rounded-full ${currentWeekAds[4].btnBg} ${currentWeekAds[4].btnTextColor} text-[8px] font-black tracking-widest uppercase hover:scale-105 transition`}
+                      >
+                        Add
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* 6. Express Ad 3 (Banner Strip) */}
+                {currentWeekAds[5] && (
+                  <div className={`rounded-3xl p-5 bg-gradient-to-r ${currentWeekAds[5].bgGradient} ${currentWeekAds[5].textColor} flex flex-col justify-between border border-white/10 shadow-sm relative overflow-hidden`}>
+                    <div className="flex items-start justify-between">
+                      <span className="text-[8px] font-bold uppercase tracking-wider opacity-60">
+                        {currentWeekAds[5].category}
+                      </span>
+                      <span className="text-[8px] font-bold uppercase tracking-wider bg-black/5 px-2 py-0.5 rounded">
+                        {currentWeekAds[5].badge}
+                      </span>
+                    </div>
+                    <div className="my-3">
+                      <h4 className="font-heading text-sm font-black leading-tight">
+                        {currentWeekAds[5].title}
+                      </h4>
+                      <p className="text-[9px] opacity-75 line-clamp-1 mt-1 font-medium">
+                        {currentWeekAds[5].subtitle}
+                      </p>
+                    </div>
+                    <div className="flex items-center justify-between mt-2 pt-2 border-t border-black/5">
+                      <div className="flex items-baseline gap-1">
+                        <span className="text-base font-black">₹{currentWeekAds[5].discountPrice}</span>
+                        <span className="text-[9px] opacity-50 line-through">₹{currentWeekAds[5].originalPrice}</span>
+                      </div>
+                      <button
+                        onClick={() => {
+                          addToCart({ 
+                            id: currentWeekAds[5].id, 
+                            name: currentWeekAds[5].title, 
+                            price: currentWeekAds[5].originalPrice, 
+                            discountPrice: currentWeekAds[5].discountPrice 
+                          });
+                          toast.success(`${currentWeekAds[5].title} added to cart`);
+                        }}
+                        className={`px-3.5 py-1.5 rounded-full ${currentWeekAds[5].btnBg} ${currentWeekAds[5].btnTextColor} text-[8px] font-black tracking-widest uppercase hover:scale-105 transition`}
+                      >
+                        Add
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
-            
-            <div className="pt-4">
-              <LinkNext
-                href="/services?category=spa-massage"
-                className="px-6 py-2.5 rounded-full bg-gold-gradient text-dark text-xs font-bold shadow-[var(--shadow-gold-sm)] hover:scale-105 transition"
-              >
-                Book Spa Ritual
-              </LinkNext>
-            </div>
-          </div>
-        </div>
-      </section>
+          </section>
+        );
+      })()}
 
       {/* REFER AND EARN BANNER */}
       <section className="py-12 bg-black border-t border-white/5">
@@ -709,12 +1340,12 @@ export default function Home() {
                 <p className="text-[11px] text-white/50 mt-0.5">Invite a professional beautician to Hermosa & earn up to ₹10,000</p>
               </div>
             </div>
-            <LinkNext
-              href="/contact?tab=careers"
-              className="px-5 py-2.5 rounded-xl bg-gold-gradient text-dark text-[10px] font-black tracking-widest uppercase shadow-sm flex items-center gap-1.5"
+            <button
+              onClick={() => setIsReferOpen(true)}
+              className="px-5 py-2.5 rounded-xl bg-gold-gradient text-dark text-[10px] font-black tracking-widest uppercase shadow-sm flex items-center gap-1.5 hover:scale-105 transition duration-300"
             >
               <Share2 className="w-3.5 h-3.5" /> Refer Now
-            </LinkNext>
+            </button>
           </div>
         </div>
       </section>
@@ -1184,6 +1815,211 @@ export default function Home() {
                   ))}
                 </div>
               </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* REFER & EARN CASH MODAL */}
+      <AnimatePresence>
+        {isReferOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* Backdrop */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => {
+                setReferStep("form");
+                setIsReferOpen(false);
+              }}
+              className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+            />
+            
+            {/* Modal Body */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              className="relative w-full max-w-md overflow-hidden rounded-3xl border border-gold-600/30 bg-[#0a0a0a] p-6 shadow-[0_0_50px_rgba(201,168,76,0.15)] z-10 text-white"
+            >
+              {/* Close Button */}
+              <button 
+                onClick={() => {
+                  setReferStep("form");
+                  setIsReferOpen(false);
+                }}
+                className="absolute right-4 top-4 text-white/50 hover:text-white transition"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              
+              {referStep === "form" ? (
+                <div className="space-y-5">
+                  <div className="text-center space-y-1.5">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-gold-600/20 bg-gold-600/5 text-[9px] text-gold-500 font-bold uppercase tracking-wider luxe-subtitle">
+                      <Gift className="w-3.5 h-3.5" /> Refer & Earn Cash
+                    </span>
+                    <h3 className="font-heading text-xl font-bold text-white mt-1">Invite Friends & Partners</h3>
+                    <p className="text-[10px] text-white/50 leading-relaxed">
+                      Refer a friend to get ₹200 off their first booking, or invite a beautician to earn ₹10,000 when they join our partner network.
+                    </p>
+                  </div>
+                  
+                  {/* Referral Type Selector */}
+                  <div className="flex bg-white/5 border border-white/5 rounded-xl p-1 gap-1">
+                    <button
+                      type="button"
+                      onClick={() => setReferType("customer")}
+                      className={`flex-1 py-2 rounded-lg text-[10px] font-bold uppercase tracking-wider luxe-subtitle transition-all ${
+                        referType === "customer" 
+                          ? "bg-gold-gradient text-dark font-black" 
+                          : "text-white/60 hover:text-white"
+                      }`}
+                    >
+                      Refer a Friend
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setReferType("partner")}
+                      className={`flex-1 py-2 rounded-lg text-[10px] font-bold uppercase tracking-wider luxe-subtitle transition-all ${
+                        referType === "partner" 
+                          ? "bg-gold-gradient text-dark font-black" 
+                          : "text-white/60 hover:text-white"
+                      }`}
+                    >
+                      Refer a Professional
+                    </button>
+                  </div>
+                  
+                  {/* Form */}
+                  <form onSubmit={handleReferSubmit} className="space-y-4">
+                    <div className="space-y-3.5">
+                      {/* Referrer Details */}
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="space-y-1">
+                          <label className="text-[9px] font-bold uppercase tracking-wider text-white/40 luxe-subtitle">Your Name</label>
+                          <input 
+                            required
+                            type="text" 
+                            value={referForm.yourName}
+                            onChange={(e) => setReferForm({...referForm, yourName: e.target.value})}
+                            placeholder="Enter name"
+                            className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs focus:border-gold-600/50 focus:outline-none"
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-[9px] font-bold uppercase tracking-wider text-white/40 luxe-subtitle">Your Phone</label>
+                          <input 
+                            required
+                            type="tel" 
+                            value={referForm.yourPhone}
+                            onChange={(e) => setReferForm({...referForm, yourPhone: e.target.value})}
+                            placeholder="Phone number"
+                            className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs focus:border-gold-600/50 focus:outline-none"
+                          />
+                        </div>
+                      </div>
+                      
+                      {/* Referee Details */}
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="space-y-1">
+                          <label className="text-[9px] font-bold uppercase tracking-wider text-white/40 luxe-subtitle">Friend's Name</label>
+                          <input 
+                            required
+                            type="text" 
+                            value={referForm.friendName}
+                            onChange={(e) => setReferForm({...referForm, friendName: e.target.value})}
+                            placeholder="Friend's name"
+                            className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs focus:border-gold-600/50 focus:outline-none"
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-[9px] font-bold uppercase tracking-wider text-white/40 luxe-subtitle">Friend's Phone</label>
+                          <input 
+                            required
+                            type="tel" 
+                            value={referForm.friendPhone}
+                            onChange={(e) => setReferForm({...referForm, friendPhone: e.target.value})}
+                            placeholder="WhatsApp number"
+                            className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs focus:border-gold-600/50 focus:outline-none"
+                          />
+                        </div>
+                      </div>
+
+                      {referType === "partner" && (
+                        <div className="space-y-1">
+                          <label className="text-[9px] font-bold uppercase tracking-wider text-white/40 luxe-subtitle">Professional Specialty</label>
+                          <select
+                            value={referForm.friendRole}
+                            onChange={(e) => setReferForm({...referForm, friendRole: e.target.value})}
+                            className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs text-white/80 focus:border-gold-600/50 focus:outline-none"
+                          >
+                            <option value="beautician" className="bg-[#0a0a0a]">Beautician / Salon Expert</option>
+                            <option value="hair" className="bg-[#0a0a0a]">Hair Stylist</option>
+                            <option value="makeup" className="bg-[#0a0a0a]">Makeup Artist</option>
+                            <option value="massage" className="bg-[#0a0a0a]">Massage Therapist</option>
+                          </select>
+                        </div>
+                      )}
+                    </div>
+                    
+                    <button
+                      type="submit"
+                      className="w-full py-3 rounded-xl bg-gold-gradient text-dark font-bold text-xs uppercase tracking-wider shadow-md hover:scale-[1.02] active:scale-[0.98] transition mt-2"
+                    >
+                      Submit & Get Invitation Link
+                    </button>
+                  </form>
+                </div>
+              ) : (
+                <div className="space-y-5 text-center py-2">
+                  <div className="h-14 w-14 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center mx-auto mb-2 animate-bounce">
+                    <Check className="w-8 h-8" />
+                  </div>
+                  
+                  <div className="space-y-1.5">
+                    <h3 className="font-heading text-xl font-bold text-white">Referral Registered!</h3>
+                    <p className="text-[10px] text-white/50 leading-relaxed max-w-[280px] mx-auto">
+                      Thank you! We've registered {referForm.friendName}'s referral. Invite them now via WhatsApp to complete the process.
+                    </p>
+                  </div>
+                  
+                  <div className="space-y-3 pt-3">
+                    <a
+                      href={
+                        referType === "customer"
+                          ? `https://wa.me/${referForm.friendPhone.replace(/\+/g, "").trim()}?text=Hey%20${encodeURIComponent(referForm.friendName)}!%20I%20highly%20recommend%20Hermosa%20for%20luxury%20salon%20and%20spa%20services%20at%20home.%20Book%20here%20and%20get%20%E2%82%B9200%20off%20your%20first%20order!%20https://hermosa.luxe%20-%20Referred%20by%20${encodeURIComponent(referForm.yourName)}`
+                          : `https://wa.me/${referForm.friendPhone.replace(/\+/g, "").trim()}?text=Hey%20${encodeURIComponent(referForm.friendName)}!%20Join%20Hermosa%20as%20a%20beautician%20and%20earn%20up%20to%20%E2%82%B950,000/month%20with%20flexible%20hours.%20Apply%20here%20or%20reply%20to%20this%20chat:%20https://hermosa.luxe/join`
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider transition shadow-md"
+                    >
+                      <MessageCircle className="w-4 h-4 fill-white text-emerald-600" /> Invite via WhatsApp
+                    </a>
+                    
+                    <a
+                      href={`https://wa.me/917248253329?text=Hi%20Hermosa,%20I'd%20like%20to%20register%20a%20referral.%20My%20Name:%20${encodeURIComponent(referForm.yourName)}%20(${encodeURIComponent(referForm.yourPhone)}).%20Referred%20Friend:%20${encodeURIComponent(referForm.friendName)}%20(${encodeURIComponent(referForm.friendPhone)})%20as%20a%20${encodeURIComponent(referType === "partner" ? "Partner (" + referForm.friendRole + ")" : "Customer")}.`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-white/10 font-bold text-[10px] uppercase tracking-wider transition"
+                    >
+                      Confirm with Hermosa Desk
+                    </a>
+                  </div>
+                  
+                  <button
+                    onClick={() => {
+                      setReferStep("form");
+                      setIsReferOpen(false);
+                    }}
+                    className="text-[10px] text-gold-500 hover:underline mt-4"
+                  >
+                    Done & Close
+                  </button>
+                </div>
+              )}
             </motion.div>
           </div>
         )}
