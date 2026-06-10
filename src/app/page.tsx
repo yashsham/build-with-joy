@@ -83,6 +83,42 @@ export default function Home() {
     }
   }, [isVideoMuted]);
 
+  // Drag-to-scroll for Most Booked section on desktop
+  const mostBookedScrollRef = useRef<HTMLDivElement>(null);
+  const isDraggingMostBooked = useRef(false);
+  const dragStartX = useRef(0);
+  const dragScrollLeft = useRef(0);
+  const dragMoved = useRef(false);
+
+  const handleDragStart = (e: React.MouseEvent) => {
+    if (!mostBookedScrollRef.current) return;
+    isDraggingMostBooked.current = true;
+    dragMoved.current = false;
+    dragStartX.current = e.pageX - mostBookedScrollRef.current.offsetLeft;
+    dragScrollLeft.current = mostBookedScrollRef.current.scrollLeft;
+  };
+
+  const handleDragEnd = () => {
+    isDraggingMostBooked.current = false;
+  };
+
+  const handleDragMove = (e: React.MouseEvent) => {
+    if (!isDraggingMostBooked.current || !mostBookedScrollRef.current) return;
+    const x = e.pageX - mostBookedScrollRef.current.offsetLeft;
+    const walk = (x - dragStartX.current) * 1.5;
+    if (Math.abs(x - dragStartX.current) > 5) {
+      dragMoved.current = true;
+    }
+    mostBookedScrollRef.current.scrollLeft = dragScrollLeft.current - walk;
+  };
+
+  const handleDragClickCapture = (e: React.MouseEvent) => {
+    if (dragMoved.current) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+  };
+
   // Show "Choose Your Service" modal on load once per session
   useEffect(() => {
     const shown = sessionStorage.getItem("hermosa_choose_service_shown");
@@ -551,7 +587,15 @@ export default function Home() {
           </div>
 
           {/* Horizontal scroll list */}
-          <div className="flex gap-6 overflow-x-auto pb-4 pt-2 scrollbar-thin scrollbar-thumb-white/10">
+          <div 
+            ref={mostBookedScrollRef}
+            onMouseDown={handleDragStart}
+            onMouseUp={handleDragEnd}
+            onMouseLeave={handleDragEnd}
+            onMouseMove={handleDragMove}
+            onClickCapture={handleDragClickCapture}
+            className="flex gap-6 overflow-x-auto pb-4 pt-2 scrollbar-none cursor-grab active:cursor-grabbing select-none"
+          >
             {currentMostBooked.map((svc) => {
               const qty = getServiceQuantity(svc.id);
               return (
