@@ -8,7 +8,7 @@ import Navbar from "@/components/Navbar";
 import AdSlider from "@/components/AdSlider";
 import { 
   MessageCircle, Phone, MapPin, Sparkles, ShieldCheck, Clock, Award, Star, 
-  Users, Heart, Scissors, Flower2, Hand, Crown, Search, ChevronRight, 
+  Users, Heart, Scissors, Flower2, Hand, Crown, Search, ChevronLeft, ChevronRight, 
   Volume2, VolumeX, ChevronDown, Check, HelpCircle, ArrowRight, ShoppingBag,
   X, Info, Sparkle, Mail, Gift, Share2
 } from "lucide-react";
@@ -26,6 +26,34 @@ const milestones = [
   { icon: Award, num: "50+", label: "Signature Services" },
 ];
 
+const loungeImages = [
+  {
+    src: "/assets/salon-interior-4.jpg",
+    alt: "Hermosa Hair Styling Station",
+    title: "Premium Hair Styling Lounge"
+  },
+  {
+    src: "/assets/salon-interior-5.jpg",
+    alt: "Hermosa Styling Area",
+    title: "Luxury Seating & Styling Zone"
+  },
+  {
+    src: "/assets/salon-interior-1.jpg",
+    alt: "Hermosa Treatment Room",
+    title: "Advanced Skin & Beauty Room"
+  },
+  {
+    src: "/assets/salon-interior-2.jpg",
+    alt: "Hermosa Spa & Massage Beds",
+    title: "Private Therapy Rooms"
+  },
+  {
+    src: "/assets/salon-interior-3.jpg",
+    alt: "Hermosa Hair Wash Station",
+    title: "Relaxing Hair Spa & Wash Zone"
+  }
+];
+
 export default function Home() {
   const [activeGender, setActiveGender] = useState<"female" | "male">("female");
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
@@ -39,6 +67,15 @@ export default function Home() {
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isVideoMuted, setIsVideoMuted] = useState(true);
+
+  const [currentLoungeImage, setCurrentLoungeImage] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentLoungeImage((prev) => (prev + 1) % loungeImages.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -660,25 +697,76 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <div className="relative rounded-2xl overflow-hidden border border-gold-600/20 aspect-[4/3] shadow-lg">
-            <img 
-              src="/assets/hero-interior.jpg" 
-              alt="Hermosa Luxury Lounge Interior" 
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+          <div className="relative rounded-2xl overflow-hidden border border-gold-600/20 aspect-[4/3] shadow-lg group">
+            {/* Carousel images */}
+            <div className="absolute inset-0 w-full h-full">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={currentLoungeImage}
+                  src={loungeImages[currentLoungeImage].src}
+                  alt={loungeImages[currentLoungeImage].alt}
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </AnimatePresence>
+            </div>
+
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent pointer-events-none" />
+
+            {/* Image caption badge */}
+            <div className="absolute top-4 left-4 px-3 py-1.5 rounded-lg bg-black/60 border border-white/10 backdrop-blur-sm pointer-events-none z-10">
+              <span className="text-[10px] text-gold-500 font-bold uppercase tracking-wider">
+                {loungeImages[currentLoungeImage].title}
+              </span>
+            </div>
+
+            {/* Manual Controls (Arrow Buttons) */}
+            <button
+              onClick={() => setCurrentLoungeImage((prev) => (prev - 1 + loungeImages.length) % loungeImages.length)}
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/50 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-black/80 transition opacity-0 group-hover:opacity-100 z-20"
+              aria-label="Previous image"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => setCurrentLoungeImage((prev) => (prev + 1) % loungeImages.length)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/50 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-black/80 transition opacity-0 group-hover:opacity-100 z-20"
+              aria-label="Next image"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+
+            {/* Indicators */}
+            <div className="absolute top-4 right-4 flex gap-1.5 z-20">
+              {loungeImages.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentLoungeImage(idx)}
+                  className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                    idx === currentLoungeImage ? "bg-gold-500 w-3" : "bg-white/40"
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
+
+            {/* Location banner */}
             <a 
               href="https://www.google.com/maps/place/28%C2%B023'01.0%22N+79%C2%B025'26.1%22E/@28.3836079,79.4213448,17z/data=!3m1!4b1!4m4!3m3!8m2!3d28.3836079!4d79.4239197"
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute bottom-4 left-4 right-4 p-4 rounded-xl border border-white/5 bg-black/60 backdrop-blur-md hover:border-gold-600/50 hover:bg-black/80 transition duration-300 block group"
+              className="absolute bottom-4 left-4 right-4 p-4 rounded-xl border border-white/5 bg-black/60 backdrop-blur-md hover:border-gold-600/50 hover:bg-black/80 transition duration-300 block group/link z-20"
             >
               <div className="flex justify-between items-center">
                 <div>
-                  <h3 className="text-white font-bold text-xs group-hover:text-gold-600 transition">Sheel Chauraha, Civil Lines, Bareilly</h3>
+                  <h3 className="text-white font-bold text-xs group-hover/link:text-gold-600 transition">Sheel Chauraha, Civil Lines, Bareilly</h3>
                   <p className="text-[10px] text-white/50 mt-0.5">Open daily: 9:00 AM — 9:00 PM</p>
                 </div>
-                <span className="text-[9px] text-gold-600 uppercase tracking-widest font-bold border border-gold-600/30 px-2.5 py-1 rounded bg-gold-600/5 group-hover:bg-gold-600 group-hover:text-dark transition">Map</span>
+                <span className="text-[9px] text-gold-600 uppercase tracking-widest font-bold border border-gold-600/30 px-2.5 py-1 rounded bg-gold-600/5 group-hover/link:bg-gold-600 group-hover/link:text-dark transition">Map</span>
               </div>
             </a>
           </div>
