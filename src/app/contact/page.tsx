@@ -78,7 +78,7 @@ function ContactPageContent() {
           </div>
           <div className="relative h-36 w-36 md:h-40 md:w-40 flex items-center justify-center rounded-full bg-gold-600/5 border border-gold-600/15">
             <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(201,168,76,0.1),transparent_70%)] animate-pulse" />
-            <Users className="w-16 h-16 text-gold-600/60" />
+            <img src="/hermosa-logo.png" alt="Hermosa Logo" className="w-20 h-20 object-contain filter drop-shadow-[0_2px_10px_rgba(201,168,76,0.2)]" />
           </div>
         </div>
 

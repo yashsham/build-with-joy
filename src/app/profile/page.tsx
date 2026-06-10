@@ -81,9 +81,11 @@ export default function ProfilePage() {
         {!user ? (
           /* NOT LOGGED IN STATE */
           <div className="py-20 text-center max-w-md mx-auto space-y-6">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gold-600/10 text-gold-600 border border-gold-600/20">
-              <User className="h-6 w-6" />
-            </div>
+            <img 
+              src="/hermosa-logo.png" 
+              alt="Hermosa Logo" 
+              className="h-16 w-16 mx-auto object-contain mb-4 filter drop-shadow-[0_2px_10px_rgba(201,168,76,0.2)] animate-pulse" 
+            />
             <h2 className="font-heading text-3xl text-white">Your Profile</h2>
             <p className="text-xs text-white/50 leading-relaxed">
               Log in with your mobile number to view active bookings, manage addresses, and access gold-tier benefits.

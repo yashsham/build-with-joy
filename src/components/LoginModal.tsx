@@ -108,10 +108,12 @@ export default function LoginModal() {
           <X className="h-4 w-4" />
         </button>
 
-        <div className="text-center mb-8">
-          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-gold-600/30 bg-gold-600/5 text-gold-600 shadow-[0_0_15px_rgba(201,168,76,0.1)]">
-            <Sparkles className="h-6 w-6" />
-          </div>
+        <div className="text-center mb-6">
+          <img 
+            src="/hermosa-logo.png" 
+            alt="Hermosa Logo" 
+            className="h-16 w-16 mx-auto object-contain mb-4 filter drop-shadow-[0_2px_10px_rgba(201,168,76,0.25)] animate-pulse" 
+          />
           <h3 className="font-heading text-2xl text-white">
             {otpSent ? "Verify Mobile" : "Welcome to Hermosa"}
           </h3>
