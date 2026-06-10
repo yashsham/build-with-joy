@@ -667,10 +667,20 @@ export default function Home() {
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
-            <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl border border-white/5 bg-black/60 backdrop-blur-md">
-              <h3 className="text-white font-bold text-xs">Sheel Chauraha, Civil Lines, Bareilly</h3>
-              <p className="text-[10px] text-white/50 mt-0.5">Open daily: 9:00 AM — 9:00 PM</p>
-            </div>
+            <a 
+              href="https://www.google.com/maps/place/28%C2%B023'01.0%22N+79%C2%B025'26.1%22E/@28.3836079,79.4213448,17z/data=!3m1!4b1!4m4!3m3!8m2!3d28.3836079!4d79.4239197"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute bottom-4 left-4 right-4 p-4 rounded-xl border border-white/5 bg-black/60 backdrop-blur-md hover:border-gold-600/50 hover:bg-black/80 transition duration-300 block group"
+            >
+              <div className="flex justify-between items-center">
+                <div>
+                  <h3 className="text-white font-bold text-xs group-hover:text-gold-600 transition">Sheel Chauraha, Civil Lines, Bareilly</h3>
+                  <p className="text-[10px] text-white/50 mt-0.5">Open daily: 9:00 AM — 9:00 PM</p>
+                </div>
+                <span className="text-[9px] text-gold-600 uppercase tracking-widest font-bold border border-gold-600/30 px-2.5 py-1 rounded bg-gold-600/5 group-hover:bg-gold-600 group-hover:text-dark transition">Map</span>
+              </div>
+            </a>
           </div>
         </div>
       </section>
@@ -817,7 +827,17 @@ export default function Home() {
           <div className="space-y-4">
             <div className="text-[10px] text-gold-600 luxe-subtitle uppercase tracking-widest font-black">Reach Us</div>
             <ul className="space-y-2.5 text-[11px] text-white/40">
-              <li className="flex items-start gap-2"><MapPin className="w-4 h-4 text-gold-600 mt-0.5" /> Sheel Chauraha, Civil Lines, Bareilly, UP</li>
+              <li className="flex items-start gap-2">
+                <MapPin className="w-4 h-4 text-gold-600 mt-0.5" />
+                <a 
+                  href="https://www.google.com/maps/place/28%C2%B023'01.0%22N+79%C2%B025'26.1%22E/@28.3836079,79.4213448,17z/data=!3m1!4b1!4m4!3m3!8m2!3d28.3836079!4d79.4239197"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-gold-600 transition"
+                >
+                  Sheel Chauraha, Civil Lines, Bareilly, UP
+                </a>
+              </li>
               <li className="flex items-center gap-2"><Phone className="w-4 h-4 text-gold-600" /> {PHONE}</li>
               <li className="flex items-center gap-2"><MessageCircle className="w-4 h-4 text-gold-600" /> WhatsApp Support 24/7</li>
               <li className="flex items-center gap-2"><Mail className="w-4 h-4 text-gold-600" /> <a href="mailto:hermosasalon325@gmail.com" className="hover:text-gold-600">hermosasalon325@gmail.com</a></li>

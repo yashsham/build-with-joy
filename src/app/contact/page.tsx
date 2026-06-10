@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
-import { ChevronLeft, Phone, Mail, Sparkles, Briefcase, HelpCircle, Users } from "lucide-react";
+import { ChevronLeft, Phone, Mail, Sparkles, Briefcase, HelpCircle, Users, MapPin } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 function ContactPageContent() {
@@ -91,7 +91,7 @@ function ContactPageContent() {
                 </p>
               </div>
 
-              <div className="grid sm:grid-cols-2 gap-4 pt-4">
+              <div className="grid sm:grid-cols-3 gap-4 pt-4">
                 <a
                   href={`tel:${PHONE.replace(/\s+/g, "")}`}
                   className="flex flex-col items-center text-center p-6 rounded-2xl border border-white/5 bg-[#0a0a0a] hover:border-gold-600/30 transition duration-300 group"
@@ -112,6 +112,19 @@ function ContactPageContent() {
                   </div>
                   <span className="text-xs font-bold text-white uppercase tracking-wider luxe-subtitle">MAIL US</span>
                   <span className="text-xs text-gold-600 font-semibold mt-2 break-all">{EMAIL}</span>
+                </a>
+
+                <a
+                  href="https://www.google.com/maps/place/28%C2%B023'01.0%22N+79%C2%B025'26.1%22E/@28.3836079,79.4213448,17z/data=!3m1!4b1!4m4!3m3!8m2!3d28.3836079!4d79.4239197"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col items-center text-center p-6 rounded-2xl border border-white/5 bg-[#0a0a0a] hover:border-gold-600/30 transition duration-300 group"
+                >
+                  <div className="h-12 w-12 rounded-full bg-gold-600/10 text-gold-600 flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                    <MapPin className="w-5 h-5" />
+                  </div>
+                  <span className="text-xs font-bold text-white uppercase tracking-wider luxe-subtitle">VISIT SALON</span>
+                  <span className="text-[11px] text-gold-600 font-semibold mt-2 leading-snug">Bareilly, UP, India</span>
                 </a>
               </div>
             </div>
