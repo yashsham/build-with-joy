@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db/client";
 import { otps, users } from "@/lib/db/schema";
-import { eq, and, desc, gt } from "drizzle-orm";
+import { eq, and, desc } from "drizzle-orm";
+import { signJWT } from "@/lib/auth.server";
 
 export async function POST(request: Request) {
   try {
@@ -11,14 +12,13 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Phone and OTP are required" }, { status: 400 });
     }
 
-    // Check for matching valid OTP
+    // Get the latest unverified OTP for this phone
     const existingOtp = await db
       .select()
       .from(otps)
       .where(
         and(
           eq(otps.phone, phone),
-          eq(otps.otp, otp),
           eq(otps.verified, false)
         )
       )
@@ -36,7 +36,27 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "OTP has expired" }, { status: 400 });
     }
 
-    // Mark as verified
+    // Check if OTP matches
+    if (matchedOtp.otp !== otp) {
+      const currentAttempts = (matchedOtp.attempts || 0) + 1;
+
+      if (currentAttempts >= 3) {
+        // Burn OTP after too many attempts
+        await db.update(otps)
+          .set({ verified: true, attempts: currentAttempts })
+          .where(eq(otps.id, matchedOtp.id));
+        return NextResponse.json({ error: "Too many failed attempts. This OTP is now invalid." }, { status: 400 });
+      }
+
+      // Increment attempts
+      await db.update(otps)
+        .set({ attempts: currentAttempts })
+        .where(eq(otps.id, matchedOtp.id));
+
+      return NextResponse.json({ error: "Invalid OTP code" }, { status: 400 });
+    }
+
+    // Mark as verified on success
     await db.update(otps).set({ verified: true }).where(eq(otps.id, matchedOtp.id));
 
     // Check if user exists
@@ -63,7 +83,29 @@ export async function POST(request: Request) {
       user = newUser[0];
     }
 
-    return NextResponse.json({ success: true, user });
+    // Create session token
+    const sessionToken = await signJWT({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      phone: user.phone,
+      role: user.role,
+    });
+
+    const response = NextResponse.json({ success: true, user });
+
+    // Set secure HTTP-only cookie
+    response.cookies.set({
+      name: "hermosa_session",
+      value: sessionToken,
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+      maxAge: 60 * 60 * 24 * 30, // 30 days
+    });
+
+    return response;
   } catch (error: any) {
     console.error("Error verifying OTP:", error);
     return NextResponse.json({ error: "Failed to verify OTP" }, { status: 500 });

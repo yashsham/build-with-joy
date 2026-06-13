@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useApp } from "@/lib/context";
 import Navbar from "@/components/Navbar";
 import { 
@@ -24,10 +24,18 @@ export default function BookingPage() {
     line2: "",
     city: "Bareilly",
     pincode: "",
+    phone: "",
   });
 
+  // Sync with user phone if available
+  useEffect(() => {
+    if (user?.phone) {
+      setAddress((prev) => ({ ...prev, phone: prev.phone || user.phone }));
+    }
+  }, [user]);
+
   // Payment states
-  const [paymentMethod, setPaymentMethod] = useState("upi"); // upi, cash, card
+  const [paymentMethod, setPaymentMethod] = useState("cash"); // cash only
   const [isProcessing, setIsProcessing] = useState(false);
   const [bookingCompleted, setBookingCompleted] = useState<any | null>(null);
 
@@ -53,13 +61,19 @@ export default function BookingPage() {
         toast.error("Please pick a date and time slot.");
         return;
       }
-      if (!address.line1 || !address.pincode) {
-        toast.error("Please complete the address details.");
+      if (!address.line1 || !address.pincode || !address.phone) {
+        toast.error("Please complete the address and contact details.");
+        return;
+      }
+      if (!/^\d{10}$/.test(address.phone)) {
+        toast.error("Please enter a valid 10-digit contact mobile number.");
         return;
       }
       setStep(3);
     }
   };
+
+  const FORMSUBMIT_EMAIL = "hermosasalon325@gmail.com";
 
   const handlePlaceOrder = async () => {
     setIsProcessing(true);
@@ -80,7 +94,41 @@ export default function BookingPage() {
 
       if (res.ok) {
         const data = await res.json();
-        
+
+        // Fire FormSubmit booking alert from browser (free, no SMTP needed)
+        try {
+          const serviceList = cart.map((i) => `${i.name} x${i.quantity} = ₹${(i.discountPrice || i.price) * i.quantity}`).join(", ");
+          const fd = new FormData();
+          fd.append("_subject", `🔔 New Hermosa Booking: ${data.booking.bookingNumber}`);
+          fd.append("_captcha", "false");
+          fd.append("_template", "table");
+          fd.append("Booking Number", data.booking.bookingNumber);
+          fd.append("Customer Name", user.name || "Guest");
+          fd.append("Customer Phone", address.phone || user.phone || "N/A");
+          fd.append("Services Booked", serviceList);
+          fd.append("Total Amount", `₹${cartTotal}`);
+          fd.append("Appointment Date", selectedDate);
+          fd.append("Appointment Time", selectedTime);
+          fd.append("Service Address", `${address.line1}${address.line2 ? ", " + address.line2 : ""}, ${address.city} - ${address.pincode}`);
+          fd.append("Payment Method", paymentMethod.toUpperCase());
+          fd.append("Submitted At", new Date().toLocaleString("en-IN"));
+          fetch(`https://formsubmit.co/ajax/${FORMSUBMIT_EMAIL}`, { method: "POST", body: fd }).catch(() => {});
+
+          // Push to Firebase Realtime Database for live admin dashboard updates
+          const { pushBookingAlert } = await import("@/lib/firebase");
+          pushBookingAlert({
+            bookingNumber: data.booking.bookingNumber,
+            customerName: user.name || "Guest",
+            customerPhone: user.phone || "N/A",
+            services: serviceList,
+            totalAmount: cartTotal,
+            scheduledDate: selectedDate,
+            scheduledTime: selectedTime,
+            address: `${address.line1}${address.line2 ? ", " + address.line2 : ""}, ${address.city} - ${address.pincode}`,
+            paymentMethod: paymentMethod.toUpperCase(),
+          }).catch(() => {});
+        } catch (_) {}
+
         if (paymentMethod === "cash") {
           setBookingCompleted(data.booking);
           clearCart();
@@ -312,6 +360,24 @@ export default function BookingPage() {
                           className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3.5 text-xs text-white outline-none focus:border-gold-600/50"
                         />
                       </div>
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-semibold text-white/50 uppercase tracking-widest luxe-subtitle">Contact Mobile Number</label>
+                        <div className="flex rounded-xl border border-white/10 bg-white/5 overflow-hidden focus-within:border-gold-600/50 transition">
+                          <div className="flex items-center justify-center px-4 border-r border-white/10 text-xs font-bold bg-white/5 text-white/50 min-w-[50px]">
+                            +91
+                          </div>
+                          <input 
+                            type="tel" 
+                            required
+                            maxLength={10}
+                            pattern="\d{10}"
+                            placeholder="Enter 10-digit number"
+                            value={address.phone}
+                            onChange={(e) => setAddress({ ...address, phone: e.target.value.replace(/\D/g, "") })}
+                            className="w-full bg-transparent px-4 py-3.5 text-xs text-white outline-none"
+                          />
+                        </div>
+                      </div>
                       <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-2">
                           <label className="text-[10px] font-semibold text-white/50 uppercase tracking-widest luxe-subtitle">City</label>
@@ -350,8 +416,6 @@ export default function BookingPage() {
                   </h3>
                   <div className="space-y-3">
                     {[
-                      { id: "upi", label: "Instant UPI (GPay / PhonePe)", desc: "Pay securely via UPI on Stripe Checkout" },
-                      { id: "card", label: "Credit / Debit Card", desc: "Pay securely with Visa, Mastercard, or RuPay via Stripe" },
                       { id: "cash", label: "Cash On Service", desc: "Pay our beauty expert in cash or UPI after service" }
                     ].map((method) => (
                       <label 

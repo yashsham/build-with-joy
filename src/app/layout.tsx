@@ -86,7 +86,9 @@ export const metadata: Metadata = {
 
 import { AppProvider } from "@/lib/context";
 import LoginModal from "@/components/LoginModal";
+import ChooseServiceModal from "@/components/ChooseServiceModal";
 import MobileBottomNav from "@/components/MobileBottomNav";
+import FirebaseProvider from "@/components/FirebaseProvider";
 import { Toaster } from "sonner";
 
 export default function RootLayout({
@@ -121,7 +123,9 @@ export default function RootLayout({
         <AppProvider>
           {children}
           <LoginModal />
+          <ChooseServiceModal />
           <MobileBottomNav />
+          <FirebaseProvider />
           <Toaster theme="dark" position="top-center" richColors />
         </AppProvider>
       </body>

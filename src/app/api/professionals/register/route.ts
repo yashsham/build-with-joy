@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { db } from "@/lib/db/client";
 import { users, professionals } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
+import { sendSMS, sendTelegram } from "@/lib/notifications.server";
 
 export async function POST(request: Request) {
   try {
@@ -43,6 +44,44 @@ export async function POST(request: Request) {
     });
 
     console.log(`[PARTNER ONBOARDING] Application submitted by ${name} (${phone}) for ${city}`);
+
+    // 1. Send SMS alert to Hermosa Admin
+    const partnerMessage = `Hermosa Partner Alert: New application from ${name} (${phone}), Specialty: ${category}, Exp: ${experience} years.`;
+    try {
+      await sendSMS("917248253329", partnerMessage);
+    } catch (err) {
+      console.error("[Partner SMS Error]:", err);
+    }
+
+    try {
+      await sendTelegram(partnerMessage);
+    } catch (err) {
+      console.error("[Partner Telegram Error]:", err);
+    }
+
+    // 2. Forward details to FormSubmit.co free email service
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/hermosasalon325@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({
+          _subject: `New Partner Application: ${name}`,
+          Name: name,
+          Phone: phone,
+          City: city,
+          Experience: `${experience} Years`,
+          Category: category,
+          SubmittedAt: new Date().toISOString(),
+        }),
+      });
+      const data = await response.json().catch(() => ({}));
+      console.log("[FormSubmit Partners Response]:", data);
+    } catch (err) {
+      console.error("[FormSubmit Error]:", err);
+    }
 
     return NextResponse.json({ success: true });
   } catch (error: any) {

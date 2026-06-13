@@ -1,11 +1,16 @@
 import { db } from "../src/lib/db/client";
-import { categories, services, cities, promoCodes } from "../src/lib/db/schema";
+import { categories, services, cities, promoCodes, users, bookings, addresses, reviews, bookingItems, professionals } from "../src/lib/db/schema";
 
 async function main() {
   console.log("🌱 Seeding database...");
 
-  // 1. Clear existing data
-  // Drizzle does not support truncate for sqlite easily, so we delete
+  // 1. Clear existing data in correct dependency order
+  await db.delete(reviews);
+  await db.delete(bookingItems);
+  await db.delete(bookings);
+  await db.delete(addresses);
+  await db.delete(professionals);
+  await db.delete(users);
   await db.delete(services);
   await db.delete(categories);
   await db.delete(cities);
@@ -139,6 +144,18 @@ async function main() {
       imgPath = "/assets/service-laser.png";
     } else if (svc.slug.includes("hydraglo")) {
       imgPath = "/assets/service-hydraglo.png";
+    } else if (svc.slug.includes("wax") || svc.slug.includes("waxing")) {
+      imgPath = "/assets/service-waxing.png";
+    } else if (svc.slug.includes("cleanup") || svc.slug.includes("cleansing")) {
+      imgPath = "/assets/service-cleanup.png";
+    } else if (svc.slug.includes("threading")) {
+      imgPath = "/assets/service-threading.png";
+    } else if (svc.slug.includes("polishing")) {
+      imgPath = "/assets/service-body-polishing.png";
+    } else if (svc.slug === "mens-body-massage") {
+      imgPath = "/assets/service-mens-body-massage.png";
+    } else if (svc.slug === "mens-head-shoulder-massage" || (svc.slug.includes("hair") && svc.categoryId === categoryMap["male-grooming"])) {
+      imgPath = "/assets/service-mens-hair-spa.png";
     } else if (svc.slug.includes("grooming") || svc.slug.includes("beard") || svc.slug.includes("mens-haircut") || (svc.categoryId === categoryMap["male-grooming"])) {
       imgPath = "/assets/service-malegrooming.png";
     }
@@ -151,6 +168,99 @@ async function main() {
     });
   }
   console.log(`💅 Seeded ${servicesData.length} services.`);
+
+  // 6. Insert Users, Addresses, Bookings, and Reviews for Customer Reviews
+  const reviewsData = [
+    {
+      name: "Aanya M.",
+      phone: "9172482533",
+      email: "aanya@gmail.com",
+      area: "Civil Lines",
+      pincode: "243001",
+      rating: 5,
+      comment: "Booked the bridal trial a week before my engagement. The artist showed up early, kit organised like a film set. I cried (then laughed) when I saw the mirror.",
+    },
+    {
+      name: "Rohan K.",
+      phone: "9172482534",
+      email: "rohan@gmail.com",
+      area: "Rampur Garden",
+      pincode: "243001",
+      rating: 5,
+      comment: "Got the deep-tissue spa for my mother's birthday. She fell asleep mid-session and rebooked the next week. That's the only review you need.",
+    },
+    {
+      name: "Priya S.",
+      phone: "9172482535",
+      email: "priya@gmail.com",
+      area: "Sheel Chauraha",
+      pincode: "243001",
+      rating: 5,
+      comment: "Mehendi for 14 cousins, 6 hours flat, three artists working in sync. Hermosa turned my haldi into the calmest part of the wedding.",
+    },
+    {
+      name: "Ishita R.",
+      phone: "9172482536",
+      email: "ishita@gmail.com",
+      area: "Subhash Nagar",
+      pincode: "243001",
+      rating: 5,
+      comment: "Honey waxing at home, candlelight, my own playlist. I am never going back to a salon.",
+    },
+    {
+      name: "Megha T.",
+      phone: "9172482537",
+      email: "megha@gmail.com",
+      area: "Krishna Puri",
+      pincode: "243001",
+      rating: 5,
+      comment: "Facial + cleanup combo, brand products, no upselling. The therapist explained every step. Felt like a five-star resort in my own bedroom.",
+    },
+  ];
+
+  for (let i = 0; i < reviewsData.length; i++) {
+    const item = reviewsData[i];
+    // Create user
+    const userRes = await db.insert(users).values({
+      name: item.name,
+      phone: item.phone,
+      email: item.email,
+      role: "customer",
+    }).returning();
+    const userId = userRes[0].id;
+
+    // Create address
+    const addrRes = await db.insert(addresses).values({
+      userId,
+      label: "Home",
+      line1: item.area,
+      city: "Bareilly",
+      pincode: item.pincode,
+    }).returning();
+    const addressId = addrRes[0].id;
+
+    // Create booking
+    const bookRes = await db.insert(bookings).values({
+      bookingNumber: `HRM-2025-SEED0${i + 1}`,
+      userId,
+      addressId,
+      scheduledAt: new Date(),
+      status: "completed",
+      totalAmount: 999,
+      paymentStatus: "paid",
+    }).returning();
+    const bookingId = bookRes[0].id;
+
+    // Create review
+    await db.insert(reviews).values({
+      bookingId,
+      userId,
+      rating: item.rating,
+      comment: item.comment,
+      isApproved: true,
+    });
+  }
+  console.log(`💬 Seeded ${reviewsData.length} customer reviews.`);
 
   console.log("✅ Seeding completed successfully!");
 }

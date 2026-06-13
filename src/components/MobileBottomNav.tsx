@@ -8,7 +8,7 @@ import { Sparkles, Gift, ShoppingCart, Calendar, User, Plus } from "lucide-react
 
 export default function MobileBottomNav() {
   const pathname = usePathname();
-  const { cart } = useApp();
+  const { cart, setIsChooseServiceOpen } = useApp();
 
   const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
@@ -58,9 +58,9 @@ export default function MobileBottomNav() {
 
           if (item.isFloating) {
             return (
-              <Link
+              <button
                 key={item.label}
-                href={item.href}
+                onClick={() => setIsChooseServiceOpen(true)}
                 className="relative -mt-8 flex h-14 w-14 items-center justify-center rounded-full bg-gold-gradient text-dark shadow-[0_4px_20px_rgba(201,168,76,0.35)] border border-black hover:scale-105 active:scale-95 transition flex-shrink-0"
               >
                 {item.badge !== undefined && (
@@ -72,7 +72,7 @@ export default function MobileBottomNav() {
                   <ShoppingCart className="h-6 w-6 text-dark" />
                   <Plus className="absolute -top-1 -right-1 h-3.5 w-3.5 text-dark font-black" />
                 </div>
-              </Link>
+              </button>
             );
           }
 

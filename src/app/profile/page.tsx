@@ -33,7 +33,7 @@ interface Booking {
 }
 
 export default function ProfilePage() {
-  const { user, setUser, setIsLoginModalOpen } = useApp();
+  const { user, logout, setIsLoginModalOpen } = useApp();
   const [bookingsList, setBookingsList] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -64,7 +64,7 @@ export default function ProfilePage() {
   }, [user]);
 
   const handleLogout = () => {
-    setUser(null);
+    logout();
     toast.success("Logged out successfully");
   };
 

@@ -15,12 +15,15 @@ interface AppContextType {
   setSelectedCity: (city: string) => void;
   isLoginModalOpen: boolean;
   setIsLoginModalOpen: (open: boolean) => void;
+  isChooseServiceOpen: boolean;
+  setIsChooseServiceOpen: (open: boolean) => void;
   cart: CartItem[];
   addToCart: (item: Omit<CartItem, "quantity">) => void;
   removeFromCart: (id: string) => void;
   clearCart: () => void;
   user: any | null;
   setUser: (user: any | null) => void;
+  logout: () => Promise<void>;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -28,10 +31,11 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 export function AppProvider({ children }: { children: React.ReactNode }) {
   const [selectedCity, setSelectedCity] = useState("bareilly");
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isChooseServiceOpen, setIsChooseServiceOpen] = useState(false);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [user, setUser] = useState<any | null>(null);
 
-  // Load cart from localStorage on mount
+  // Load cart from localStorage and verify session on mount
   useEffect(() => {
     const savedCart = localStorage.getItem("hermosa_cart");
     if (savedCart) {
@@ -49,6 +53,26 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         console.error(e);
       }
     }
+
+    // Call server to verify if current cookie is valid & update context
+    fetch("/api/auth/me")
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else if (res.status === 401) {
+          // If server says unauthorized, clear local user state to stay in sync!
+          setUser(null);
+          localStorage.removeItem("hermosa_user");
+        }
+      })
+      .then((data) => {
+        if (data && data.authenticated && data.user) {
+          setUser(data.user);
+        }
+      })
+      .catch((err) => {
+        console.error("[Auth verification failed]:", err);
+      });
   }, []);
 
   // Save cart to localStorage on change
@@ -91,6 +115,15 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
   const clearCart = () => setCart([]);
 
+  const logout = async () => {
+    setUser(null);
+    try {
+      await fetch("/api/auth/logout", { method: "POST" });
+    } catch (e) {
+      console.error("[Session] Failed to clear cookie:", e);
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -98,12 +131,15 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         setSelectedCity,
         isLoginModalOpen,
         setIsLoginModalOpen,
+        isChooseServiceOpen,
+        setIsChooseServiceOpen,
         cart,
         addToCart,
         removeFromCart,
         clearCart,
         user,
         setUser,
+        logout,
       }}
     >
       {children}

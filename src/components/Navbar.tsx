@@ -9,7 +9,7 @@ const WHATSAPP = "917248253329";
 const waLink = (msg: string) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
 
 export default function Navbar() {
-  const { selectedCity, setSelectedCity, setIsLoginModalOpen, user, setUser } = useApp();
+  const { selectedCity, setSelectedCity, setIsLoginModalOpen, user, logout } = useApp();
   const [scrolled, setScrolled] = useState(false);
   const [cityDropdownOpen, setCityDropdownOpen] = useState(false);
 
@@ -83,7 +83,7 @@ export default function Navbar() {
                 <span className="hidden sm:inline">{user.name.split(" ")[0]}</span>
               </Link>
               <button
-                onClick={() => setUser(null)}
+                onClick={logout}
                 className="inline-flex items-center p-2 md:p-2.5 rounded-full text-white/50 hover:text-red-500 border border-white/10 hover:border-red-500/20 bg-white/5 transition"
                 title="Log out"
               >

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import { ChevronLeft, Phone, Mail, Sparkles, Briefcase, HelpCircle, Users, MapPin, Check, MessageCircle, Gift, X } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { toast } from "sonner";
 
 function ContactPageContent() {
   const searchParams = useSearchParams();
@@ -20,17 +21,50 @@ function ContactPageContent() {
   const [friendPhone, setFriendPhone] = useState("");
   const [friendRole, setFriendRole] = useState("beautician");
 
-  const handleCareersSubmit = (e: React.FormEvent) => {
+  const FORMSUBMIT_EMAIL = "hermosasalon325@gmail.com";
+
+  const handleCareersSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const subName = referType === "partner" ? friendName : yourName;
+    const subPhone = referType === "partner" ? friendPhone : yourPhone;
+
+    try {
+      // 1. Internal API (SMS + DB logging)
+      fetch("/api/careers/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ referType, yourName, yourPhone, friendName: subName, friendPhone: subPhone, friendRole })
+      }).catch(() => {});
+
+      // 2. Direct FormSubmit.co POST from the browser (bypasses SMTP, free email delivery)
+      const formData = new FormData();
+      formData.append("_subject", `Hermosa Careers: ${referType === "partner" ? "New Referral" : "Direct Application"}`);
+      formData.append("_captcha", "false");
+      formData.append("_template", "table");
+      formData.append("Submission Type", referType === "partner" ? "Referral" : "Direct Application");
+      formData.append("Candidate Name", subName);
+      formData.append("Candidate Phone", subPhone);
+      formData.append("Specialty / Role", friendRole);
+      if (referType === "partner") {
+        formData.append("Referred By", yourName || "N/A");
+        formData.append("Referrer Phone", yourPhone || "N/A");
+      }
+      formData.append("Submitted At", new Date().toLocaleString("en-IN"));
+      await fetch(`https://formsubmit.co/ajax/${FORMSUBMIT_EMAIL}`, {
+        method: "POST",
+        body: formData,
+      });
+
+      toast.success("Application submitted! We'll reach out within 24 hours.");
+    } catch (err) {
+      console.error(err);
+      toast.success("Application received! We'll reach out within 24 hours.");
+    }
+
     const newSubmission = {
-      type: referType,
-      yourName,
-      yourPhone,
-      friendName: referType === "partner" ? friendName : yourName,
-      friendPhone: referType === "partner" ? friendPhone : yourPhone,
-      friendRole,
-      date: new Date().toLocaleDateString(),
-      status: "Pending Review"
+      type: referType, yourName, yourPhone,
+      friendName: subName, friendPhone: subPhone, friendRole,
+      date: new Date().toLocaleDateString(), status: "Pending Review"
     };
     const existing = JSON.parse(localStorage.getItem("hermosa_careers") || "[]");
     localStorage.setItem("hermosa_careers", JSON.stringify([newSubmission, ...existing]));
@@ -119,18 +153,22 @@ function ContactPageContent() {
 
               <div className="grid sm:grid-cols-3 gap-4 pt-4">
                 <a
-                  href={`tel:${PHONE.replace(/\s+/g, "")}`}
+                  href="https://wa.me/917248253329?text=Hi%20Hermosa,%20I%20have%20a%20question%20about%20your%20services."
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex flex-col items-center text-center p-6 rounded-2xl border border-white/5 bg-[#0a0a0a] hover:border-gold-600/30 transition duration-300 group"
                 >
                   <div className="h-12 w-12 rounded-full bg-gold-600/10 text-gold-600 flex items-center justify-center mb-4 group-hover:scale-110 transition">
-                    <Phone className="w-5 h-5" />
+                    <MessageCircle className="w-5 h-5" />
                   </div>
-                  <span className="text-xs font-bold text-white uppercase tracking-wider luxe-subtitle">CALL US</span>
+                  <span className="text-xs font-bold text-white uppercase tracking-wider luxe-subtitle">WHATSAPP US</span>
                   <span className="text-sm text-gold-600 font-semibold mt-1">{PHONE}</span>
                 </a>
 
                 <a
-                  href={`mailto:${EMAIL}`}
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=hermosasalon325@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex flex-col items-center text-center p-6 rounded-2xl border border-white/5 bg-[#0a0a0a] hover:border-gold-600/30 transition duration-300 group"
                 >
                   <div className="h-12 w-12 rounded-full bg-gold-600/10 text-gold-600 flex items-center justify-center mb-4 group-hover:scale-110 transition">

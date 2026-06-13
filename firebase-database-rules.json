@@ -1,0 +1,14 @@
+{
+  "rules": {
+    "bookingAlerts": {
+      // Anyone authenticated can write (booking customers push alerts)
+      ".write": "auth != null",
+      // Anyone can read (admin panel reads alerts)
+      ".read": "auth != null",
+      ".indexOn": ["timestamp"],
+      "$alertId": {
+        ".validate": "newData.hasChildren(['bookingNumber', 'customerName', 'totalAmount', 'timestamp'])"
+      }
+    }
+  }
+}

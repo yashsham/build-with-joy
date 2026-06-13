@@ -4,24 +4,33 @@ export const dynamic = "force-dynamic";
 import { db } from "@/lib/db/client";
 import { bookings, bookingItems } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
+import { getSessionUser } from "@/lib/auth.server";
 
 export async function GET(request: Request) {
   try {
-    const { searchParams } = new URL(request.url);
-    const userId = searchParams.get("userId");
-
-    if (!userId) {
-      return NextResponse.json({ error: "userId query parameter is required" }, { status: 400 });
+    // 1. Authenticate user session
+    const sessionUser = await getSessionUser(request);
+    if (!sessionUser) {
+      return NextResponse.json({ error: "Unauthorized session. Please sign in." }, { status: 401 });
     }
 
-    // 1. Fetch bookings
+    let targetUserId = sessionUser.id;
+    
+    // Allow admin roles to query other users if explicitly requested
+    const { searchParams } = new URL(request.url);
+    const queryUserId = searchParams.get("userId");
+    if (sessionUser.role === "admin" && queryUserId) {
+      targetUserId = queryUserId;
+    }
+
+    // 2. Fetch bookings associated with this user
     const userBookings = await db
       .select()
       .from(bookings)
-      .where(eq(bookings.userId, userId))
+      .where(eq(bookings.userId, targetUserId))
       .orderBy(bookings.createdAt);
 
-    // 2. Fetch booking items for each booking
+    // 3. Fetch booking items for each booking
     const bookingsWithItems = [];
     for (const bk of userBookings) {
       const items = await db

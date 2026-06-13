@@ -474,16 +474,66 @@ const adsData: AdDetail[] = [
   }
 ];
 
+const STATIC_REVIEWS = [
+  {
+    userName: "Aanya M.",
+    area: "Civil Lines",
+    comment: "Booked the bridal trial a week before my engagement. The artist showed up early, kit organised like a film set. I cried (then laughed) when I saw the mirror.",
+    rating: 5
+  },
+  {
+    userName: "Rohan K.",
+    area: "Rampur Garden",
+    comment: "Got the deep-tissue spa for my mother's birthday. She fell asleep mid-session and rebooked the next week. That's the only review you need.",
+    rating: 5
+  },
+  {
+    userName: "Priya S.",
+    area: "Sheel Chauraha",
+    comment: "Mehendi for 14 cousins, 6 hours flat, three artists working in sync. Hermosa turned my haldi into the calmest part of the wedding.",
+    rating: 5
+  },
+  {
+    userName: "Ishita R.",
+    area: "Subhash Nagar",
+    comment: "Honey waxing at home, candlelight, my own playlist. I am never going back to a salon.",
+    rating: 5
+  },
+  {
+    userName: "Megha T.",
+    area: "Krishna Puri",
+    comment: "Facial + cleanup combo, brand products, no upselling. The therapist explained every step. Felt like a five-star resort in my own bedroom.",
+    rating: 5
+  }
+];
+
 export default function Home() {
   const [activeGender, setActiveGender] = useState<"female" | "male">("female");
+  const [customerReviews, setCustomerReviews] = useState<any[]>(STATIC_REVIEWS);
+
+  useEffect(() => {
+    fetch("/api/reviews")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setCustomerReviews(data);
+        }
+      })
+      .catch((err) => {
+        console.error("Failed to load reviews:", err);
+      });
+  }, []);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [chooseServiceOpen, setChooseServiceOpen] = useState(false);
-  const [chooseServiceGender, setChooseServiceGender] = useState<"female" | "male">("female");
+  const [isMounted, setIsMounted] = useState(false);
   const [activePopupCategory, setActivePopupCategory] = useState<string | null>(null);
   const [mostBookedTab, setMostBookedTab] = useState<"salon" | "spa" | "hydraglo">("salon");
   const [openSeoAccordion, setOpenSeoAccordion] = useState<number | null>(null);
-  const { cart, addToCart, removeFromCart } = useApp();
+  const { cart, addToCart, removeFromCart, setIsChooseServiceOpen } = useApp();
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isVideoMuted, setIsVideoMuted] = useState(true);
@@ -565,17 +615,7 @@ export default function Home() {
     }
   };
 
-  // Show "Choose Your Service" modal on load once per session
-  useEffect(() => {
-    const shown = sessionStorage.getItem("hermosa_choose_service_shown");
-    if (!shown) {
-      const timer = setTimeout(() => {
-        setChooseServiceOpen(true);
-        sessionStorage.setItem("hermosa_choose_service_shown", "true");
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, []);
+
 
   const getServiceQuantity = (id: string) => {
     const item = cart.find((i) => i.id === id);
@@ -825,7 +865,7 @@ export default function Home() {
 
           <div className="mt-8 flex flex-wrap gap-3 justify-center">
             <button
-              onClick={() => setChooseServiceOpen(true)}
+              onClick={() => setIsChooseServiceOpen(true)}
               className="px-6 py-3 rounded-full bg-gold-gradient text-dark text-sm font-bold shadow-[var(--shadow-gold-sm)] hover:scale-105 active:scale-95 transition"
             >
               Book Service Now
@@ -1108,7 +1148,28 @@ export default function Home() {
 
       {/* WEEKLY SPOTLIGHT ROTATING ADS (Different Dimensions: Landscape, Portrait, Banner) */}
       {(() => {
-        const weekIndex = typeof window !== "undefined" ? Math.floor((new Date().getDate() - 1) / 7) : 0;
+        if (!isMounted) {
+          return (
+            <section className="py-14 bg-black border-t border-white/5">
+              <div className="max-w-5xl mx-auto px-4 sm:px-6">
+                <div className="text-center max-w-xl mx-auto mb-10">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-gold-600/30 bg-gold-600/5 text-[9px] text-gold-500 font-bold uppercase tracking-wider luxe-subtitle animate-pulse">
+                    Weekly Rotating Spotlight Deals
+                  </span>
+                  <h2 className="font-heading text-2xl md:text-3xl text-white mt-3 leading-tight animate-pulse">
+                    This Week's Exclusive Offers
+                  </h2>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-[744px] md:h-[360px]">
+                  <div className="md:col-span-2 rounded-3xl bg-white/5 h-[360px] animate-pulse"></div>
+                  <div className="rounded-3xl bg-white/5 h-[360px] animate-pulse"></div>
+                </div>
+              </div>
+            </section>
+          );
+        }
+
+        const weekIndex = Math.floor((new Date().getDate() - 1) / 7);
         const startIndex = (weekIndex * 6) % adsData.length;
         const currentWeekAds: AdDetail[] = [];
         for (let i = 0; i < 6; i++) {
@@ -1599,7 +1660,7 @@ export default function Home() {
 
       {/* CELEBRITIES STORIES SECTION */}
       <section id="press" className="py-14 md:py-20 bg-[#050505] border-y border-white/5 scroll-mt-24">
-        <div id="reviews" className="max-w-4xl mx-auto px-4 sm:px-6 scroll-mt-24">
+        <div id="press-content" className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center max-w-xl mx-auto mb-10 md:mb-12">
             <h2 className="font-heading text-2xl md:text-3xl text-white">Stories From the Best</h2>
             <p className="mt-1.5 text-xs text-white/50">Loved by leading creators and celebrity stylists.</p>
@@ -1631,6 +1692,69 @@ export default function Home() {
                 "No loose cosmetic containers, strictly sealed brand-kits, and detailed hygiene kits. Truly the safest home spa in India."
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CUSTOMER REVIEWS SECTION */}
+      <section id="reviews" className="py-14 md:py-20 bg-black border-b border-white/5 scroll-mt-24">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="text-center max-w-xl mx-auto mb-10 md:mb-12">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-gold-600/30 bg-gold-600/5 text-[9px] text-gold-500 font-bold uppercase tracking-wider luxe-subtitle">
+              Voices
+            </span>
+            <h2 className="font-heading text-2xl md:text-3xl text-white mt-3 leading-tight">
+              From Bareilly's <span className="text-gradient-gold italic">finest homes.</span>
+            </h2>
+            <p className="mt-1.5 text-xs text-white/50">Real experiences from our valued customers.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {customerReviews.slice(0, 3).map((r: any, i: number) => (
+              <div 
+                key={r.id || i}
+                className="rounded-2xl border border-white/5 bg-[#0a0a0a] p-6 flex flex-col justify-between hover:border-gold-600/30 hover:shadow-[0_0_20px_rgba(201,168,76,0.05)] transition duration-300"
+              >
+                <div>
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(r.rating || 5)].map((_, j) => (
+                      <Star key={j} className="w-3.5 h-3.5 fill-gold-400 text-gold-400" />
+                    ))}
+                  </div>
+                  <blockquote className="font-accent text-[13px] leading-relaxed text-white/85 mb-5 italic">
+                    "{r.comment}"
+                  </blockquote>
+                </div>
+                <div className="border-t border-white/5 pt-4 mt-2">
+                  <div className="text-xs font-bold text-white">{r.userName}</div>
+                  <div className="text-[10px] text-white/40 mt-0.5">{r.area || "Bareilly"}, Bareilly</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 max-w-4xl mx-auto">
+            {customerReviews.slice(3).map((r: any, i: number) => (
+              <div 
+                key={r.id || i}
+                className="rounded-2xl border border-white/5 bg-[#0a0a0a] p-6 flex flex-col justify-between hover:border-gold-600/30 hover:shadow-[0_0_20px_rgba(201,168,76,0.05)] transition duration-300"
+              >
+                <div>
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(r.rating || 5)].map((_, j) => (
+                      <Star key={j} className="w-3.5 h-3.5 fill-gold-400 text-gold-400" />
+                    ))}
+                  </div>
+                  <blockquote className="font-accent text-[13px] leading-relaxed text-white/85 mb-5 italic">
+                    "{r.comment}"
+                  </blockquote>
+                </div>
+                <div className="border-t border-white/5 pt-4 mt-2">
+                  <div className="text-xs font-bold text-white">{r.userName}</div>
+                  <div className="text-[10px] text-white/40 mt-0.5">{r.area || "Bareilly"}, Bareilly</div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -1787,120 +1911,7 @@ export default function Home() {
         </div>
       )}
 
-      {/* CHOOSE YOUR SERVICE BOTTOM SHEET POPUP */}
-      <AnimatePresence>
-        {chooseServiceOpen && (
-          <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 backdrop-blur-sm">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-transparent"
-              onClick={() => setChooseServiceOpen(false)}
-            />
-            <motion.div
-              initial={{ y: "100%" }}
-              animate={{ y: 0 }}
-              exit={{ y: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 220 }}
-              className="relative w-full max-w-md bg-[#0a0a0a] rounded-t-3xl border-t border-white/10 p-6 z-10 shadow-2xl flex flex-col"
-            >
-              {/* Drag Handle */}
-              <div className="mx-auto w-12 h-1 bg-white/10 rounded-full mb-6" />
 
-              <div className="flex items-center justify-between border-b border-white/5 pb-4 mb-6">
-                <h3 className="font-heading text-lg text-white">Choose Your Service</h3>
-                <button
-                  onClick={() => setChooseServiceOpen(false)}
-                  className="h-8 w-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-
-              {/* Tab control in popup */}
-              <div className="flex bg-[#000] border border-white/5 rounded-2xl p-1 mb-6">
-                <button
-                  onClick={() => setChooseServiceGender("female")}
-                  className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
-                    chooseServiceGender === "female"
-                      ? "bg-gold-gradient text-dark"
-                      : "text-white/60"
-                  }`}
-                >
-                  Women
-                </button>
-                <button
-                  onClick={() => setChooseServiceGender("male")}
-                  className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
-                    chooseServiceGender === "male"
-                      ? "bg-gold-gradient text-dark"
-                      : "text-white/60"
-                  }`}
-                >
-                  Men
-                </button>
-              </div>
-
-              {/* Popup Category Content */}
-              <div className="space-y-4">
-                {chooseServiceGender === "female" ? (
-                  <>
-                    <button
-                      onClick={() => {
-                        setChooseServiceOpen(false);
-                        setActiveGender("female");
-                        const el = document.getElementById("explore-categories");
-                        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-                      }}
-                      className="w-full relative h-36 rounded-2xl overflow-hidden border border-white/5 bg-gradient-to-t from-black via-black/40 to-transparent group flex items-end p-6 text-left"
-                    >
-                      <img src="/assets/service-hair.jpg" alt="Salon at Home" className="absolute inset-0 w-full h-full object-cover brightness-[0.45] group-hover:scale-105 transition duration-500" />
-                      <div className="relative z-10 space-y-1">
-                        <h4 className="text-base font-bold text-white uppercase tracking-wider luxe-subtitle">Salon at Home</h4>
-                        <p className="text-[10px] text-white/60">Waxing, Facials, Mani-Pedi and more</p>
-                        <span className="inline-flex items-center gap-1 text-[10px] text-gold-600 font-bold mt-2">
-                          EXPLORE <ChevronRight className="w-3 h-3" />
-                        </span>
-                      </div>
-                    </button>
-
-                    <LinkNext
-                      href="/services?gender=female&category=spa-massage"
-                      onClick={() => setChooseServiceOpen(false)}
-                      className="w-full relative h-36 rounded-2xl overflow-hidden border border-white/5 bg-gradient-to-t from-black via-black/40 to-transparent group flex items-end p-6 text-left"
-                    >
-                      <img src="/assets/service-spa.jpg" alt="Spa at Home" className="absolute inset-0 w-full h-full object-cover brightness-[0.45] group-hover:scale-105 transition duration-500" />
-                      <div className="relative z-10 space-y-1">
-                        <h4 className="text-base font-bold text-white uppercase tracking-wider luxe-subtitle">Spa at Home</h4>
-                        <p className="text-[10px] text-white/60">Relaxing & Pain Relieving Massage</p>
-                        <span className="inline-flex items-center gap-1 text-[10px] text-gold-600 font-bold mt-2">
-                          EXPLORE <ChevronRight className="w-3 h-3" />
-                        </span>
-                      </div>
-                    </LinkNext>
-                  </>
-                ) : (
-                  <LinkNext
-                    href="/services?gender=male&category=spa-massage"
-                    onClick={() => setChooseServiceOpen(false)}
-                    className="w-full relative h-36 rounded-2xl overflow-hidden border border-white/5 bg-gradient-to-t from-black via-black/40 to-transparent group flex items-end p-6 text-left"
-                  >
-                    <img src="/assets/service-deep.jpg" alt="Male Spa" className="absolute inset-0 w-full h-full object-cover brightness-[0.45] group-hover:scale-105 transition duration-500 animate-grayscale" />
-                    <div className="relative z-10 space-y-1">
-                      <h4 className="text-base font-bold text-white uppercase tracking-wider luxe-subtitle">Male Spa</h4>
-                      <p className="text-[10px] text-white/60">Relaxing & Pain Relieving Massage</p>
-                      <span className="inline-flex items-center gap-1 text-[10px] text-gold-600 font-bold mt-2">
-                        EXPLORE <ChevronRight className="w-3 h-3" />
-                      </span>
-                    </div>
-                  </LinkNext>
-                )}
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
 
       {/* SUBCATEGORY POPUP BOTTOM SHEETS */}
       <AnimatePresence>
