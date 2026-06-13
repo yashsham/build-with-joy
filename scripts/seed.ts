@@ -1,5 +1,7 @@
 import { db } from "../src/lib/db/client";
 import { categories, services, cities, promoCodes, users, bookings, addresses, reviews, bookingItems, professionals } from "../src/lib/db/schema";
+import fs from "node:fs";
+import path from "node:path";
 
 async function main() {
   console.log("🌱 Seeding database...");
@@ -81,6 +83,8 @@ async function main() {
     { name: "Pain Relief Ayurvedic Massage", slug: "pain-relief-ayurvedic-massage", duration: 75, price: 1999, discountPrice: 1599, categoryId: categoryMap["spa-massage"], gender: "unisex" as const },
     { name: "Head, Neck & Shoulder Massage", slug: "head-neck-shoulder-massage", duration: 30, price: 599, discountPrice: 449, categoryId: categoryMap["spa-massage"], gender: "unisex" as const },
     { name: "Premium Foot Reflexology", slug: "foot-reflexology", duration: 45, price: 899, discountPrice: 699, categoryId: categoryMap["spa-massage"], gender: "unisex" as const },
+    { name: "Korean Body Polishing & Scrub", slug: "body-polishing", duration: 75, price: 2499, discountPrice: 1899, categoryId: categoryMap["spa-massage"], gender: "female" as const },
+    { name: "Multi-Session Spa Massage (Pack of 3)", slug: "multisession-spa-package", duration: 180, price: 5499, discountPrice: 3999, categoryId: categoryMap["spa-massage"], gender: "unisex" as const },
 
     // Waxing Services
     { name: "Rica Chocolate Waxing (Full Body)", slug: "rica-chocolate-wax-full-body", duration: 90, price: 1999, discountPrice: 1599, categoryId: categoryMap["waxing"], gender: "female" as const },
@@ -138,26 +142,32 @@ async function main() {
   ];
 
   for (const svc of servicesData) {
-    let imgPath = `/assets/service-${svc.slug.includes("bridal") ? "bridal" : svc.slug.includes("spa") ? "spa" : svc.slug.includes("facial") ? "facial" : svc.slug.includes("hair") ? "hair" : svc.slug.includes("mehendi") ? "mehendi" : "nails"}.jpg`;
+    let imgPath = `/assets/service-${svc.slug}.png`;
+    const fullPath = path.join(process.cwd(), "public", imgPath);
     
-    if (svc.slug.includes("laser")) {
-      imgPath = "/assets/service-laser.png";
-    } else if (svc.slug.includes("hydraglo")) {
-      imgPath = "/assets/service-hydraglo.png";
-    } else if (svc.slug.includes("wax") || svc.slug.includes("waxing")) {
-      imgPath = "/assets/service-waxing.png";
-    } else if (svc.slug.includes("cleanup") || svc.slug.includes("cleansing")) {
-      imgPath = "/assets/service-cleanup.png";
-    } else if (svc.slug.includes("threading")) {
-      imgPath = "/assets/service-threading.png";
-    } else if (svc.slug.includes("polishing")) {
-      imgPath = "/assets/service-body-polishing.png";
-    } else if (svc.slug === "mens-body-massage") {
-      imgPath = "/assets/service-mens-body-massage.png";
-    } else if (svc.slug === "mens-head-shoulder-massage" || (svc.slug.includes("hair") && svc.categoryId === categoryMap["male-grooming"])) {
-      imgPath = "/assets/service-mens-hair-spa.png";
-    } else if (svc.slug.includes("grooming") || svc.slug.includes("beard") || svc.slug.includes("mens-haircut") || (svc.categoryId === categoryMap["male-grooming"])) {
-      imgPath = "/assets/service-malegrooming.png";
+    if (!fs.existsSync(fullPath)) {
+      // Fallback logic
+      imgPath = `/assets/service-${svc.slug.includes("bridal") ? "bridal" : svc.slug.includes("spa") ? "spa" : svc.slug.includes("facial") ? "facial" : svc.slug.includes("hair") ? "hair" : svc.slug.includes("mehendi") ? "mehendi" : "nails"}.jpg`;
+      
+      if (svc.slug.includes("laser")) {
+        imgPath = "/assets/service-laser.png";
+      } else if (svc.slug.includes("hydraglo")) {
+        imgPath = "/assets/service-hydraglo.png";
+      } else if (svc.slug.includes("wax") || svc.slug.includes("waxing")) {
+        imgPath = "/assets/service-waxing.png";
+      } else if (svc.slug.includes("cleanup") || svc.slug.includes("cleansing")) {
+        imgPath = "/assets/service-cleanup.png";
+      } else if (svc.slug.includes("threading")) {
+        imgPath = "/assets/service-threading.png";
+      } else if (svc.slug.includes("polishing")) {
+        imgPath = "/assets/service-body-polishing.png";
+      } else if (svc.slug === "mens-body-massage") {
+        imgPath = "/assets/service-mens-body-massage.png";
+      } else if (svc.slug === "mens-head-shoulder-massage" || (svc.slug.includes("hair") && svc.categoryId === categoryMap["male-grooming"])) {
+        imgPath = "/assets/service-mens-hair-spa.png";
+      } else if (svc.slug.includes("grooming") || svc.slug.includes("beard") || svc.slug.includes("mens-haircut") || (svc.categoryId === categoryMap["male-grooming"])) {
+        imgPath = "/assets/service-malegrooming.png";
+      }
     }
 
     await db.insert(services).values({

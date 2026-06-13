@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db/client";
 import { bookings, bookingItems, addresses, services, promoCodes, users } from "@/lib/db/schema";
-import { eq, inArray } from "drizzle-orm";
+import { eq, inArray, or } from "drizzle-orm";
 import { getSessionUser } from "@/lib/auth.server";
 import { sendSMS, sendEmail, sendTelegram } from "@/lib/notifications.server";
 
@@ -47,7 +47,12 @@ export async function POST(request: Request) {
       const dbServices = await tx
         .select()
         .from(services)
-        .where(inArray(services.id, serviceIds));
+        .where(
+          or(
+            inArray(services.id, serviceIds),
+            inArray(services.slug, serviceIds)
+          )
+        );
 
       if (dbServices.length !== serviceIds.length) {
         throw new Error("One or more selected services are invalid.");
@@ -56,7 +61,7 @@ export async function POST(request: Request) {
       // Calculate true server-side subtotal
       let calculatedSubtotal = 0;
       for (const item of items) {
-        const dbSvc = dbServices.find((s) => s.id === item.id);
+        const dbSvc = dbServices.find((s) => s.id === item.id || s.slug === item.id);
         if (!dbSvc || !dbSvc.isActive) {
           throw new Error(`Service ${item.name} is no longer active.`);
         }
@@ -149,11 +154,11 @@ export async function POST(request: Request) {
 
       // Batch insert booking items
       const itemsToInsert = items.map((item: any) => {
-        const dbSvc = dbServices.find((s) => s.id === item.id)!;
+        const dbSvc = dbServices.find((s) => s.id === item.id || s.slug === item.id)!;
         const snapPrice = dbSvc.discountPrice || dbSvc.price;
         return {
           bookingId: booking.id,
-          serviceId: item.id,
+          serviceId: dbSvc.id,
           quantity: item.quantity,
           price: snapPrice,
           name: dbSvc.name,

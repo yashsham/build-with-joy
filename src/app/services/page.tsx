@@ -33,6 +33,27 @@ interface Category {
   services: Service[];
 }
 
+const getGenderizedImage = (image: string | null, slug: string, activeGender: "female" | "male") => {
+  if (!image) return "/assets/service-o3-glow-facial.png";
+  
+  if (activeGender === "male") {
+    if (slug.includes("massage") || slug.includes("spa") || slug.includes("reflexology")) {
+      if (slug.includes("head") || slug.includes("shoulder")) {
+        return "/assets/service-mens-head-shoulder-massage.png";
+      }
+      return "/assets/service-mens-body-massage.png";
+    }
+    if (slug.includes("hair") || slug.includes("color") || slug.includes("smooth") || slug.includes("keratin")) {
+      return "/assets/service-mens-hair-spa.png";
+    }
+    if (slug.includes("hydraglo") || slug.includes("facial") || slug.includes("cleanup") || slug.includes("cleansing")) {
+      return "/assets/service-mens-dtan-cleanup.png";
+    }
+  }
+  
+  return image;
+};
+
 function ServicesCatalog() {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -287,7 +308,7 @@ function ServicesCatalog() {
                             {/* Service Image placeholder/render */}
                             <div className="w-20 h-20 rounded-xl overflow-hidden bg-white/5 border border-white/10 flex-shrink-0 relative">
                               <img 
-                                src={svc.image || "/assets/service-facial.jpg"} 
+                                src={getGenderizedImage(svc.image, svc.slug, activeGender)} 
                                 alt={svc.name}
                                 className="w-full h-full object-cover"
                               />

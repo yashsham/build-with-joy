@@ -474,6 +474,105 @@ const adsData: AdDetail[] = [
   }
 ];
 
+const maleAdsData: AdDetail[] = [
+  {
+    id: "mens-haircut-styling",
+    title: "Men's Designer Haircut & Styling",
+    subtitle: "Custom hair grooming by senior stylists",
+    category: "Male Grooming",
+    originalPrice: 299,
+    discountPrice: 199,
+    badge: "Save 33%",
+    bgGradient: "from-[#1a1a1a] to-[#0d0d0d]",
+    textColor: "text-[#D4AF37]",
+    btnBg: "bg-gold-gradient",
+    btnTextColor: "text-dark",
+    slug: "male-grooming",
+    imageBg: "/assets/service-mens-haircut-styling.png",
+    subBadge: "Senior Barber Grooming"
+  },
+  {
+    id: "mens-beard-trim-shave",
+    title: "Royal Beard Trim & Hot Shave",
+    subtitle: "Straight razor styling + hot towel treatment",
+    category: "Male Grooming",
+    originalPrice: 199,
+    discountPrice: 149,
+    badge: "Royal Special",
+    bgGradient: "from-[#1a1a1a] to-[#0d0d0d]",
+    textColor: "text-[#D4AF37]",
+    btnBg: "bg-gold-gradient",
+    btnTextColor: "text-dark",
+    slug: "male-grooming",
+    imageBg: "/assets/service-mens-beard-trim-shave.png",
+    subBadge: "Razor Shaving & Shaping"
+  },
+  {
+    id: "mens-dtan-cleanup",
+    title: "Men's Skin Brightening D-Tan Cleanup",
+    subtitle: "Instant skin tan removal & deep clean",
+    category: "Male Grooming",
+    originalPrice: 699,
+    discountPrice: 499,
+    badge: "Save ₹200",
+    bgGradient: "from-[#1a1a1a] to-[#0d0d0d]",
+    textColor: "text-[#D4AF37]",
+    btnBg: "bg-gold-gradient",
+    btnTextColor: "text-dark",
+    slug: "male-grooming",
+    imageBg: "/assets/service-mens-dtan-cleanup.png",
+    subBadge: "Brightening Scrub & Pack"
+  },
+  {
+    id: "mens-body-massage",
+    title: "Men's Body Massage",
+    subtitle: "Full body stress relief and recovery",
+    category: "Male Spa",
+    originalPrice: 1699,
+    discountPrice: 1399,
+    badge: "Muscle Recovery",
+    bgGradient: "from-[#1a1a1a] to-[#0d0d0d]",
+    textColor: "text-[#D4AF37]",
+    btnBg: "bg-gold-gradient",
+    btnTextColor: "text-dark",
+    slug: "spa-massage",
+    imageBg: "/assets/service-mens-body-massage.png",
+    subBadge: "Stress Relief Therapy"
+  },
+  {
+    id: "mens-charcoal-facial",
+    title: "Men's Charcoal Blackhead Facial",
+    subtitle: "Deep charcoal peel mask for clean pores",
+    category: "Male Grooming",
+    originalPrice: 899,
+    discountPrice: 699,
+    badge: "Pore Cleansing",
+    bgGradient: "from-[#1a1a1a] to-[#0d0d0d]",
+    textColor: "text-[#D4AF37]",
+    btnBg: "bg-gold-gradient",
+    btnTextColor: "text-dark",
+    slug: "male-grooming",
+    imageBg: "/assets/service-mens-charcoal-facial.png",
+    subBadge: "Charcoal Peel-Off Mask"
+  },
+  {
+    id: "mens-head-shoulder-massage",
+    title: "Men's Head & Shoulder Massage",
+    subtitle: "Energizing scalp oil massage",
+    category: "Male Spa",
+    originalPrice: 499,
+    discountPrice: 349,
+    badge: "Flat ₹150 OFF",
+    bgGradient: "from-[#1a1a1a] to-[#0d0d0d]",
+    textColor: "text-[#D4AF37]",
+    btnBg: "bg-gold-gradient",
+    btnTextColor: "text-dark",
+    slug: "spa-massage",
+    imageBg: "/assets/service-mens-head-shoulder-massage.png",
+    subBadge: "Scalp & Shoulder Tension Release"
+  }
+];
+
 const STATIC_REVIEWS = [
   {
     userName: "Aanya M.",
@@ -627,14 +726,14 @@ export default function Home() {
     "salon-for-women": {
       title: "Salon for Women",
       items: [
-        { name: "Waxing", slug: "waxing", image: "/assets/unique-service-42.jpg" },
-        { name: "Clean-Up", slug: "facial-cleanup", image: "/assets/unique-service-45.jpg" },
-        { name: "Body Polishing", slug: "female-salon", image: "/assets/unique-service-14.jpg" },
-        { name: "Bleach, Dtan & Scrub", slug: "female-salon", image: "/assets/unique-service-1.jpg" },
-        { name: "Mani-Pedi", slug: "female-salon", image: "/assets/unique-service-41.jpg" },
-        { name: "Hair", slug: "hair", image: "/assets/unique-service-9.jpg" },
-        { name: "Facial", slug: "facial-cleanup", image: "/assets/unique-service-40.jpg" },
-        { name: "Threading & Face Wax", slug: "female-salon", image: "/assets/unique-service-43.jpg" },
+        { name: "Waxing", slug: "waxing", image: "/assets/service-waxing.png" },
+        { name: "Clean-Up", slug: "facial-cleanup", image: "/assets/service-cleanup.png" },
+        { name: "Body Polishing", slug: "female-salon", image: "/assets/service-body-polishing.png" },
+        { name: "Bleach, Dtan & Scrub", slug: "female-salon", image: "/assets/service-premium-dtan-face-neck.png" },
+        { name: "Mani-Pedi", slug: "female-salon", image: "/assets/service-pedi-mani-classic.png" },
+        { name: "Hair", slug: "hair", image: "/assets/service-womens-blowdry-styling.png" },
+        { name: "Facial", slug: "facial-cleanup", image: "/assets/service-o3-glow-facial.png" },
+        { name: "Threading & Face Wax", slug: "female-salon", image: "/assets/service-threading.png" },
       ]
     },
     "spa-for-women": {
@@ -705,25 +804,42 @@ export default function Home() {
 
   // Most Booked services
   const mostBookedServices = {
-    salon: [
-      { id: "premium-honey-wax-arms-legs", name: "Premium Honey Full Arms + Half Legs Waxing", price: 399, discountPrice: 299, duration: 45, image: "/assets/service-premium-honey-wax-arms-legs.png", badge: "Most Booked" },
-      { id: "o3-glow-facial", name: "O3+ Glow Facial (9 Steps)", price: 2199, discountPrice: 1899, duration: 60, image: "/assets/service-o3-glow-facial.png", badge: "9-Step Ritual" },
-      { id: "threading-eyebrow-upperlip", name: "Threading (Eyebrows + Upper Lip)", price: 99, discountPrice: 59, duration: 15, image: "/assets/service-threading-eyebrow-upperlip.png", badge: "Express Care" },
-      { id: "loreal-hair-spa", name: "L'Oreal Hair Spa & Nutrition", price: 1199, discountPrice: 899, duration: 50, image: "/assets/service-loreal-hair-spa.png", badge: "4 Free Gifts" },
-    ],
-    spa: [
-      { id: "aroma-therapy-body-massage", name: "Aroma Therapy Full Body Massage", price: 1799, discountPrice: 1499, duration: 75, image: "/assets/service-aroma-therapy-body-massage.png", badge: "Sensory Healing" },
-      { id: "deep-tissue-stress-relief", name: "Deep Tissue Stress Relief Massage", price: 2299, discountPrice: 1899, duration: 90, image: "/assets/service-deep-tissue-stress-relief.png", badge: "Hot Towel" },
-      { id: "swedish-back-shoulder-massage", name: "Swedish Back & Shoulder Massage", price: 999, discountPrice: 799, duration: 45, image: "/assets/service-swedish-back-shoulder-massage.png", badge: "Pain Relief" },
-    ],
-    hydraglo: [
-      { id: "classic-hydraglo", name: "Classic HydraGlo Skin Infusion Facial", price: 2999, discountPrice: 2499, duration: 60, image: "/assets/service-classic-hydraglo.png", badge: "Most Booked" },
-      { id: "superbright-hydraglo", name: "SuperBright HydraGlo with Vitamin C", price: 3999, discountPrice: 3199, duration: 75, image: "/assets/service-superbright-hydraglo.png", badge: "Glass Skin" },
-      { id: "agedefying-hydraglo", name: "Age-Defying Gold-Peptide HydraGlo", price: 4999, discountPrice: 3999, duration: 90, image: "/assets/service-agedefying-hydraglo.png", badge: "US-FDA Approved" },
-    ]
+    female: {
+      salon: [
+        { id: "premium-honey-wax-arms-legs", name: "Premium Honey Full Arms + Half Legs Waxing", price: 399, discountPrice: 299, duration: 45, image: "/assets/service-premium-honey-wax-arms-legs.png", badge: "Most Booked" },
+        { id: "o3-glow-facial", name: "O3+ Glow Facial (9 Steps)", price: 2199, discountPrice: 1899, duration: 60, image: "/assets/service-o3-glow-facial.png", badge: "9-Step Ritual" },
+        { id: "threading-eyebrow-upperlip", name: "Threading (Eyebrows + Upper Lip)", price: 99, discountPrice: 59, duration: 15, image: "/assets/service-threading-eyebrow-upperlip.png", badge: "Express Care" },
+        { id: "loreal-hair-spa", name: "L'Oreal Hair Spa & Nutrition", price: 1199, discountPrice: 899, duration: 50, image: "/assets/service-loreal-hair-spa.png", badge: "4 Free Gifts" },
+      ],
+      spa: [
+        { id: "aroma-therapy-body-massage", name: "Aroma Therapy Full Body Massage", price: 1799, discountPrice: 1499, duration: 75, image: "/assets/service-aroma-therapy-body-massage.png", badge: "Sensory Healing" },
+        { id: "deep-tissue-stress-relief", name: "Deep Tissue Stress Relief Massage", price: 2299, discountPrice: 1899, duration: 90, image: "/assets/service-deep-tissue-stress-relief.png", badge: "Hot Towel" },
+        { id: "swedish-back-shoulder-massage", name: "Swedish Back & Shoulder Massage", price: 999, discountPrice: 799, duration: 45, image: "/assets/service-swedish-back-shoulder-massage.png", badge: "Pain Relief" },
+      ],
+      hydraglo: [
+        { id: "classic-hydraglo", name: "Classic HydraGlo Skin Infusion Facial", price: 2999, discountPrice: 2499, duration: 60, image: "/assets/service-classic-hydraglo.png", badge: "Most Booked" },
+        { id: "superbright-hydraglo", name: "SuperBright HydraGlo with Vitamin C", price: 3999, discountPrice: 3199, duration: 75, image: "/assets/service-superbright-hydraglo.png", badge: "Glass Skin" },
+        { id: "agedefying-hydraglo", name: "Age-Defying Gold-Peptide HydraGlo", price: 4999, discountPrice: 3999, duration: 90, image: "/assets/service-agedefying-hydraglo.png", badge: "US-FDA Approved" },
+      ]
+    },
+    male: {
+      salon: [
+        { id: "mens-haircut-styling", name: "Men's Designer Haircut & Styling", price: 299, discountPrice: 199, duration: 30, image: "/assets/service-mens-haircut-styling.png", badge: "Classic Cut" },
+        { id: "mens-beard-trim-shave", name: "Royal Beard Trim & Hot Towel Shave", price: 199, discountPrice: 149, duration: 25, image: "/assets/service-mens-beard-trim-shave.png", badge: "Royal Groom" },
+        { id: "mens-dtan-cleanup", name: "Men's Skin Brightening D-Tan Cleanup", price: 699, discountPrice: 499, duration: 40, image: "/assets/service-mens-dtan-cleanup.png", badge: "D-Tan Scrub" },
+      ],
+      spa: [
+        { id: "mens-body-massage", name: "Men's Full Body Stress Relief Massage", price: 1699, discountPrice: 1399, duration: 75, image: "/assets/service-mens-body-massage.png", badge: "Full Body" },
+        { id: "mens-head-shoulder-massage", name: "Men's Energizing Head & Shoulder Massage", price: 499, discountPrice: 349, duration: 30, image: "/assets/service-mens-head-shoulder-massage.png", badge: "Stress Relief" },
+      ],
+      hydraglo: [
+        { id: "mens-charcoal-facial", name: "Men's Charcoal Blackhead Peel-off Facial", price: 899, discountPrice: 699, duration: 45, image: "/assets/service-mens-charcoal-facial.png", badge: "Deep Clean" },
+        { id: "classic-hydraglo", name: "Classic HydraGlo Skin Infusion Facial", price: 2999, discountPrice: 2499, duration: 60, image: "/assets/service-mens-hair-spa.png", badge: "Classic Glow" },
+      ]
+    }
   };
 
-  const currentMostBooked = mostBookedServices[mostBookedTab];
+  const currentMostBooked = mostBookedServices[activeGender][mostBookedTab];
 
   // Collapsible SEO description blocks
   const seoAccordions = [
@@ -905,7 +1021,7 @@ export default function Home() {
       </section>
 
       {/* AD SLIDER BANNER */}
-      <AdSlider />
+      <AdSlider activeGender={activeGender} />
 
       {/* EXPLORE OUR CATEGORIES SECTION */}
       <section id="explore-categories" className="py-14 md:py-20 bg-black scroll-mt-24">
@@ -928,7 +1044,7 @@ export default function Home() {
               }`}
             >
               <div className="w-5 h-5 rounded-full overflow-hidden bg-white/10 flex-shrink-0 border border-gold-600/20">
-                <img src="/assets/service-facial.jpg" alt="Women" className="w-full h-full object-cover" />
+                <img src="/assets/service-o3-glow-facial.png" alt="Women" className="w-full h-full object-cover" />
               </div>
               Women
             </button>
@@ -941,7 +1057,7 @@ export default function Home() {
               }`}
             >
               <div className="w-5 h-5 rounded-full overflow-hidden bg-white/10 flex-shrink-0 border border-gold-600/20">
-                <img src="/assets/service-deep.jpg" alt="Men" className="w-full h-full object-cover animate-grayscale" />
+                <img src="/assets/service-mens-haircut-styling.png" alt="Men" className="w-full h-full object-cover animate-grayscale" />
               </div>
               Men
             </button>
@@ -981,7 +1097,7 @@ export default function Home() {
                       alt={cat.name}
                       className="w-full h-full object-cover object-top group-hover:scale-110 transition duration-500"
                       onError={(e) => {
-                        (e.target as HTMLImageElement).src = "/assets/service-facial.jpg";
+                        (e.target as HTMLImageElement).src = "/assets/service-o3-glow-facial.png";
                       }}
                     />
                   </div>
@@ -1047,7 +1163,7 @@ export default function Home() {
                     : "bg-[#0a0a0a] border border-white/10 text-white/60 hover:text-white"
                 }`}
               >
-                Salon for Women
+                {activeGender === "female" ? "Salon for Women" : "Grooming & Hair"}
               </button>
               <button
                 onClick={() => setMostBookedTab("spa")}
@@ -1057,7 +1173,7 @@ export default function Home() {
                     : "bg-[#0a0a0a] border border-white/10 text-white/60 hover:text-white"
                 }`}
               >
-                Spa for Women
+                {activeGender === "female" ? "Spa for Women" : "Spa & Relaxation"}
               </button>
               <button
                 onClick={() => setMostBookedTab("hydraglo")}
@@ -1067,7 +1183,7 @@ export default function Home() {
                     : "bg-[#0a0a0a] border border-white/10 text-white/60 hover:text-white"
                 }`}
               >
-                HydraGlo Facials
+                {activeGender === "female" ? "HydraGlo Facials" : "Facial & Skin Care"}
               </button>
             </div>
           </div>
@@ -1146,7 +1262,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* WEEKLY SPOTLIGHT ROTATING ADS (Different Dimensions: Landscape, Portrait, Banner) */}
+      {/* WEEKLY SPOTLIGHT ROTATING ADS (Premium Luxury 3-Column Grid) */}
       {(() => {
         if (!isMounted) {
           return (
@@ -1160,9 +1276,10 @@ export default function Home() {
                     This Week's Exclusive Offers
                   </h2>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-[744px] md:h-[360px]">
-                  <div className="md:col-span-2 rounded-3xl bg-white/5 h-[360px] animate-pulse"></div>
-                  <div className="rounded-3xl bg-white/5 h-[360px] animate-pulse"></div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                  <div className="rounded-3xl bg-[#0c0c0c] border border-white/5 h-[420px] animate-pulse"></div>
+                  <div className="rounded-3xl bg-[#0c0c0c] border border-white/5 h-[420px] animate-pulse"></div>
+                  <div className="rounded-3xl bg-[#0c0c0c] border border-white/5 h-[420px] animate-pulse"></div>
                 </div>
               </div>
             </section>
@@ -1170,367 +1287,107 @@ export default function Home() {
         }
 
         const weekIndex = Math.floor((new Date().getDate() - 1) / 7);
-        const startIndex = (weekIndex * 6) % adsData.length;
+        const currentAds = activeGender === "female" ? adsData : maleAdsData;
+        const startIndex = (weekIndex * 6) % currentAds.length;
         const currentWeekAds: AdDetail[] = [];
         for (let i = 0; i < 6; i++) {
-          currentWeekAds.push(adsData[(startIndex + i) % adsData.length]);
+          currentWeekAds.push(currentAds[(startIndex + i) % currentAds.length]);
         }
         
         return (
-          <section className="py-14 bg-black border-t border-white/5">
+          <section className="py-16 bg-black border-t border-white/5">
             <div className="max-w-5xl mx-auto px-4 sm:px-6">
-              <div className="text-center max-w-xl mx-auto mb-10">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-gold-600/30 bg-gold-600/5 text-[9px] text-gold-500 font-bold uppercase tracking-wider luxe-subtitle">
+              <div className="text-center max-w-xl mx-auto mb-12">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full border border-gold-600/30 bg-gold-600/5 text-[9px] text-gold-500 font-bold uppercase tracking-wider luxe-subtitle">
                   <Sparkles className="w-3.5 h-3.5 text-gold-500" /> Weekly Rotating Spotlight Deals
                 </span>
-                <h2 className="font-heading text-2xl md:text-3xl text-white mt-3 leading-tight">
+                <h2 className="font-heading text-2xl md:text-4xl text-white mt-4 leading-tight">
                   This Week's <span className="text-gradient-gold italic">Exclusive Offers</span>
                 </h2>
-                <p className="mt-1.5 text-xs text-white/50">
-                  Premium deals updated weekly. Add directly to your cart to lock in these special rates!
+                <p className="mt-2 text-xs text-white/50 leading-relaxed max-w-md mx-auto">
+                  Premium luxury treatments curated weekly. Add directly to your booking cart to secure these exclusive rates.
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {/* 1. Landscape Featured Banner (spans 2 columns) */}
-                {currentWeekAds[0] && (
-                  <div className={`md:col-span-2 rounded-3xl p-6 md:p-8 bg-gradient-to-br ${currentWeekAds[0].bgGradient} ${currentWeekAds[0].textColor} flex flex-col justify-between min-h-[280px] border border-white/10 shadow-lg relative overflow-hidden group`}>
-                    {/* Visual Image Background (Linear Fade on Right) */}
-                    <div className="absolute right-0 top-0 bottom-0 w-full md:w-1/2 h-full opacity-35 md:opacity-100 mix-blend-multiply md:mix-blend-normal pointer-events-none z-0">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                {currentWeekAds.map((ad) => (
+                  <div
+                    key={ad.id}
+                    className="group relative flex flex-col justify-between rounded-3xl border border-white/5 bg-[#0c0c0c] hover:border-gold-600/30 hover:shadow-[0_0_35px_rgba(201,168,76,0.12)] transition-all duration-300 overflow-hidden"
+                  >
+                    {/* Visual Image Banner with Subtle Gradient Overlay */}
+                    <div className="relative w-full h-52 sm:h-56 overflow-hidden flex-shrink-0">
                       <img
-                        src={currentWeekAds[0].imageBg}
-                        alt={currentWeekAds[0].title}
-                        className="w-full h-full object-cover object-center select-none"
-                        style={{
-                          maskImage: "linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0))",
-                          WebkitMaskImage: "linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0))"
-                        }}
+                        src={ad.imageBg}
+                        alt={ad.title}
+                        className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-500 select-none"
                       />
-                    </div>
-
-                    <div className="relative z-10 flex flex-col justify-between h-full min-h-[230px] flex-grow">
-                      <div>
-                        <div className="flex flex-wrap gap-2 items-center">
-                          <span className="px-2.5 py-0.5 rounded-full bg-gold-600/10 border border-gold-600/20 text-[9px] font-bold tracking-wider text-gold-700 uppercase">
-                            {currentWeekAds[0].category}
-                          </span>
-                          {currentWeekAds[0].subBadge && (
-                            <span className="px-2.5 py-0.5 rounded-full bg-black/5 border border-black/10 text-[9px] font-bold text-black/60 uppercase">
-                              {currentWeekAds[0].subBadge}
-                            </span>
-                          )}
-                        </div>
-                        <div className="space-y-2 max-w-xs md:max-w-md mt-4">
-                          <span className="text-[9px] font-black uppercase tracking-widest bg-black/10 text-black/75 px-2.5 py-0.5 rounded-md">
-                            {currentWeekAds[0].badge}
-                          </span>
-                          <h3 className="font-heading text-2xl md:text-3xl font-black mt-2 leading-tight tracking-tight">
-                            {currentWeekAds[0].title}
-                          </h3>
-                          <p className="text-[11px] opacity-80 leading-relaxed font-semibold">
-                            {currentWeekAds[0].subtitle}
-                          </p>
-                        </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                      
+                      {/* Top Badges */}
+                      <div className="absolute top-4 left-4 flex flex-wrap gap-1.5 z-10">
+                        <span className="px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 text-[8px] font-bold text-white uppercase tracking-wider">
+                          {ad.category}
+                        </span>
                       </div>
-
-                      <div className="mt-6 pt-4 border-t border-black/5 flex items-center justify-between">
-                        <div className="flex items-baseline gap-2">
-                          <span className="text-2xl font-black">₹{currentWeekAds[0].discountPrice}</span>
-                          <span className="text-xs opacity-50 line-through">₹{currentWeekAds[0].originalPrice}</span>
-                        </div>
-                        <button
-                          onClick={() => {
-                            addToCart({ 
-                              id: currentWeekAds[0].id, 
-                              name: currentWeekAds[0].title, 
-                              price: currentWeekAds[0].originalPrice, 
-                              discountPrice: currentWeekAds[0].discountPrice 
-                            });
-                            toast.success(`${currentWeekAds[0].title} added to cart`);
-                          }}
-                          className={`px-6 py-2.5 rounded-full ${currentWeekAds[0].btnBg} ${currentWeekAds[0].btnTextColor} text-[10px] font-black tracking-widest uppercase hover:scale-105 transition shadow-md`}
-                        >
-                          Book Now
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* 2. Portrait Poster 1 */}
-                {currentWeekAds[1] && (
-                  <div className={`rounded-3xl bg-gradient-to-br ${currentWeekAds[1].bgGradient} ${currentWeekAds[1].textColor} flex flex-col justify-between min-h-[360px] border border-white/10 shadow-lg relative overflow-hidden group`}>
-                    {/* Top Image */}
-                    <div className="w-full h-[160px] relative overflow-hidden flex-shrink-0">
-                      <img
-                        src={currentWeekAds[1].imageBg}
-                        alt={currentWeekAds[1].title}
-                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                      <div className="absolute top-3 left-3 px-2 py-0.5 rounded bg-black/60 border border-white/10 text-[8px] font-bold text-white uppercase tracking-wider">
-                        {currentWeekAds[1].category}
-                      </div>
-                      {currentWeekAds[1].badge && (
-                        <div className="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-gold-600 text-[8px] font-bold text-dark uppercase tracking-wider">
-                          {currentWeekAds[1].badge}
+                      
+                      {/* Savings Offer Tag */}
+                      {ad.badge && (
+                        <div className="absolute bottom-4 left-4 px-2.5 py-0.5 rounded bg-gold-gradient text-[9px] font-bold text-dark uppercase tracking-wider shadow-sm z-10">
+                          {ad.badge}
                         </div>
                       )}
                     </div>
 
-                    {/* Bottom Details */}
-                    <div className="p-5 flex-grow flex flex-col justify-between">
-                      <div className="space-y-1 text-center">
-                        <h3 className="font-heading text-lg font-black leading-snug">
-                          {currentWeekAds[1].title}
-                        </h3>
-                        {currentWeekAds[1].subBadge && (
-                          <p className="text-[8px] opacity-75 font-bold uppercase tracking-wider">
-                            {currentWeekAds[1].subBadge}
-                          </p>
+                    {/* Card Content & Hierarchy */}
+                    <div className="p-6 flex-1 flex flex-col justify-between">
+                      <div className="space-y-2">
+                        {/* Sub-badge / Detail Tag */}
+                        {ad.subBadge && (
+                          <span className="text-[10px] text-gold-600 font-semibold uppercase tracking-widest luxe-subtitle block">
+                            {ad.subBadge}
+                          </span>
                         )}
-                        <p className="text-[10px] opacity-80 leading-relaxed max-w-[190px] mx-auto mt-1">
-                          {currentWeekAds[1].subtitle}
+                        
+                        {/* Title */}
+                        <h3 className="font-heading text-lg font-medium text-white leading-tight tracking-tight group-hover:text-gold-500 transition-colors">
+                          {ad.title}
+                        </h3>
+                        
+                        {/* Subtitle / Excerpt */}
+                        <p className="text-[11px] text-white/50 leading-relaxed line-clamp-2">
+                          {ad.subtitle}
                         </p>
                       </div>
 
-                      <div className="mt-4 pt-3 border-t border-black/5 flex flex-col items-center gap-2">
-                        <div className="flex items-baseline gap-1.5 justify-center">
-                          <span className="text-xl font-black">₹{currentWeekAds[1].discountPrice}</span>
-                          <span className="text-xs opacity-50 line-through">₹{currentWeekAds[1].originalPrice}</span>
+                      {/* Pricing and Action Button */}
+                      <div className="mt-6 pt-4 border-t border-white/5 flex flex-col gap-4">
+                        <div className="flex items-baseline justify-between">
+                          <span className="text-[10px] text-white/40 uppercase tracking-widest luxe-subtitle">Special Price</span>
+                          <div className="flex items-baseline gap-2">
+                            <span className="text-xl font-bold text-white">₹{ad.discountPrice}</span>
+                            <span className="text-xs text-white/30 line-through">₹{ad.originalPrice}</span>
+                          </div>
                         </div>
+                        
                         <button
                           onClick={() => {
                             addToCart({ 
-                              id: currentWeekAds[1].id, 
-                              name: currentWeekAds[1].title, 
-                              price: currentWeekAds[1].originalPrice, 
-                              discountPrice: currentWeekAds[1].discountPrice 
+                              id: ad.id, 
+                              name: ad.title, 
+                              price: ad.originalPrice, 
+                              discountPrice: ad.discountPrice 
                             });
-                            toast.success(`${currentWeekAds[1].title} added to cart`);
+                            toast.success(`${ad.title} added to cart`);
                           }}
-                          className={`w-full py-2.5 rounded-full ${currentWeekAds[1].btnBg} ${currentWeekAds[1].btnTextColor} text-[9px] font-black tracking-widest uppercase hover:scale-102 transition shadow-md`}
+                          className="w-full py-3.5 rounded-xl bg-gold-gradient text-dark text-[10px] font-bold tracking-widest uppercase hover:scale-[1.01] active:scale-[0.99] transition shadow-md"
                         >
                           Book Now
                         </button>
                       </div>
                     </div>
                   </div>
-                )}
-
-                {/* 3. Portrait Poster 2 */}
-                {currentWeekAds[2] && (
-                  <div className={`rounded-3xl bg-gradient-to-br ${currentWeekAds[2].bgGradient} ${currentWeekAds[2].textColor} flex flex-col justify-between min-h-[360px] border border-white/10 shadow-lg relative overflow-hidden group`}>
-                    {/* Top Image */}
-                    <div className="w-full h-[160px] relative overflow-hidden flex-shrink-0">
-                      <img
-                        src={currentWeekAds[2].imageBg}
-                        alt={currentWeekAds[2].title}
-                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                      <div className="absolute top-3 left-3 px-2 py-0.5 rounded bg-black/60 border border-white/10 text-[8px] font-bold text-white uppercase tracking-wider">
-                        {currentWeekAds[2].category}
-                      </div>
-                      {currentWeekAds[2].badge && (
-                        <div className="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-gold-600 text-[8px] font-bold text-dark uppercase tracking-wider">
-                          {currentWeekAds[2].badge}
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Bottom Details */}
-                    <div className="p-5 flex-grow flex flex-col justify-between">
-                      <div className="space-y-1 text-center">
-                        <h3 className="font-heading text-lg font-black leading-snug">
-                          {currentWeekAds[2].title}
-                        </h3>
-                        {currentWeekAds[2].subBadge && (
-                          <p className="text-[8px] opacity-75 font-bold uppercase tracking-wider">
-                            {currentWeekAds[2].subBadge}
-                          </p>
-                        )}
-                        <p className="text-[10px] opacity-80 leading-relaxed max-w-[190px] mx-auto mt-1">
-                          {currentWeekAds[2].subtitle}
-                        </p>
-                      </div>
-
-                      <div className="mt-4 pt-3 border-t border-black/5 flex flex-col items-center gap-2">
-                        <div className="flex items-baseline gap-1.5 justify-center">
-                          <span className="text-xl font-black">₹{currentWeekAds[2].discountPrice}</span>
-                          <span className="text-xs opacity-50 line-through">₹{currentWeekAds[2].originalPrice}</span>
-                        </div>
-                        <button
-                          onClick={() => {
-                            addToCart({ 
-                              id: currentWeekAds[2].id, 
-                              name: currentWeekAds[2].title, 
-                              price: currentWeekAds[2].originalPrice, 
-                              discountPrice: currentWeekAds[2].discountPrice 
-                            });
-                            toast.success(`${currentWeekAds[2].title} added to cart`);
-                          }}
-                          className={`w-full py-2.5 rounded-full ${currentWeekAds[2].btnBg} ${currentWeekAds[2].btnTextColor} text-[9px] font-black tracking-widest uppercase hover:scale-102 transition shadow-md`}
-                        >
-                          Book Now
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* 4. Express Ad 1 (Banner Strip) */}
-                {currentWeekAds[3] && (
-                  <div className={`rounded-3xl p-5 bg-gradient-to-r ${currentWeekAds[3].bgGradient} ${currentWeekAds[3].textColor} flex gap-4 items-center border border-white/10 shadow-sm relative overflow-hidden group`}>
-                    <div className="flex-1 flex flex-col justify-between h-full min-h-[105px]">
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-[8px] font-bold uppercase tracking-wider opacity-60">
-                            {currentWeekAds[3].category}
-                          </span>
-                          <span className="text-[8px] font-bold uppercase tracking-wider bg-black/5 px-2 py-0.5 rounded">
-                            {currentWeekAds[3].badge}
-                          </span>
-                        </div>
-                        <h4 className="font-heading text-sm font-black leading-tight mt-1 group-hover:text-gold-600 transition">
-                          {currentWeekAds[3].title}
-                        </h4>
-                        <p className="text-[9px] opacity-75 line-clamp-1 mt-0.5 font-medium">
-                          {currentWeekAds[3].subtitle}
-                        </p>
-                      </div>
-                      <div className="flex items-center justify-between mt-2 pt-2 border-t border-black/5">
-                        <div className="flex items-baseline gap-1">
-                          <span className="text-base font-black">₹{currentWeekAds[3].discountPrice}</span>
-                          <span className="text-[9px] opacity-50 line-through">₹{currentWeekAds[3].originalPrice}</span>
-                        </div>
-                        <button
-                          onClick={() => {
-                            addToCart({ 
-                              id: currentWeekAds[3].id, 
-                              name: currentWeekAds[3].title, 
-                              price: currentWeekAds[3].originalPrice, 
-                              discountPrice: currentWeekAds[3].discountPrice 
-                            });
-                            toast.success(`${currentWeekAds[3].title} added to cart`);
-                          }}
-                          className={`px-3.5 py-1.5 rounded-full ${currentWeekAds[3].btnBg} ${currentWeekAds[3].btnTextColor} text-[8px] font-black tracking-widest uppercase hover:scale-105 transition`}
-                        >
-                          Add
-                        </button>
-                      </div>
-                    </div>
-                    <div className="w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0 border border-black/5 relative">
-                      <img
-                        src={currentWeekAds[3].imageBg}
-                        alt={currentWeekAds[3].title}
-                        className="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500 select-none"
-                      />
-                    </div>
-                  </div>
-                )}
-
-                {/* 5. Express Ad 2 (Banner Strip) */}
-                {currentWeekAds[4] && (
-                  <div className={`rounded-3xl p-5 bg-gradient-to-r ${currentWeekAds[4].bgGradient} ${currentWeekAds[4].textColor} flex gap-4 items-center border border-white/10 shadow-sm relative overflow-hidden group`}>
-                    <div className="flex-1 flex flex-col justify-between h-full min-h-[105px]">
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-[8px] font-bold uppercase tracking-wider opacity-60">
-                            {currentWeekAds[4].category}
-                          </span>
-                          <span className="text-[8px] font-bold uppercase tracking-wider bg-black/5 px-2 py-0.5 rounded">
-                            {currentWeekAds[4].badge}
-                          </span>
-                        </div>
-                        <h4 className="font-heading text-sm font-black leading-tight mt-1 group-hover:text-gold-600 transition">
-                          {currentWeekAds[4].title}
-                        </h4>
-                        <p className="text-[9px] opacity-75 line-clamp-1 mt-0.5 font-medium">
-                          {currentWeekAds[4].subtitle}
-                        </p>
-                      </div>
-                      <div className="flex items-center justify-between mt-2 pt-2 border-t border-black/5">
-                        <div className="flex items-baseline gap-1">
-                          <span className="text-base font-black">₹{currentWeekAds[4].discountPrice}</span>
-                          <span className="text-[9px] opacity-50 line-through">₹{currentWeekAds[4].originalPrice}</span>
-                        </div>
-                        <button
-                          onClick={() => {
-                            addToCart({ 
-                              id: currentWeekAds[4].id, 
-                              name: currentWeekAds[4].title, 
-                              price: currentWeekAds[4].originalPrice, 
-                              discountPrice: currentWeekAds[4].discountPrice 
-                            });
-                            toast.success(`${currentWeekAds[4].title} added to cart`);
-                          }}
-                          className={`px-3.5 py-1.5 rounded-full ${currentWeekAds[4].btnBg} ${currentWeekAds[4].btnTextColor} text-[8px] font-black tracking-widest uppercase hover:scale-105 transition`}
-                        >
-                          Add
-                        </button>
-                      </div>
-                    </div>
-                    <div className="w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0 border border-black/5 relative">
-                      <img
-                        src={currentWeekAds[4].imageBg}
-                        alt={currentWeekAds[4].title}
-                        className="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500 select-none"
-                      />
-                    </div>
-                  </div>
-                )}
-
-                {/* 6. Express Ad 3 (Banner Strip) */}
-                {currentWeekAds[5] && (
-                  <div className={`rounded-3xl p-5 bg-gradient-to-r ${currentWeekAds[5].bgGradient} ${currentWeekAds[5].textColor} flex gap-4 items-center border border-white/10 shadow-sm relative overflow-hidden group`}>
-                    <div className="flex-1 flex flex-col justify-between h-full min-h-[105px]">
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-[8px] font-bold uppercase tracking-wider opacity-60">
-                            {currentWeekAds[5].category}
-                          </span>
-                          <span className="text-[8px] font-bold uppercase tracking-wider bg-black/5 px-2 py-0.5 rounded">
-                            {currentWeekAds[5].badge}
-                          </span>
-                        </div>
-                        <h4 className="font-heading text-sm font-black leading-tight mt-1 group-hover:text-gold-600 transition">
-                          {currentWeekAds[5].title}
-                        </h4>
-                        <p className="text-[9px] opacity-75 line-clamp-1 mt-0.5 font-medium">
-                          {currentWeekAds[5].subtitle}
-                        </p>
-                      </div>
-                      <div className="flex items-center justify-between mt-2 pt-2 border-t border-black/5">
-                        <div className="flex items-baseline gap-1">
-                          <span className="text-base font-black">₹{currentWeekAds[5].discountPrice}</span>
-                          <span className="text-[9px] opacity-50 line-through">₹{currentWeekAds[5].originalPrice}</span>
-                        </div>
-                        <button
-                          onClick={() => {
-                            addToCart({ 
-                              id: currentWeekAds[5].id, 
-                              name: currentWeekAds[5].title, 
-                              price: currentWeekAds[5].originalPrice, 
-                              discountPrice: currentWeekAds[5].discountPrice 
-                            });
-                            toast.success(`${currentWeekAds[5].title} added to cart`);
-                          }}
-                          className={`px-3.5 py-1.5 rounded-full ${currentWeekAds[5].btnBg} ${currentWeekAds[5].btnTextColor} text-[8px] font-black tracking-widest uppercase hover:scale-105 transition`}
-                        >
-                          Add
-                        </button>
-                      </div>
-                    </div>
-                    <div className="w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0 border border-black/5 relative">
-                      <img
-                        src={currentWeekAds[5].imageBg}
-                        alt={currentWeekAds[5].title}
-                        className="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500 select-none"
-                      />
-                    </div>
-                  </div>
-                )}
+                ))}
               </div>
             </div>
           </section>
@@ -1964,7 +1821,7 @@ export default function Home() {
                           alt={sub.name} 
                           className="w-full h-full object-cover group-hover:scale-110 transition duration-500" 
                           onError={(e) => {
-                            (e.target as HTMLImageElement).src = "/assets/service-facial.jpg";
+                            (e.target as HTMLImageElement).src = "/assets/service-o3-glow-facial.png";
                           }}
                         />
                       </div>

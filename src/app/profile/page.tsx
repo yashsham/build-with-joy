@@ -5,7 +5,8 @@ import { useApp } from "@/lib/context";
 import Navbar from "@/components/Navbar";
 import { 
   User, Calendar, MapPin, Phone, MessageCircle, LogOut, Award, 
-  HelpCircle, ChevronRight, BookOpen, Clock, Star, LayoutDashboard
+  HelpCircle, ChevronRight, BookOpen, Clock, Star, LayoutDashboard,
+  Smartphone, Download
 } from "lucide-react";
 import { toast } from "sonner";
 import Link from "next/link";
@@ -36,6 +37,18 @@ export default function ProfilePage() {
   const { user, logout, setIsLoginModalOpen } = useApp();
   const [bookingsList, setBookingsList] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(false);
+  const [isStandalone, setIsStandalone] = useState(true);
+
+  useEffect(() => {
+    const checkStandalone = 
+      window.matchMedia("(display-mode: standalone)").matches || 
+      (window.navigator as any).standalone === true;
+    setIsStandalone(checkStandalone);
+  }, []);
+
+  const triggerPwaPrompt = () => {
+    window.dispatchEvent(new CustomEvent("trigger-hermosa-pwa-prompt"));
+  };
 
   useEffect(() => {
     if (!user) return;
@@ -115,6 +128,24 @@ export default function ProfilePage() {
                 <p className="text-[10px] text-white/40 mt-1">Hygiene standards & refunds</p>
               </Link>
             </div>
+
+            {!isStandalone && (
+              <button
+                onClick={triggerPwaPrompt}
+                className="w-full mt-4 p-4 rounded-2xl border border-gold-600/30 bg-[#070707] hover:bg-[#0c0c0c] transition flex items-center justify-between text-left group"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl border border-gold-600/20 bg-black flex items-center justify-center p-2">
+                    <Smartphone className="w-5 h-5 text-gold-600" />
+                  </div>
+                  <div>
+                    <h4 className="text-[11px] font-bold text-white uppercase tracking-wider luxe-subtitle">Download App</h4>
+                    <p className="text-[10px] text-white/40 mt-0.5">Install Hermosa Luxe on your home screen</p>
+                  </div>
+                </div>
+                <ChevronRight className="w-4 h-4 text-white/30 group-hover:text-gold-600 group-hover:translate-x-0.5 transition" />
+              </button>
+            )}
           </div>
         ) : (
           /* LOGGED IN PROFILE */
@@ -208,6 +239,28 @@ export default function ProfilePage() {
                 </div>
               )}
             </div>
+
+            {!isStandalone && (
+              <div className="rounded-3xl border border-gold-600/30 bg-[#070707] p-6 flex flex-col md:flex-row items-center justify-between gap-6 shadow-[0_10px_30px_rgba(201,168,76,0.05)]">
+                <div className="flex items-center gap-4 text-center md:text-left flex-col md:flex-row">
+                  <div className="h-12 w-12 rounded-2xl border border-gold-600/20 bg-black flex items-center justify-center p-2">
+                    <Smartphone className="w-6 h-6 text-gold-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-heading text-lg text-white font-bold">Get the Hermosa Luxe App</h3>
+                    <p className="text-xs text-white/50 mt-1 max-w-lg">
+                      Install our app on your device home screen for one-tap booking access, offline usage, and exclusive priority support.
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={triggerPwaPrompt}
+                  className="w-full md:w-auto px-6 py-3 rounded-xl bg-gold-gradient text-dark font-black text-xs uppercase tracking-widest hover:scale-[1.02] active:scale-[0.98] transition shadow-lg shadow-gold-900/10 flex items-center justify-center gap-1.5"
+                >
+                  <Download className="w-4 h-4" /> Install App
+                </button>
+              </div>
+            )}
 
             {/* Quick Links & Info grid */}
             <div className="grid md:grid-cols-2 gap-6">

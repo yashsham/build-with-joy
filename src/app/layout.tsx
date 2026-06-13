@@ -89,6 +89,7 @@ import LoginModal from "@/components/LoginModal";
 import ChooseServiceModal from "@/components/ChooseServiceModal";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import FirebaseProvider from "@/components/FirebaseProvider";
+import PWAInstallPrompt from "@/components/PWAInstallPrompt";
 import { Toaster } from "sonner";
 
 export default function RootLayout({
@@ -126,6 +127,7 @@ export default function RootLayout({
           <ChooseServiceModal />
           <MobileBottomNav />
           <FirebaseProvider />
+          <PWAInstallPrompt />
           <Toaster theme="dark" position="top-center" richColors />
         </AppProvider>
       </body>
