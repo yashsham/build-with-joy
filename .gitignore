@@ -22,9 +22,9 @@ dist-ssr
 out/
 
 # Database
-sqlite.db
 *.db
 *.sqlite
+!sqlite.db
 
 # Wrangler / Cloudflare
 .wrangler/
