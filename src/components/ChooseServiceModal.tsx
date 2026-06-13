@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronRight } from "lucide-react";
 import { useApp } from "@/lib/context";
@@ -9,6 +10,13 @@ import { useApp } from "@/lib/context";
 export default function ChooseServiceModal() {
   const { isChooseServiceOpen, setIsChooseServiceOpen } = useApp();
   const [gender, setGender] = useState<"female" | "male">("female");
+  const router = useRouter();
+
+  const handleNav = (e: React.MouseEvent, href: string) => {
+    e.preventDefault();
+    router.push(href);
+    setIsChooseServiceOpen(false);
+  };
 
   return (
     <AnimatePresence>
@@ -75,7 +83,7 @@ export default function ChooseServiceModal() {
                   {/* Women: Salon at Home */}
                   <Link
                     href="/services?gender=female&category=female-salon"
-                    onClick={() => setIsChooseServiceOpen(false)}
+                    onClick={(e) => handleNav(e, "/services?gender=female&category=female-salon")}
                     className="w-full relative h-36 rounded-2xl overflow-hidden border border-white/5 bg-gradient-to-t from-black via-black/40 to-transparent group flex items-end p-6 text-left block"
                   >
                     <img 
@@ -95,7 +103,7 @@ export default function ChooseServiceModal() {
                   {/* Women: Spa at Home */}
                   <Link
                     href="/services?gender=female&category=spa-massage"
-                    onClick={() => setIsChooseServiceOpen(false)}
+                    onClick={(e) => handleNav(e, "/services?gender=female&category=spa-massage")}
                     className="w-full relative h-36 rounded-2xl overflow-hidden border border-white/5 bg-gradient-to-t from-black via-black/40 to-transparent group flex items-end p-6 text-left block"
                   >
                     <img 
@@ -117,7 +125,7 @@ export default function ChooseServiceModal() {
                   {/* Men: Male Grooming */}
                   <Link
                     href="/services?gender=male&category=male-grooming"
-                    onClick={() => setIsChooseServiceOpen(false)}
+                    onClick={(e) => handleNav(e, "/services?gender=male&category=male-grooming")}
                     className="w-full relative h-36 rounded-2xl overflow-hidden border border-white/5 bg-gradient-to-t from-black via-black/40 to-transparent group flex items-end p-6 text-left block"
                   >
                     <img 
@@ -137,7 +145,7 @@ export default function ChooseServiceModal() {
                   {/* Men: Male Spa */}
                   <Link
                     href="/services?gender=male&category=spa-massage"
-                    onClick={() => setIsChooseServiceOpen(false)}
+                    onClick={(e) => handleNav(e, "/services?gender=male&category=spa-massage")}
                     className="w-full relative h-36 rounded-2xl overflow-hidden border border-white/5 bg-gradient-to-t from-black via-black/40 to-transparent group flex items-end p-6 text-left block"
                   >
                     <img 
