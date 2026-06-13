@@ -3,17 +3,19 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useApp } from "@/lib/context";
-import { MessageCircle, User, MapPin, LogOut, ChevronDown } from "lucide-react";
+import { MessageCircle, User, MapPin, LogOut, ChevronDown, Sun, Moon } from "lucide-react";
 
 const WHATSAPP = "917248253329";
 const waLink = (msg: string) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
 
 export default function Navbar() {
-  const { selectedCity, setSelectedCity, setIsLoginModalOpen, user, logout } = useApp();
+  const { selectedCity, setSelectedCity, setIsLoginModalOpen, user, logout, theme, toggleTheme } = useApp();
   const [scrolled, setScrolled] = useState(false);
   const [cityDropdownOpen, setCityDropdownOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
@@ -72,6 +74,17 @@ export default function Navbar() {
           >
             <MessageCircle className="w-4 h-4" /> <span className="hidden sm:inline">Get Quote</span>
           </a>
+
+          {/* Theme Toggle */}
+          <button
+            type="button"
+            onClick={toggleTheme}
+            className="inline-flex items-center p-2.5 rounded-full text-white/70 hover:text-gold-600 border border-white/10 hover:border-gold-600/30 bg-white/5 transition duration-300"
+            title={mounted && theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
+            aria-label="Toggle theme"
+          >
+            {mounted && theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+          </button>
 
           {user ? (
             <div className="flex items-center gap-2">

@@ -24,6 +24,10 @@ interface AppContextType {
   user: any | null;
   setUser: (user: any | null) => void;
   logout: () => Promise<void>;
+  theme: "light" | "dark";
+  toggleTheme: () => void;
+  gender: "female" | "male";
+  setGender: (gender: "female" | "male") => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -34,6 +38,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [isChooseServiceOpen, setIsChooseServiceOpen] = useState(false);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [user, setUser] = useState<any | null>(null);
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
+  const [gender, setGender] = useState<"female" | "male">("female");
 
   // Load cart from localStorage and verify session on mount
   useEffect(() => {
@@ -52,6 +58,19 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       } catch (e) {
         console.error(e);
       }
+    }
+    const savedTheme = localStorage.getItem("hermosa_theme") as "light" | "dark" | null;
+    if (savedTheme) {
+      setTheme(savedTheme);
+      if (savedTheme === "light") {
+        document.documentElement.classList.add("light");
+      } else {
+        document.documentElement.classList.remove("light");
+      }
+    }
+    const savedGender = localStorage.getItem("hermosa_gender") as "female" | "male" | null;
+    if (savedGender) {
+      setGender(savedGender);
     }
 
     // Call server to verify if current cookie is valid & update context
@@ -89,6 +108,11 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     }
   }, [user]);
 
+  // Save gender to localStorage
+  useEffect(() => {
+    localStorage.setItem("hermosa_gender", gender);
+  }, [gender]);
+
   const addToCart = (newItem: Omit<CartItem, "quantity">) => {
     setCart((prev) => {
       const existing = prev.find((item) => item.id === newItem.id);
@@ -124,6 +148,27 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
+  const toggleTheme = () => {
+    console.log("[Theme] Toggle theme clicked. Current theme state:", theme);
+    setTheme((prev) => {
+      const nextTheme = prev === "dark" ? "light" : "dark";
+      console.log("[Theme] Toggling theme state to:", nextTheme);
+      try {
+        localStorage.setItem("hermosa_theme", nextTheme);
+      } catch (e) {
+        console.error("[Theme] Failed to save theme to localStorage:", e);
+      }
+      if (nextTheme === "light") {
+        document.documentElement.classList.add("light");
+        console.log("[Theme] Added 'light' class to document.documentElement. Classes:", document.documentElement.className);
+      } else {
+        document.documentElement.classList.remove("light");
+        console.log("[Theme] Removed 'light' class from document.documentElement. Classes:", document.documentElement.className);
+      }
+      return nextTheme;
+    });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -140,6 +185,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         user,
         setUser,
         logout,
+        theme,
+        toggleTheme,
+        gender,
+        setGender,
       }}
     >
       {children}

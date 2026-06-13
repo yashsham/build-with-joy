@@ -226,7 +226,7 @@ export default function PartnerRegistrationPage() {
       <Navbar />
 
       {/* ── HERO ──────────────────────────────────────────────── */}
-      <section className="relative pt-28 pb-16 overflow-hidden bg-[radial-gradient(ellipse_at_top_left,#1a1200_0%,#000_55%)]">
+      <section className="partner-hero relative pt-28 pb-16 overflow-hidden bg-[radial-gradient(ellipse_at_top_left,#1a1200_0%,#000_55%)]">
         {/* Decorative grid */}
         <div className="absolute inset-0 opacity-[0.03]"
           style={{ backgroundImage: "linear-gradient(#C9A84C 1px,transparent 1px),linear-gradient(90deg,#C9A84C 1px,transparent 1px)", backgroundSize: "40px 40px" }} />
@@ -304,7 +304,7 @@ export default function PartnerRegistrationPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08, duration: 0.4 }}
-                className={`relative rounded-3xl border border-white/8 bg-gradient-to-br ${expert.accent} overflow-hidden group hover:border-gold-600/30 transition-all duration-300`}
+                className={`relative rounded-3xl border border-white/8 bg-gradient-to-br ${expert.accent} overflow-hidden group hover:border-gold-600/30 transition-all duration-300 expert-card`}
               >
                 {/* Top image strip */}
                 <div className="relative h-48 overflow-hidden">

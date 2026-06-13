@@ -99,3 +99,435 @@
     padding-bottom: env(safe-area-inset-bottom);
   }
 }
+
+/* ==========================================
+   LUXURY LIGHT MODE OVERRIDES
+   ========================================== */
+html.light {
+  color-scheme: light;
+}
+html.light body {
+  background-color: #fdfcf9 !important;
+  color: #1a1a1e !important;
+  background-image: 
+    radial-gradient(ellipse at top, rgba(201,168,76,0.14), transparent 70%),
+    radial-gradient(ellipse at bottom right, rgba(201,168,76,0.07), transparent 60%) !important;
+}
+html.light * {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Overriding background utility classes to luxury light mode colors */
+html.light .bg-black { background-color: #ffffff !important; }
+html.light .bg-\[\#000000\] { background-color: #ffffff !important; }
+html.light .bg-\[\#020202\] { background-color: #fbfaf7 !important; }
+html.light .bg-\[\#040404\] { background-color: #fcfbfa !important; }
+html.light .bg-\[\#050505\] { background-color: #f7f6f2 !important; }
+html.light .bg-\[\#070707\] { background-color: #ffffff !important; box-shadow: 0 4px 24px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.04); }
+html.light .bg-\[\#080808\] { background-color: #ffffff !important; box-shadow: 0 4px 24px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.04); }
+html.light .bg-\[\#090909\] { background-color: #ffffff !important; box-shadow: 0 4px 24px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.04); }
+html.light .bg-\[\#0a0a0a\] { background-color: #ffffff !important; box-shadow: 0 8px 30px rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.05); }
+html.light .bg-\[\#0c0c0c\] { background-color: #fcfbfa !important; border: 1px solid rgba(0,0,0,0.04); }
+html.light .bg-\[\#0d0d0d\] { background-color: #f7f6f2 !important; border: 1px solid rgba(0,0,0,0.08); }
+html.light .bg-\[\#090909\]\/90 { background-color: rgba(255, 255, 255, 0.9) !important; }
+
+/* Backdrop/Modal overlays */
+html.light .bg-black\/60 { background-color: rgba(0, 0, 0, 0.45) !important; }
+html.light .bg-black\/80 { background-color: rgba(0, 0, 0, 0.6) !important; }
+html.light .bg-black\/85 { background-color: rgba(0, 0, 0, 0.65) !important; }
+html.light .bg-black\/90 { background-color: rgba(255, 255, 255, 0.90) !important; backdrop-filter: blur(10px); }
+html.light .bg-black\/95 { background-color: rgba(255, 255, 255, 0.95) !important; backdrop-filter: blur(10px); }
+
+/* White opacity overrides */
+html.light .bg-white\/3 { background-color: rgba(0, 0, 0, 0.01) !important; }
+html.light .bg-white\/5 { background-color: rgba(0, 0, 0, 0.02) !important; }
+html.light .bg-white\/8 { background-color: rgba(0, 0, 0, 0.04) !important; }
+html.light .bg-white\/10 { background-color: rgba(0, 0, 0, 0.05) !important; }
+html.light .border-white\/5 { border-color: rgba(0, 0, 0, 0.06) !important; }
+html.light .border-white\/8 { border-color: rgba(0, 0, 0, 0.08) !important; }
+html.light .border-white\/10 { border-color: rgba(0, 0, 0, 0.09) !important; }
+html.light .border-white\/20 { border-color: rgba(0, 0, 0, 0.12) !important; }
+html.light .border-white\/30 { border-color: rgba(0, 0, 0, 0.18) !important; }
+
+/* Text color overrides */
+html.light .text-white { color: #1c1c20 !important; }
+html.light .text-white\/90 { color: #2d2d35 !important; }
+html.light .text-white\/80 { color: #3d3d48 !important; }
+html.light .text-white\/70 { color: #4b4b5a !important; }
+html.light .text-white\/60 { color: #5c5c70 !important; }
+html.light .text-white\/50 { color: #6a6a80 !important; }
+html.light .text-white\/45 { color: #73738b !important; }
+html.light .text-white\/40 { color: #7e7e98 !important; }
+html.light .text-white\/35 { color: #8a8aa4 !important; }
+html.light .text-white\/30 { color: #9c9cb5 !important; }
+html.light .text-white\/20 { color: #bbbbcc !important; }
+html.light .text-white\/10 { color: #cccce0 !important; }
+
+/* Ensure gold gradient text remains beautiful and legible */
+html.light .text-gradient-gold {
+  background: linear-gradient(135deg, #a8891e 0%, #c9a84c 50%, #806510 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+/* Ensure inputs remain clear */
+html.light input, html.light select, html.light textarea {
+  color: #111111 !important;
+  background-color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.15) !important;
+}
+html.light input::placeholder {
+  color: rgba(0, 0, 0, 0.45) !important;
+}
+html.light textarea::placeholder {
+  color: rgba(0, 0, 0, 0.45) !important;
+}
+html.light .placeholder\:text-white\/40::placeholder { color: rgba(0, 0, 0, 0.45) !important; }
+html.light .placeholder\:text-white\/35::placeholder { color: rgba(0, 0, 0, 0.45) !important; }
+html.light .placeholder\:text-white\/30::placeholder { color: rgba(0, 0, 0, 0.45) !important; }
+html.light .placeholder\:text-white\/20::placeholder { color: rgba(0, 0, 0, 0.40) !important; }
+
+/* Special overrides for the logo subtitle and navigation */
+html.light .text-gold-600\/70 { color: rgba(168, 137, 30, 0.8) !important; }
+html.light .text-white\/50.luxe-subtitle { color: rgba(0, 0, 0, 0.45) !important; }
+
+/* Navigation and Header links based on scroll state */
+html.light header.bg-black\/95 { 
+  background-color: rgba(255, 255, 255, 0.92) !important; 
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05) !important;
+}
+html.light header.bg-black\/95 nav a { color: #2d2d35 !important; }
+html.light header.bg-black\/95 nav a:hover { color: #c9a84c !important; }
+
+/* Header buttons in scrolled light mode state */
+html.light header.bg-black\/95 .text-white\/70 { color: #4b4b5a !important; }
+html.light header.bg-black\/95 .border-white\/10 { border-color: rgba(0, 0, 0, 0.09) !important; }
+html.light header.bg-black\/95 .bg-white\/5 { background-color: rgba(0, 0, 0, 0.02) !important; }
+html.light header.bg-black\/95 .text-white { color: #1c1c20 !important; }
+html.light header.bg-black\/95 .text-white\/80 { color: #3d3d48 !important; }
+html.light header.bg-black\/95 .text-white\/50 { color: #6a6a80 !important; }
+
+/* Keep text white in Hero section with video background */
+html.light section:has(video) .text-white,
+html.light section:has(video) h1,
+html.light section:has(video) p,
+html.light section:has(video) .text-white\/80,
+html.light section:has(video) .text-white\/70,
+html.light section:has(video) .text-white\/60,
+html.light section:has(video) .text-white\/50,
+html.light section:has(video) span {
+  color: #ffffff !important;
+}
+
+/* Fallback selector for hero section if has() is not supported */
+html.light section.relative.h-\[85vh\] .text-white,
+html.light section.relative.h-\[85vh\] h1,
+html.light section.relative.h-\[85vh\] p,
+html.light section.relative.h-\[85vh\] .text-white\/80,
+html.light section.relative.h-\[85vh\] .text-white\/70,
+html.light section.relative.h-\[85vh\] .text-white\/60,
+html.light section.relative.h-\[85vh\] .text-white\/50,
+html.light section.relative.h-\[85vh\] span,
+html.light section.md\:h-screen .text-white,
+html.light section.md\:h-screen h1,
+html.light section.md\:h-screen p,
+html.light section.md\:h-screen .text-white\/80,
+html.light section.md\:h-screen .text-white\/70,
+html.light section.md\:h-screen .text-white\/60,
+html.light section.md\:h-screen .text-white\/50,
+html.light section.md\:h-screen span {
+  color: #ffffff !important;
+}
+
+/* Keep Footer light in light mode and ensure all text is visible */
+html.light footer {
+  background-color: #ffffff !important;
+  border-top-color: rgba(0, 0, 0, 0.08) !important;
+}
+html.light footer .text-white,
+html.light footer h1,
+html.light footer h2,
+html.light footer h3,
+html.light footer h4 {
+  color: #1a1a1e !important;
+}
+html.light footer .text-white\/80,
+html.light footer .text-white\/70 {
+  color: #2d2d35 !important;
+}
+html.light footer .text-white\/60,
+html.light footer .text-white\/50,
+html.light footer p,
+html.light footer li,
+html.light footer span {
+  color: #5c5c70 !important;
+}
+html.light footer .text-white\/45,
+html.light footer .text-white\/40,
+html.light footer .text-white\/35,
+html.light footer .text-white\/30 {
+  color: #7e7e98 !important;
+}
+html.light footer .text-gradient-gold {
+  background: linear-gradient(135deg, #e9bf3a 0%, #c9a84c 50%, #a8891e 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+html.light footer a {
+  color: #5c5c70 !important;
+}
+html.light footer a:hover {
+  color: #c9a84c !important;
+}
+html.light footer .border-white\/5,
+html.light footer .border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Scrollbars */
+html.light ::-webkit-scrollbar-track { background: #ffffff !important; }
+html.light ::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.15) !important; }
+html.light ::-webkit-scrollbar-thumb:hover { background: rgba(201, 168, 76, 0.6) !important; }
+
+/* Fix card borders and shadows in light mode */
+html.light .border-gold-600\/20 { border-color: rgba(201, 168, 76, 0.3) !important; }
+html.light .border-gold-600\/30 { border-color: rgba(201, 168, 76, 0.5) !important; }
+html.light .shadow-\[0_20px_50px_rgba\(0\,0\,0\,0.8\)\] { box-shadow: 0 15px 35px rgba(0,0,0,0.08) !important; }
+html.light .shadow-\[0_25px_60px_rgba\(0\,0\,0\,0.9\)\] { box-shadow: 0 20px 45px rgba(0,0,0,0.10) !important; }
+
+/* Keep active state items in list styling correct */
+html.light .bg-gold-gradient {
+  background: linear-gradient(135deg, #c9a84c 0%, #e9bf3a 50%, #c9a84c 100%) !important;
+}
+
+/* Mobile Bottom Nav light mode overrides */
+html.light .md\:hidden.fixed.bottom-0 {
+  background-color: rgba(255, 255, 255, 0.96) !important;
+  border-top-color: rgba(0, 0, 0, 0.08) !important;
+}
+html.light .md\:hidden.fixed.bottom-0 a {
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+html.light .md\:hidden.fixed.bottom-0 a.text-gold-600 {
+  color: #c9a84c !important;
+}
+
+/* Profile specific cards */
+html.light .rounded-3xl.border-gold-600\/30 {
+  background-color: #ffffff !important;
+  box-shadow: 0 10px 30px rgba(201, 168, 76, 0.06) !important;
+}
+
+/* Keep text light inside modal category link cards and expert profile cards */
+html.light .relative.h-36 .text-white,
+html.light .relative.h-36 h4,
+html.light .relative.h-36 p,
+html.light .relative.h-36 span,
+html.light .expert-card .text-white,
+html.light .expert-card h3,
+html.light .expert-card p,
+html.light .expert-card span {
+  color: #ffffff !important;
+}
+html.light .relative.h-36 .text-gold-600 {
+  color: #c9a84c !important;
+}
+html.light .relative.h-36 .text-white\/60 {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+html.light .expert-card .text-white\/40 {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+html.light .expert-card .text-white\/35 {
+  color: rgba(255, 255, 255, 0.40) !important;
+}
+
+/* Ensure missing opacity text-white overrides match perfectly */
+html.light .text-white\/95 { color: #22222b !important; }
+html.light .text-white\/85 { color: #353540 !important; }
+html.light .text-white\/75 { color: #434351 !important; }
+html.light .text-white\/65 { color: #525265 !important; }
+html.light .text-white\/55 { color: #616178 !important; }
+html.light .text-white\/25 { color: #b2b2c5 !important; }
+html.light .text-white\/15 { color: #d5d5e3 !important; }
+html.light .text-white\/5 { color: #f2f2f5 !important; }
+
+/* Keep text light inside media control overlays/badges */
+html.light .bg-black\/60.text-white,
+html.light .bg-black\/60.text-white\/80,
+html.light .bg-black\/70.text-white,
+html.light .bg-black\/70 .text-white,
+html.light .bg-black\/70 .text-white\/40,
+html.light .bg-black\/80.text-white,
+html.light .bg-black\/80.text-white\/80 {
+  color: #ffffff !important;
+}
+html.light .bg-black\/70 .text-white\/40 {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Light mode background override for Partner Register page hero section */
+html.light .partner-hero {
+  background: radial-gradient(ellipse at top left, rgba(201, 168, 76, 0.14) 0%, #fdfcf9 60%) !important;
+}
+html.light .border-white\/15 {
+  border-color: rgba(0, 0, 0, 0.10) !important;
+}
+
+/* Homepage unscrolled transparent header overrides to keep text white over the dark video background */
+html.light:has(video) header:not(.bg-black\/95) .text-white,
+html.light:has(video) header:not(.bg-black\/95) h1,
+html.light:has(video) header:not(.bg-black\/95) h2,
+html.light:has(video) header:not(.bg-black\/95) h3,
+html.light:has(video) header:not(.bg-black\/95) p,
+html.light:has(video) header:not(.bg-black\/95) span,
+html.light:has(video) header:not(.bg-black\/95) a,
+html.light:has(video) header:not(.bg-black\/95) button,
+html.light:has(video) header:not(.bg-black\/95) svg {
+  color: #ffffff !important;
+}
+html.light:has(video) header:not(.bg-black\/95) .border-white\/10 {
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+html.light:has(video) header:not(.bg-black\/95) .bg-white\/5 {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Gold borders preservation to prevent global border overrides from wiping out luxury gold accents */
+html.light .border-gold-600 { border-color: #c9a84c !important; }
+html.light .border-gold-600\/10 { border-color: rgba(201, 168, 76, 0.2) !important; }
+html.light .border-gold-600\/15 { border-color: rgba(201, 168, 76, 0.3) !important; }
+html.light .border-gold-600\/20 { border-color: rgba(201, 168, 76, 0.35) !important; }
+html.light .border-gold-600\/25 { border-color: rgba(201, 168, 76, 0.4) !important; }
+html.light .border-gold-600\/30 { border-color: rgba(201, 168, 76, 0.5) !important; }
+html.light .border-gold-600\/40 { border-color: rgba(201, 168, 76, 0.6) !important; }
+html.light .border-gold-600\/50 { border-color: rgba(201, 168, 76, 0.7) !important; }
+
+/* Child text color preservation inside dark image overlays/gradient banners */
+html.light .bg-black\/50 .text-white, html.light .bg-black\/50 p, html.light .bg-black\/50 h3, html.light .bg-black\/50 span,
+html.light .bg-black\/60 .text-white, html.light .bg-black\/60 p, html.light .bg-black\/60 h3, html.light .bg-black\/60 span,
+html.light .bg-black\/70 .text-white, html.light .bg-black\/70 p, html.light .bg-black\/70 h3, html.light .bg-black\/70 span,
+html.light .bg-black\/80 .text-white, html.light .bg-black\/80 p, html.light .bg-black\/80 h3, html.light .bg-black\/80 span,
+html.light .bg-black\/85 .text-white, html.light .bg-black\/85 p, html.light .bg-black\/85 h3, html.light .bg-black\/85 span {
+  color: #ffffff !important;
+}
+html.light .bg-black\/50 .text-white\/50, 
+html.light .bg-black\/60 .text-white\/50, 
+html.light .bg-black\/70 .text-white\/50, 
+html.light .bg-black\/80 .text-white\/50 {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Override dark gradients ending in black to luxury light mode gradients */
+html.light .bg-gradient-to-r.from-amber-950\/40.to-black {
+  background: linear-gradient(90deg, rgba(201, 168, 76, 0.15) 0%, #ffffff 100%) !important;
+}
+html.light .contact-banner {
+  background: radial-gradient(ellipse at top left, rgba(201, 168, 76, 0.15) 0%, #ffffff 75%) !important;
+}
+/* Style notifications header text for light mode gradient */
+html.light .bg-gradient-to-r.from-amber-950\/40.to-black h3 {
+  color: #1a1a1e !important;
+}
+html.light .bg-gradient-to-r.from-amber-950\/40.to-black p {
+  color: rgba(0, 0, 0, 0.5) !important;
+}
+
+/* --- Premium UI/UX Redesign Animations & Graphics --- */
+
+@keyframes marquee-left {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+.marquee-container {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  width: 100%;
+  mask-image: linear-gradient(to right, transparent, white 15%, white 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, white 15%, white 85%, transparent);
+  padding: 10px 0;
+}
+
+.marquee-row-left {
+  display: flex;
+  gap: 1.5rem;
+  flex-shrink: 0;
+  min-width: 100%;
+  animation: marquee-left 50s linear infinite;
+}
+
+.marquee-row-right {
+  display: flex;
+  gap: 1.5rem;
+  flex-shrink: 0;
+  min-width: 100%;
+  animation: marquee-right 50s linear infinite;
+}
+
+.marquee-container:hover .marquee-row-left,
+.marquee-container:hover .marquee-row-right {
+  animation-play-state: paused;
+}
+
+@keyframes gold-aura-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(201,168,76,0.1), 0 0 40px rgba(201,168,76,0.05);
+    border-color: rgba(201,168,76,0.15);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(201,168,76,0.3), 0 0 70px rgba(201,168,76,0.15);
+    border-color: rgba(201,168,76,0.5);
+  }
+}
+
+.gold-glow-pulse {
+  animation: gold-aura-pulse 4s ease-in-out infinite;
+}
+
+@keyframes orbit-sparkle {
+  0% { transform: rotate(0deg) translateX(64px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(64px) rotate(-360deg); }
+}
+
+.animate-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -12px;
+  margin-left: -12px;
+  animation: orbit-sparkle 10s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes float-drift {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-8px) translateX(4px); }
+}
+
+.animate-float {
+  animation: float-drift 6s ease-in-out infinite;
+}
+
+/* Subtle graphic mesh background pattern for spotlight */
+.bg-luxe-mesh {
+  background-image: 
+    radial-gradient(at 10% 20%, rgba(201, 168, 76, 0.05) 0px, transparent 50%),
+    radial-gradient(at 90% 80%, rgba(201, 168, 76, 0.05) 0px, transparent 50%);
+}
+
+html.light .bg-luxe-mesh {
+  background-image: 
+    radial-gradient(at 10% 20%, rgba(201, 168, 76, 0.03) 0px, transparent 50%),
+    radial-gradient(at 90% 80%, rgba(201, 168, 76, 0.03) 0px, transparent 50%);
+}
+
+

@@ -103,6 +103,20 @@ export default function RootLayout({
       className={`${inter.variable} ${playfair.variable} ${cormorant.variable}`}
     >
       <head>
+        {/* Theme detection script to prevent FOUC */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                if (localStorage.getItem('hermosa_theme') === 'light') {
+                  document.documentElement.classList.add('light');
+                } else {
+                  document.documentElement.classList.remove('light');
+                }
+              } catch (_) {}
+            `,
+          }}
+        />
         {/* PWA Meta Tags */}
         <meta name="application-name" content="Hermosa" />
         <meta name="apple-mobile-web-app-capable" content="yes" />

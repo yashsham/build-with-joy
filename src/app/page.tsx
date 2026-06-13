@@ -6,11 +6,12 @@ const LinkNext = Link;
 import { useApp } from "@/lib/context";
 import Navbar from "@/components/Navbar";
 import AdSlider from "@/components/AdSlider";
+import { HermosaImageRegistry } from "@/lib/imageRegistry";
 import { 
   MessageCircle, Phone, MapPin, Sparkles, ShieldCheck, Clock, Award, Star, 
   Users, Heart, Scissors, Flower2, Hand, Crown, Search, ChevronLeft, ChevronRight, 
   Volume2, VolumeX, ChevronDown, Check, HelpCircle, ArrowRight, ShoppingBag,
-  X, Info, Sparkle, Mail, Gift, Share2
+  X, Info, Sparkle, Mail, Gift, Share2, Quote
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
@@ -54,524 +55,11 @@ const loungeImages = [
   }
 ];
 
-interface AdDetail {
-  id: string;
-  title: string;
-  subtitle: string;
-  category: string;
-  originalPrice: number;
-  discountPrice: number;
-  badge: string;
-  bgGradient: string;
-  textColor: string;
-  btnBg: string;
-  btnTextColor: string;
-  slug: string;
-  imageBg: string;
-  subBadge: string;
-}
 
-const adsData: AdDetail[] = [
-  {
-    id: "o3-glow-facial",
-    title: "O3+ Glow Facial",
-    subtitle: "Premium 9-step facial for ultimate radiance & glow",
-    category: "Facial Care",
-    originalPrice: 2199,
-    discountPrice: 1899,
-    badge: "Flat ₹300 OFF",
-    bgGradient: "from-[#FFFDF5] to-[#FFF8E7]",
-    textColor: "text-[#4A3E1B]",
-    btnBg: "bg-[#8C6D1F]",
-    btnTextColor: "text-white",
-    slug: "facial-cleanup",
-    imageBg: "/assets/service-o3-glow-facial.png",
-    subBadge: "9-Step Oxygenating Ritual"
-  },
-  {
-    id: "aroma-therapy-body-massage",
-    title: "Aroma Therapy Massage",
-    subtitle: "Full body relaxation with natural essential oils",
-    category: "Spa Massage",
-    originalPrice: 1799,
-    discountPrice: 1499,
-    badge: "Sensory Healing",
-    bgGradient: "from-[#FDFBFF] to-[#F3EEFF]",
-    textColor: "text-[#3B2866]",
-    btnBg: "bg-[#6345B5]",
-    btnTextColor: "text-white",
-    slug: "spa-massage",
-    imageBg: "/assets/service-aroma-therapy-body-massage.png",
-    subBadge: "Lavender & Jasmine Oils"
-  },
-  {
-    id: "classic-hydraglo",
-    title: "Classic HydraGlo",
-    subtitle: "Deep skin infusion facial for instant hydration",
-    category: "HydraGlo",
-    originalPrice: 2999,
-    discountPrice: 2499,
-    badge: "15% Special OFF",
-    bgGradient: "from-[#F5FCFF] to-[#E5F5FD]",
-    textColor: "text-[#1B4B66]",
-    btnBg: "bg-[#1F7EAD]",
-    btnTextColor: "text-white",
-    slug: "hydraglo",
-    imageBg: "/assets/service-classic-hydraglo.png",
-    subBadge: "Deep Skin Water Infusion"
-  },
-  {
-    id: "loreal-hair-spa",
-    title: "L'Oreal Hair Spa",
-    subtitle: "Nourishing therapy + 4 free grooming gifts",
-    category: "Hair Care",
-    originalPrice: 1199,
-    discountPrice: 899,
-    badge: "4 Free Gifts",
-    bgGradient: "from-[#FFF8F9] to-[#FFF0F2]",
-    textColor: "text-[#661B2B]",
-    btnBg: "bg-[#B53E57]",
-    btnTextColor: "text-white",
-    slug: "hair",
-    imageBg: "/assets/service-loreal-hair-spa.png",
-    subBadge: "Deep Conditioning Treatment"
-  },
-  {
-    id: "deep-tissue-stress-relief",
-    title: "Deep Tissue Massage",
-    subtitle: "Undo chronic muscle tension with hot towels",
-    category: "Spa Massage",
-    originalPrice: 2299,
-    discountPrice: 1899,
-    badge: "Hot Towel Ritual",
-    bgGradient: "from-[#F8FFF9] to-[#ECFDF0]",
-    textColor: "text-[#1E4D2B]",
-    btnBg: "bg-[#2D8A46]",
-    btnTextColor: "text-white",
-    slug: "spa-massage",
-    imageBg: "/assets/service-deep-tissue-stress-relief.png",
-    subBadge: "Relieve Chronic Muscle Tension"
-  },
-  {
-    id: "superbright-hydraglo",
-    title: "SuperBright HydraGlo",
-    subtitle: "Vitamin C infused treatment for radiant glass skin",
-    category: "HydraGlo",
-    originalPrice: 3999,
-    discountPrice: 3199,
-    badge: "Glass Skin Glow",
-    bgGradient: "from-[#FFFDF5] to-[#FFF5E5]",
-    textColor: "text-[#66461B]",
-    btnBg: "bg-[#B57C3E]",
-    btnTextColor: "text-white",
-    slug: "hydraglo",
-    imageBg: "/assets/service-superbright-hydraglo.png",
-    subBadge: "Vitamin C Brightening"
-  },
-  {
-    id: "agedefying-hydraglo",
-    title: "Age-Defying Gold HydraGlo",
-    subtitle: "Gold-peptide premium treatment for skin tightening",
-    category: "HydraGlo",
-    originalPrice: 4999,
-    discountPrice: 3999,
-    badge: "US-FDA Approved",
-    bgGradient: "from-[#FFFDF5] to-[#FFF1D6]",
-    textColor: "text-[#5C4516]",
-    btnBg: "bg-[#A37E2F]",
-    btnTextColor: "text-white",
-    slug: "hydraglo",
-    imageBg: "/assets/service-agedefying-hydraglo.png",
-    subBadge: "Gold-Peptide Tightening"
-  },
-  {
-    id: "threading-eyebrow-upperlip",
-    title: "Express Threading",
-    subtitle: "Eyebrows & upper lip shaping in 15 minutes",
-    category: "Grooming",
-    originalPrice: 99,
-    discountPrice: 59,
-    badge: "Save 40%",
-    bgGradient: "from-[#F6FFF6] to-[#E3FFE3]",
-    textColor: "text-[#1B521B]",
-    btnBg: "bg-[#2A8F2A]",
-    btnTextColor: "text-white",
-    slug: "female-salon",
-    imageBg: "/assets/service-threading-eyebrow-upperlip.png",
-    subBadge: "Eyebrows & Upper Lip"
-  },
-  {
-    id: "premium-honey-wax-arms-legs",
-    title: "Honey Full Arms & Legs",
-    subtitle: "Premium smooth honey waxing combo",
-    category: "Waxing",
-    originalPrice: 399,
-    discountPrice: 299,
-    badge: "Most Booked Combo",
-    bgGradient: "from-[#FFFFF2] to-[#FFFEE0]",
-    textColor: "text-[#5C5716]",
-    btnBg: "bg-[#A39B2F]",
-    btnTextColor: "text-white",
-    slug: "female-salon",
-    imageBg: "/assets/service-premium-honey-wax-arms-legs.png",
-    subBadge: "Premium Smooth Waxing"
-  },
-  {
-    id: "rica-liposoluble-legs-wax",
-    title: "Rica Legs Waxing",
-    subtitle: "Pain-free liposoluble wax for full legs",
-    category: "Waxing",
-    originalPrice: 499,
-    discountPrice: 399,
-    badge: "20% Special OFF",
-    bgGradient: "from-[#FFFBF5] to-[#FFF3E0]",
-    textColor: "text-[#52341B]",
-    btnBg: "bg-[#8F5B2F]",
-    btnTextColor: "text-white",
-    slug: "female-salon",
-    imageBg: "/assets/service-rica-liposoluble-legs-wax.png",
-    subBadge: "Pain-Free Liposoluble Wax"
-  },
-  {
-    id: "rica-brazilian-bikini-wax",
-    title: "Rica Brazilian Waxing",
-    subtitle: "Maximum hygiene & premium sensitive skin care",
-    category: "Waxing",
-    originalPrice: 1199,
-    discountPrice: 899,
-    badge: "Flat ₹300 OFF",
-    bgGradient: "from-[#FFFBFC] to-[#FFF0F3]",
-    textColor: "text-[#5C1635]",
-    btnBg: "bg-[#A32F65]",
-    btnTextColor: "text-white",
-    slug: "female-salon",
-    imageBg: "/assets/service-rica-brazilian-bikini-wax.png",
-    subBadge: "Hygienic & Sensitive Care"
-  },
-  {
-    id: "swedish-back-shoulder-massage",
-    title: "Swedish Back & Shoulder",
-    subtitle: "Relieve neck and back stiffness in 45 Mins",
-    category: "Spa Massage",
-    originalPrice: 999,
-    discountPrice: 799,
-    badge: "Instant Relief",
-    bgGradient: "from-[#F5FDFF] to-[#E0F8FF]",
-    textColor: "text-[#164D5C]",
-    btnBg: "bg-[#2F89A3]",
-    btnTextColor: "text-white",
-    slug: "spa-massage",
-    imageBg: "/assets/service-swedish-back-shoulder-massage.png",
-    subBadge: "Relieve Stiff Muscles"
-  },
-  {
-    id: "lotus-radiant-gold-facial",
-    title: "Lotus Radiant Gold",
-    subtitle: "Special gold facial kit for instant bridal glow",
-    category: "Facial Care",
-    originalPrice: 1999,
-    discountPrice: 1599,
-    badge: "Bridal Favorite",
-    bgGradient: "from-[#FFFFF0] to-[#FFFEE0]",
-    textColor: "text-[#54541B]",
-    btnBg: "bg-[#91912E]",
-    btnTextColor: "text-white",
-    slug: "facial-cleanup",
-    imageBg: "/assets/service-lotus-radiant-gold-facial.png",
-    subBadge: "Instant 24K Bridal Glow"
-  },
-  {
-    id: "cheryls-glowvera-facial",
-    title: "Cheryl's GlowVera",
-    subtitle: "Aloe-vera based cooling facial for sun defense",
-    category: "Facial Care",
-    originalPrice: 1599,
-    discountPrice: 1299,
-    badge: "Sun Damage Defense",
-    bgGradient: "from-[#F7FFF7] to-[#E6FFE6]",
-    textColor: "text-[#1C541C]",
-    btnBg: "bg-[#2E912E]",
-    btnTextColor: "text-white",
-    slug: "facial-cleanup",
-    imageBg: "/assets/service-cheryls-glowvera-facial.png",
-    subBadge: "Aloe-Vera Cooling Calm"
-  },
-  {
-    id: "sara-dtan-cleanup",
-    title: "Sara D-Tan Cleanup",
-    subtitle: "Deep pore tan removal cleanup for face & neck",
-    category: "Cleanup",
-    originalPrice: 899,
-    discountPrice: 699,
-    badge: "22% Flat OFF",
-    bgGradient: "from-[#FAF9F5] to-[#F0EDE6]",
-    textColor: "text-[#474337]",
-    btnBg: "bg-[#7A745F]",
-    btnTextColor: "text-white",
-    slug: "facial-cleanup",
-    imageBg: "/assets/service-sara-dtan-cleanup.png",
-    subBadge: "Deep Pore Tan Removal"
-  },
-  {
-    id: "o3-shine-glow-cleanup",
-    title: "O3+ Shine & Glow Cleanup",
-    subtitle: "Brightening cleanup for instant brightness",
-    category: "Cleanup",
-    originalPrice: 1099,
-    discountPrice: 899,
-    badge: "Instant Glow",
-    bgGradient: "from-[#FFFEFC] to-[#FFF6EB]",
-    textColor: "text-[#5C4524]",
-    btnBg: "bg-[#9E773E]",
-    btnTextColor: "text-white",
-    slug: "facial-cleanup",
-    imageBg: "/assets/service-o3-shine-glow-cleanup.png",
-    subBadge: "Brightening Pore Clarification"
-  },
-  {
-    id: "anti-acne-deep-cleansing",
-    title: "Anti-Acne Deep Cleansing",
-    subtitle: "Pore refining treatment to prevent breakouts",
-    category: "Facial Care",
-    originalPrice: 1799,
-    discountPrice: 1499,
-    badge: "Clear Skin Guarantee",
-    bgGradient: "from-[#F2FCFA] to-[#E1F7F4]",
-    textColor: "text-[#115C4E]",
-    btnBg: "bg-[#1E9E87]",
-    btnTextColor: "text-white",
-    slug: "facial-cleanup",
-    imageBg: "/assets/service-anti-acne-deep-cleansing.png",
-    subBadge: "Pore Refiner & Clarifier"
-  },
-  {
-    id: "keratin-therapy",
-    title: "Premium Keratin Therapy",
-    subtitle: "Frizz-free smoothness & deep keratin rebuilding",
-    category: "Hair Therapy",
-    originalPrice: 3499,
-    discountPrice: 2499,
-    badge: "Save ₹1,000",
-    bgGradient: "from-[#FCF9F2] to-[#F5ECE0]",
-    textColor: "text-[#473B25]",
-    btnBg: "bg-[#806B43]",
-    btnTextColor: "text-white",
-    slug: "hair",
-    imageBg: "/assets/service-keratin-therapy.png",
-    subBadge: "Frizz-Free Silk Shine"
-  },
-  {
-    id: "hair-smoothening",
-    title: "L'Oreal Hair Smoothening",
-    subtitle: "Silky straight hair styling using MATRIX/L'Oreal",
-    category: "Hair Styling",
-    originalPrice: 4999,
-    discountPrice: 3999,
-    badge: "Premium Straightening",
-    bgGradient: "from-[#FAF9FB] to-[#F1EEF4]",
-    textColor: "text-[#3D3347]",
-    btnBg: "bg-[#6A597D]",
-    btnTextColor: "text-white",
-    slug: "hair",
-    imageBg: "/assets/service-hair-smoothening.png",
-    subBadge: "Silky Straight Matrix Finish"
-  },
-  {
-    id: "global-hair-coloring",
-    title: "Global Hair Coloring",
-    subtitle: "Full global hair coloring using L'Oreal ammonia-free colors",
-    category: "Hair Color",
-    originalPrice: 2199,
-    discountPrice: 1699,
-    badge: "Flat ₹500 OFF",
-    bgGradient: "from-[#FCF6F2] to-[#F7E5DB]",
-    textColor: "text-[#542B13]",
-    btnBg: "bg-[#964E22]",
-    btnTextColor: "text-white",
-    slug: "hair",
-    imageBg: "/assets/service-global-hair-coloring.png",
-    subBadge: "L'Oreal Ammonia-Free Shade"
-  },
-  {
-    id: "womens-blowdry-styling",
-    title: "Blowdry & Hair Styling",
-    subtitle: "Glamorous blowout & styling for party-ready hair",
-    category: "Hair Styling",
-    originalPrice: 399,
-    discountPrice: 299,
-    badge: "Quick Makeover",
-    bgGradient: "from-[#FFF7FA] to-[#FFE0EB]",
-    textColor: "text-[#5C1635]",
-    btnBg: "bg-[#A32F65]",
-    btnTextColor: "text-white",
-    slug: "hair",
-    imageBg: "/assets/service-womens-blowdry-styling.png",
-    subBadge: "Glam Blowout & Volume"
-  },
-  {
-    id: "luxury-bridal-hd-makeup",
-    title: "Luxury Bridal HD Makeup",
-    subtitle: "Flawless HD makeup including draping & hair styling",
-    category: "Bridal Makeup",
-    originalPrice: 9999,
-    discountPrice: 7999,
-    badge: "Luxury Package",
-    bgGradient: "from-[#FFF8FA] to-[#FFF0F4]",
-    textColor: "text-[#661B42]",
-    btnBg: "bg-[#B53E75]",
-    btnTextColor: "text-white",
-    slug: "bridal",
-    imageBg: "/assets/service-luxury-bridal-hd-makeup.png",
-    subBadge: "Includes Draping & Hair Styling"
-  },
-  {
-    id: "engagement-makeup",
-    title: "Engagement Makeup",
-    subtitle: "Stunning HD look for engagement & pre-wedding events",
-    category: "Occasion Makeup",
-    originalPrice: 5999,
-    discountPrice: 4999,
-    badge: "Save ₹1,000",
-    bgGradient: "from-[#FCF5F7] to-[#F7E1E7]",
-    textColor: "text-[#5C2337]",
-    btnBg: "bg-[#9E3E61]",
-    btnTextColor: "text-white",
-    slug: "bridal",
-    imageBg: "/assets/service-engagement-makeup.png",
-    subBadge: "Stunning HD Occasion Look"
-  },
-  {
-    id: "airbrush-bridal-makeup",
-    title: "Airbrush Bridal Makeup",
-    subtitle: "Ultra high definition silicon airbrush makeup",
-    category: "Bridal Makeup",
-    originalPrice: 14999,
-    discountPrice: 11999,
-    badge: "Premium HD Glow",
-    bgGradient: "from-[#F2FBFF] to-[#DDF3FF]",
-    textColor: "text-[#134D66]",
-    btnBg: "bg-[#258AB5]",
-    btnTextColor: "text-white",
-    slug: "bridal",
-    imageBg: "/assets/service-airbrush-bridal-makeup.png",
-    subBadge: "Silicon Airbrush Flawless Look"
-  },
-  {
-    id: "saree-draping-hair-bun",
-    title: "Saree Draping & Hair Bun",
-    subtitle: "Classic saree draping + neat traditional hair bun styling",
-    category: "Styling",
-    originalPrice: 799,
-    discountPrice: 599,
-    badge: "Flat ₹200 OFF",
-    bgGradient: "from-[#FFF5F5] to-[#FFE0E0]",
-    textColor: "text-[#5C1616]",
-    btnBg: "bg-[#A32F2F]",
-    btnTextColor: "text-white",
-    slug: "bridal",
-    imageBg: "/assets/service-saree-draping-hair-bun.png",
-    subBadge: "Classic Draping & Bun Style"
-  }
-];
 
-const maleAdsData: AdDetail[] = [
-  {
-    id: "mens-haircut-styling",
-    title: "Men's Designer Haircut & Styling",
-    subtitle: "Custom hair grooming by senior stylists",
-    category: "Male Grooming",
-    originalPrice: 299,
-    discountPrice: 199,
-    badge: "Save 33%",
-    bgGradient: "from-[#1a1a1a] to-[#0d0d0d]",
-    textColor: "text-[#D4AF37]",
-    btnBg: "bg-gold-gradient",
-    btnTextColor: "text-dark",
-    slug: "male-grooming",
-    imageBg: "/assets/service-mens-haircut-styling.png",
-    subBadge: "Senior Barber Grooming"
-  },
-  {
-    id: "mens-beard-trim-shave",
-    title: "Royal Beard Trim & Hot Shave",
-    subtitle: "Straight razor styling + hot towel treatment",
-    category: "Male Grooming",
-    originalPrice: 199,
-    discountPrice: 149,
-    badge: "Royal Special",
-    bgGradient: "from-[#1a1a1a] to-[#0d0d0d]",
-    textColor: "text-[#D4AF37]",
-    btnBg: "bg-gold-gradient",
-    btnTextColor: "text-dark",
-    slug: "male-grooming",
-    imageBg: "/assets/service-mens-beard-trim-shave.png",
-    subBadge: "Razor Shaving & Shaping"
-  },
-  {
-    id: "mens-dtan-cleanup",
-    title: "Men's Skin Brightening D-Tan Cleanup",
-    subtitle: "Instant skin tan removal & deep clean",
-    category: "Male Grooming",
-    originalPrice: 699,
-    discountPrice: 499,
-    badge: "Save ₹200",
-    bgGradient: "from-[#1a1a1a] to-[#0d0d0d]",
-    textColor: "text-[#D4AF37]",
-    btnBg: "bg-gold-gradient",
-    btnTextColor: "text-dark",
-    slug: "male-grooming",
-    imageBg: "/assets/service-mens-dtan-cleanup.png",
-    subBadge: "Brightening Scrub & Pack"
-  },
-  {
-    id: "mens-body-massage",
-    title: "Men's Body Massage",
-    subtitle: "Full body stress relief and recovery",
-    category: "Male Spa",
-    originalPrice: 1699,
-    discountPrice: 1399,
-    badge: "Muscle Recovery",
-    bgGradient: "from-[#1a1a1a] to-[#0d0d0d]",
-    textColor: "text-[#D4AF37]",
-    btnBg: "bg-gold-gradient",
-    btnTextColor: "text-dark",
-    slug: "spa-massage",
-    imageBg: "/assets/service-mens-body-massage.png",
-    subBadge: "Stress Relief Therapy"
-  },
-  {
-    id: "mens-charcoal-facial",
-    title: "Men's Charcoal Blackhead Facial",
-    subtitle: "Deep charcoal peel mask for clean pores",
-    category: "Male Grooming",
-    originalPrice: 899,
-    discountPrice: 699,
-    badge: "Pore Cleansing",
-    bgGradient: "from-[#1a1a1a] to-[#0d0d0d]",
-    textColor: "text-[#D4AF37]",
-    btnBg: "bg-gold-gradient",
-    btnTextColor: "text-dark",
-    slug: "male-grooming",
-    imageBg: "/assets/service-mens-charcoal-facial.png",
-    subBadge: "Charcoal Peel-Off Mask"
-  },
-  {
-    id: "mens-head-shoulder-massage",
-    title: "Men's Head & Shoulder Massage",
-    subtitle: "Energizing scalp oil massage",
-    category: "Male Spa",
-    originalPrice: 499,
-    discountPrice: 349,
-    badge: "Flat ₹150 OFF",
-    bgGradient: "from-[#1a1a1a] to-[#0d0d0d]",
-    textColor: "text-[#D4AF37]",
-    btnBg: "bg-gold-gradient",
-    btnTextColor: "text-dark",
-    slug: "spa-massage",
-    imageBg: "/assets/service-mens-head-shoulder-massage.png",
-    subBadge: "Scalp & Shoulder Tension Release"
-  }
-];
+
+
+
 
 const STATIC_REVIEWS = [
   {
@@ -606,9 +94,70 @@ const STATIC_REVIEWS = [
   }
 ];
 
+function AnimatedCounter({ value, duration = 2000 }: { value: string; duration?: number }) {
+  const [count, setCount] = useState<string | number>(value);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const numMatch = value.match(/^([\d.]+)(.*)$/);
+    if (!numMatch) return;
+    const target = parseFloat(numMatch[1]);
+    const suffix = numMatch[2] || "";
+    
+    let startTimestamp: number | null = null;
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      
+      let currentVal = progress * target;
+      let displayCount = value.includes(".") ? currentVal.toFixed(1) : Math.floor(currentVal).toString();
+      
+      setCount(`${displayCount}${suffix}`);
+      
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  }, [value, duration]);
+
+  return <span>{mounted ? count : value}</span>;
+}
+
+const CELEB_STORIES = [
+  {
+    id: "ekta",
+    name: "Ekta Kapoor",
+    role: "Director & Producer",
+    image: "/assets/media-ekta.png",
+    quote: "Convenience is the ultimate luxury. Hermosa brings five-star salon hygiene right to my dressing table before shoot hours."
+  },
+  {
+    id: "divyanka",
+    name: "Divyanka Tripathi",
+    role: "Lifestyle Influencer",
+    image: "/assets/media-divyanka.png",
+    quote: "No loose cosmetic containers, strictly sealed brand-kits, and detailed hygiene kits. Truly the safest home spa in India."
+  }
+];
+
 export default function Home() {
-  const [activeGender, setActiveGender] = useState<"female" | "male">("female");
+  const { 
+    gender: activeGender, 
+    setGender: setActiveGender,
+    cart, 
+    addToCart, 
+    removeFromCart, 
+    setIsChooseServiceOpen 
+  } = useApp();
   const [customerReviews, setCustomerReviews] = useState<any[]>(STATIC_REVIEWS);
+  const [activeStoryIndex, setActiveStoryIndex] = useState(0);
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+  const [newReviewName, setNewReviewName] = useState("");
+  const [newReviewArea, setNewReviewArea] = useState("");
+  const [newReviewComment, setNewReviewComment] = useState("");
+  const [newReviewRating, setNewReviewRating] = useState(5);
 
   useEffect(() => {
     fetch("/api/reviews")
@@ -628,7 +177,6 @@ export default function Home() {
   const [activePopupCategory, setActivePopupCategory] = useState<string | null>(null);
   const [mostBookedTab, setMostBookedTab] = useState<"salon" | "spa" | "hydraglo">("salon");
   const [openSeoAccordion, setOpenSeoAccordion] = useState<number | null>(null);
-  const { cart, addToCart, removeFromCart, setIsChooseServiceOpen } = useApp();
 
   useEffect(() => {
     setIsMounted(true);
@@ -997,20 +545,24 @@ export default function Home() {
       </section>
 
       {/* MILESTONES SECTION */}
-      <section id="milestones" className="py-12 md:py-16 bg-[#050505] border-y border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+      <section id="milestones" className="py-14 md:py-20 bg-[#050505] border-y border-white/5 relative overflow-hidden bg-luxe-mesh">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-gold-950/5 via-transparent to-transparent pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
             {milestones.map((m) => {
               const Icon = m.icon;
               return (
-                <div key={m.label} className="text-center px-2">
-                  <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full border border-gold-600/20 bg-gold-600/5 text-gold-600">
-                    <Icon className="h-4 w-4" />
+                <div 
+                  key={m.label} 
+                  className="text-center px-4 py-8 rounded-2xl border border-white/5 bg-[#0a0a0a]/40 backdrop-blur-sm hover:border-gold-600/30 hover:bg-gold-600/[0.02] hover:-translate-y-1.5 hover:shadow-[0_15px_30px_rgba(201,168,76,0.04)] transition-all duration-500 group cursor-default"
+                >
+                  <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-gold-600/20 bg-gold-600/5 text-gold-600 group-hover:scale-110 group-hover:border-gold-600/40 group-hover:bg-gold-600/10 group-hover:shadow-[0_0_20px_rgba(201,168,76,0.2)] transition-all duration-500">
+                    <Icon className="h-5 w-5 group-hover:rotate-6 transition-transform duration-500" />
                   </div>
-                  <div className="font-heading text-2xl md:text-3xl text-gradient-gold">
-                    {m.num}
+                  <div className="font-heading text-2xl md:text-3.5xl text-gradient-gold font-bold tracking-tight select-none">
+                    <AnimatedCounter value={m.num} />
                   </div>
-                  <div className="mt-1 text-[9px] tracking-widest text-white/40 uppercase luxe-subtitle">
+                  <div className="mt-2 text-[9px] tracking-widest text-white/40 uppercase luxe-subtitle font-semibold">
                     {m.label}
                   </div>
                 </div>
@@ -1044,7 +596,7 @@ export default function Home() {
               }`}
             >
               <div className="w-5 h-5 rounded-full overflow-hidden bg-white/10 flex-shrink-0 border border-gold-600/20">
-                <img src="/assets/service-o3-glow-facial.png" alt="Women" className="w-full h-full object-cover" />
+                <img src={HermosaImageRegistry.resolveServiceImage("o3-glow-facial", undefined, undefined, "female")} alt="Women" className="w-full h-full object-cover" />
               </div>
               Women
             </button>
@@ -1057,7 +609,7 @@ export default function Home() {
               }`}
             >
               <div className="w-5 h-5 rounded-full overflow-hidden bg-white/10 flex-shrink-0 border border-gold-600/20">
-                <img src="/assets/service-mens-haircut-styling.png" alt="Men" className="w-full h-full object-cover animate-grayscale" />
+                <img src={HermosaImageRegistry.resolveServiceImage("mens-haircut-styling", undefined, undefined, "male")} alt="Men" className="w-full h-full object-cover animate-grayscale" />
               </div>
               Men
             </button>
@@ -1093,11 +645,11 @@ export default function Home() {
                       </span>
                     )}
                     <img
-                      src={cat.image}
+                      src={HermosaImageRegistry.resolveCategoryImage(cat.id, "female")}
                       alt={cat.name}
                       className="w-full h-full object-cover object-top group-hover:scale-110 transition duration-500"
                       onError={(e) => {
-                        (e.target as HTMLImageElement).src = "/assets/service-o3-glow-facial.png";
+                        (e.target as HTMLImageElement).src = HermosaImageRegistry.resolveServiceImage("o3-glow-facial", "O3+ Glow Facial", "female-salon", "female");
                       }}
                     />
                   </div>
@@ -1130,7 +682,7 @@ export default function Home() {
                     <div className="h-20 w-20 sm:h-24 sm:w-24 rounded-full overflow-hidden shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_0_20px_rgba(201,168,76,0.3)]"
                       style={{ background: "linear-gradient(135deg, #dbeafe 0%, #e0f2fe 60%, #bfdbfe 100%)" }}
                     >
-                      <img src={cat.image} alt={cat.name} className="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
+                      <img src={HermosaImageRegistry.resolveCategoryImage(cat.id, "male")} alt={cat.name} className="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
                     </div>
                     <span className="text-[11px] font-bold text-white/80 group-hover:text-gold-600 mt-2.5 leading-snug transition">
                       {cat.name}
@@ -1210,7 +762,7 @@ export default function Home() {
                   </span>
                   
                   <div className="relative h-40 w-full rounded-xl overflow-hidden border border-white/5 bg-white/5 mb-4">
-                    <img src={svc.image} alt={svc.name} className="w-full h-full object-cover" />
+                    <img src={HermosaImageRegistry.resolveServiceImage(svc.id, svc.name, mostBookedTab, activeGender)} alt={svc.name} className="w-full h-full object-cover" />
                   </div>
 
                   <div className="space-y-1">
@@ -1262,137 +814,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* WEEKLY SPOTLIGHT ROTATING ADS (Premium Luxury 3-Column Grid) */}
-      {(() => {
-        if (!isMounted) {
-          return (
-            <section className="py-14 bg-black border-t border-white/5">
-              <div className="max-w-5xl mx-auto px-4 sm:px-6">
-                <div className="text-center max-w-xl mx-auto mb-10">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-gold-600/30 bg-gold-600/5 text-[9px] text-gold-500 font-bold uppercase tracking-wider luxe-subtitle animate-pulse">
-                    Weekly Rotating Spotlight Deals
-                  </span>
-                  <h2 className="font-heading text-2xl md:text-3xl text-white mt-3 leading-tight animate-pulse">
-                    This Week's Exclusive Offers
-                  </h2>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                  <div className="rounded-3xl bg-[#0c0c0c] border border-white/5 h-[420px] animate-pulse"></div>
-                  <div className="rounded-3xl bg-[#0c0c0c] border border-white/5 h-[420px] animate-pulse"></div>
-                  <div className="rounded-3xl bg-[#0c0c0c] border border-white/5 h-[420px] animate-pulse"></div>
-                </div>
-              </div>
-            </section>
-          );
-        }
-
-        const weekIndex = Math.floor((new Date().getDate() - 1) / 7);
-        const currentAds = activeGender === "female" ? adsData : maleAdsData;
-        const startIndex = (weekIndex * 6) % currentAds.length;
-        const currentWeekAds: AdDetail[] = [];
-        for (let i = 0; i < 6; i++) {
-          currentWeekAds.push(currentAds[(startIndex + i) % currentAds.length]);
-        }
-        
-        return (
-          <section className="py-16 bg-black border-t border-white/5">
-            <div className="max-w-5xl mx-auto px-4 sm:px-6">
-              <div className="text-center max-w-xl mx-auto mb-12">
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full border border-gold-600/30 bg-gold-600/5 text-[9px] text-gold-500 font-bold uppercase tracking-wider luxe-subtitle">
-                  <Sparkles className="w-3.5 h-3.5 text-gold-500" /> Weekly Rotating Spotlight Deals
-                </span>
-                <h2 className="font-heading text-2xl md:text-4xl text-white mt-4 leading-tight">
-                  This Week's <span className="text-gradient-gold italic">Exclusive Offers</span>
-                </h2>
-                <p className="mt-2 text-xs text-white/50 leading-relaxed max-w-md mx-auto">
-                  Premium luxury treatments curated weekly. Add directly to your booking cart to secure these exclusive rates.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                {currentWeekAds.map((ad) => (
-                  <div
-                    key={ad.id}
-                    className="group relative flex flex-col justify-between rounded-3xl border border-white/5 bg-[#0c0c0c] hover:border-gold-600/30 hover:shadow-[0_0_35px_rgba(201,168,76,0.12)] transition-all duration-300 overflow-hidden"
-                  >
-                    {/* Visual Image Banner with Subtle Gradient Overlay */}
-                    <div className="relative w-full h-52 sm:h-56 overflow-hidden flex-shrink-0">
-                      <img
-                        src={ad.imageBg}
-                        alt={ad.title}
-                        className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-500 select-none"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                      
-                      {/* Top Badges */}
-                      <div className="absolute top-4 left-4 flex flex-wrap gap-1.5 z-10">
-                        <span className="px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 text-[8px] font-bold text-white uppercase tracking-wider">
-                          {ad.category}
-                        </span>
-                      </div>
-                      
-                      {/* Savings Offer Tag */}
-                      {ad.badge && (
-                        <div className="absolute bottom-4 left-4 px-2.5 py-0.5 rounded bg-gold-gradient text-[9px] font-bold text-dark uppercase tracking-wider shadow-sm z-10">
-                          {ad.badge}
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Card Content & Hierarchy */}
-                    <div className="p-6 flex-1 flex flex-col justify-between">
-                      <div className="space-y-2">
-                        {/* Sub-badge / Detail Tag */}
-                        {ad.subBadge && (
-                          <span className="text-[10px] text-gold-600 font-semibold uppercase tracking-widest luxe-subtitle block">
-                            {ad.subBadge}
-                          </span>
-                        )}
-                        
-                        {/* Title */}
-                        <h3 className="font-heading text-lg font-medium text-white leading-tight tracking-tight group-hover:text-gold-500 transition-colors">
-                          {ad.title}
-                        </h3>
-                        
-                        {/* Subtitle / Excerpt */}
-                        <p className="text-[11px] text-white/50 leading-relaxed line-clamp-2">
-                          {ad.subtitle}
-                        </p>
-                      </div>
-
-                      {/* Pricing and Action Button */}
-                      <div className="mt-6 pt-4 border-t border-white/5 flex flex-col gap-4">
-                        <div className="flex items-baseline justify-between">
-                          <span className="text-[10px] text-white/40 uppercase tracking-widest luxe-subtitle">Special Price</span>
-                          <div className="flex items-baseline gap-2">
-                            <span className="text-xl font-bold text-white">₹{ad.discountPrice}</span>
-                            <span className="text-xs text-white/30 line-through">₹{ad.originalPrice}</span>
-                          </div>
-                        </div>
-                        
-                        <button
-                          onClick={() => {
-                            addToCart({ 
-                              id: ad.id, 
-                              name: ad.title, 
-                              price: ad.originalPrice, 
-                              discountPrice: ad.discountPrice 
-                            });
-                            toast.success(`${ad.title} added to cart`);
-                          }}
-                          className="w-full py-3.5 rounded-xl bg-gold-gradient text-dark text-[10px] font-bold tracking-widest uppercase hover:scale-[1.01] active:scale-[0.99] transition shadow-md"
-                        >
-                          Book Now
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-        );
-      })()}
+      
 
       {/* REFER AND EARN BANNER */}
       <section className="py-12 bg-black border-t border-white/5">
@@ -1516,104 +938,343 @@ export default function Home() {
       </section>
 
       {/* CELEBRITIES STORIES SECTION */}
-      <section id="press" className="py-14 md:py-20 bg-[#050505] border-y border-white/5 scroll-mt-24">
-        <div id="press-content" className="max-w-4xl mx-auto px-4 sm:px-6">
-          <div className="text-center max-w-xl mx-auto mb-10 md:mb-12">
-            <h2 className="font-heading text-2xl md:text-3xl text-white">Stories From the Best</h2>
-            <p className="mt-1.5 text-xs text-white/50">Loved by leading creators and celebrity stylists.</p>
+      <section id="press" className="py-16 md:py-24 bg-[#050505] border-y border-white/5 scroll-mt-24 relative overflow-hidden bg-luxe-mesh">
+        {/* Background Glowing Orb */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gold-600/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div id="press-content" className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+          <div className="text-center max-w-xl mx-auto mb-10 md:mb-14">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-gold-600/30 bg-gold-600/5 text-[9px] text-gold-500 font-bold uppercase tracking-wider luxe-subtitle">
+              Spotlight
+            </span>
+            <h2 className="font-heading text-2xl md:text-4xl text-white mt-3 leading-tight">
+              Stories From the <span className="text-gradient-gold italic">Best</span>
+            </h2>
+            <p className="mt-2 text-xs text-white/50">Loved by leading creators, directors, and celebrity stylists.</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6 max-w-2xl mx-auto">
-            <div className="rounded-2xl border border-white/5 bg-[#0a0a0a] p-5 flex flex-col items-center text-center space-y-4">
-              <div className="h-28 w-28 rounded-full overflow-hidden border border-gold-600/20 bg-white/5">
-                <img src="/assets/media-ekta.png" alt="Ekta Kapoor" className="w-full h-full object-cover" />
-              </div>
-              <div>
-                <h4 className="text-xs font-bold text-gold-600 uppercase tracking-widest luxe-subtitle">Ekta Kapoor</h4>
-                <p className="text-[10px] text-white/40 mt-0.5">Director & Producer</p>
-              </div>
-              <p className="text-xs text-white/70 italic leading-relaxed">
-                "Convenience is the ultimate luxury. Hermosa brings five-star salon hygiene right to my dressing table before shoot hours."
-              </p>
-            </div>
+          {/* Interactive Profile Tabs */}
+          <div className="flex justify-center items-center gap-8 md:gap-12 mb-10 md:mb-12">
+            {CELEB_STORIES.map((story, idx) => {
+              const isActive = idx === activeStoryIndex;
+              return (
+                <button
+                  key={story.id}
+                  onClick={() => setActiveStoryIndex(idx)}
+                  className="group relative flex flex-col items-center focus:outline-none"
+                >
+                  <div className="relative">
+                    {/* Orbiting Sparkle (Active Only) */}
+                    {isActive && (
+                      <div className="animate-orbit w-6 h-6 text-gold-500">
+                        <Sparkle className="w-5 h-5 fill-gold-500" />
+                      </div>
+                    )}
+                    
+                    {/* Profile Avatar */}
+                    <div className={`w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-2 transition-all duration-500 ${
+                      isActive 
+                        ? "border-gold-500 scale-105 gold-glow-pulse" 
+                        : "border-white/10 opacity-40 group-hover:opacity-75 group-hover:scale-102"
+                    }`}>
+                      <img src={story.image} alt={story.name} className="w-full h-full object-cover" />
+                    </div>
+                  </div>
+                  <span className={`text-[10px] md:text-xs font-bold mt-3 tracking-wider uppercase luxe-subtitle transition-colors duration-300 ${
+                    isActive ? "text-gold-500" : "text-white/40 group-hover:text-white/70"
+                  }`}>
+                    {story.name.split(" ")[0]}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
 
-            <div className="rounded-2xl border border-white/5 bg-[#0a0a0a] p-5 flex flex-col items-center text-center space-y-4">
-              <div className="h-28 w-28 rounded-full overflow-hidden border border-gold-600/20 bg-white/5">
-                <img src="/assets/media-divyanka.png" alt="Divyanka Tripathi" className="w-full h-full object-cover" />
-              </div>
-              <div>
-                <h4 className="text-xs font-bold text-gold-600 uppercase tracking-widest luxe-subtitle">Divyanka Tripathi</h4>
-                <p className="text-[10px] text-white/40 mt-0.5">Lifestyle Influencer</p>
-              </div>
-              <p className="text-xs text-white/70 italic leading-relaxed">
-                "No loose cosmetic containers, strictly sealed brand-kits, and detailed hygiene kits. Truly the safest home spa in India."
-              </p>
-            </div>
+          {/* Active Story Card */}
+          <div className="max-w-2xl mx-auto">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeStoryIndex}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className="rounded-3xl border border-white/[0.07] bg-[#090909]/60 backdrop-blur-md p-6 md:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] hover:border-gold-600/20 transition-all duration-500 relative overflow-hidden"
+              >
+                {/* Decorative background grid */}
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
+
+                <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10 relative z-10">
+                  {/* Left Column: Floating Image */}
+                  <div className="flex-shrink-0 animate-float">
+                    <div className="h-32 w-32 md:h-40 md:w-40 rounded-2xl overflow-hidden border border-gold-600/30 shadow-[0_10px_25px_rgba(201,168,76,0.15)] bg-white/5">
+                      <img 
+                        src={CELEB_STORIES[activeStoryIndex].image} 
+                        alt={CELEB_STORIES[activeStoryIndex].name} 
+                        className="w-full h-full object-cover" 
+                      />
+                    </div>
+                  </div>
+
+                  {/* Right Column: Quote Text */}
+                  <div className="flex-grow text-center md:text-left">
+                    <Quote className="w-10 h-10 text-gold-500/25 mx-auto md:mx-0 mb-3" />
+                    <p className="text-sm md:text-base text-white/90 italic font-medium leading-relaxed font-accent">
+                      "{CELEB_STORIES[activeStoryIndex].quote}"
+                    </p>
+                    
+                    <div className="mt-5 pt-4 border-t border-white/5 flex flex-col md:flex-row md:items-center justify-between gap-2">
+                      <div>
+                        <h4 className="text-xs font-bold text-gold-500 uppercase tracking-widest luxe-subtitle">
+                          {CELEB_STORIES[activeStoryIndex].name}
+                        </h4>
+                        <p className="text-[10px] text-white/40 mt-0.5">
+                          {CELEB_STORIES[activeStoryIndex].role}
+                        </p>
+                      </div>
+                      
+                      <div className="hidden md:flex items-center gap-1 text-[9px] text-gold-600/60 font-bold uppercase tracking-widest luxe-subtitle border border-gold-600/15 bg-gold-600/5 px-2.5 py-1 rounded">
+                        Verified Creator
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </section>
 
       {/* CUSTOMER REVIEWS SECTION */}
-      <section id="reviews" className="py-14 md:py-20 bg-black border-b border-white/5 scroll-mt-24">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="text-center max-w-xl mx-auto mb-10 md:mb-12">
+      <section id="reviews" className="py-16 md:py-24 bg-black border-b border-white/5 scroll-mt-24 relative overflow-hidden bg-luxe-mesh">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,_var(--tw-gradient-stops))] from-gold-950/5 via-transparent to-transparent pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+          <div className="text-center max-w-xl mx-auto mb-10 md:mb-14">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-gold-600/30 bg-gold-600/5 text-[9px] text-gold-500 font-bold uppercase tracking-wider luxe-subtitle">
               Voices
             </span>
-            <h2 className="font-heading text-2xl md:text-3xl text-white mt-3 leading-tight">
+            <h2 className="font-heading text-2xl md:text-4xl text-white mt-3 leading-tight">
               From Bareilly's <span className="text-gradient-gold italic">finest homes.</span>
             </h2>
-            <p className="mt-1.5 text-xs text-white/50">Real experiences from our valued customers.</p>
+            <p className="mt-2 text-xs text-white/50">Real experiences from our valued customers.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {customerReviews.slice(0, 3).map((r: any, i: number) => (
-              <div 
-                key={r.id || i}
-                className="rounded-2xl border border-white/5 bg-[#0a0a0a] p-6 flex flex-col justify-between hover:border-gold-600/30 hover:shadow-[0_0_20px_rgba(201,168,76,0.05)] transition duration-300"
-              >
-                <div>
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(r.rating || 5)].map((_, j) => (
-                      <Star key={j} className="w-3.5 h-3.5 fill-gold-400 text-gold-400" />
-                    ))}
+          {/* Infinite Scroll Rows */}
+          <div className="flex flex-col gap-6 md:gap-8 max-w-6xl mx-auto overflow-hidden">
+            {/* Row 1: Left Scrolling Marquee */}
+            <div className="marquee-container">
+              <div className="marquee-row-left">
+                {[...customerReviews.filter((_, idx) => idx % 2 === 0), ...customerReviews.filter((_, idx) => idx % 2 === 0)].map((r: any, i: number) => (
+                  <div 
+                    key={`${r.id || i}-row1`}
+                    className="w-[280px] md:w-[320px] flex-shrink-0 rounded-2xl border border-white/5 bg-[#0a0a0a]/60 backdrop-blur-sm p-6 flex flex-col justify-between hover:border-gold-600/30 hover:bg-gold-600/[0.01] hover:-translate-y-1 hover:shadow-[0_12px_25px_rgba(201,168,76,0.04)] transition duration-300 select-none cursor-default group"
+                  >
+                    <div>
+                      <div className="flex gap-1 mb-3">
+                        {[...Array(r.rating || 5)].map((_, j) => (
+                          <Star key={j} className="w-3.5 h-3.5 fill-gold-400 text-gold-400 group-hover:scale-110 transition-transform duration-300" />
+                        ))}
+                      </div>
+                      <blockquote className="font-accent text-[12px] md:text-[13px] leading-relaxed text-white/80 mb-4 italic">
+                        "{r.comment}"
+                      </blockquote>
+                    </div>
+                    <div className="border-t border-white/5 pt-3 mt-2 flex justify-between items-center">
+                      <div>
+                        <div className="text-xs font-bold text-white">{r.userName}</div>
+                        <div className="text-[10px] text-white/40 mt-0.5">{r.area || "Bareilly"}, Bareilly</div>
+                      </div>
+                      <span className="text-[9px] text-gold-600/80 font-bold uppercase tracking-widest luxe-subtitle border border-gold-600/10 bg-gold-600/5 px-2 py-0.5 rounded">
+                        Client
+                      </span>
+                    </div>
                   </div>
-                  <blockquote className="font-accent text-[13px] leading-relaxed text-white/85 mb-5 italic">
-                    "{r.comment}"
-                  </blockquote>
-                </div>
-                <div className="border-t border-white/5 pt-4 mt-2">
-                  <div className="text-xs font-bold text-white">{r.userName}</div>
-                  <div className="text-[10px] text-white/40 mt-0.5">{r.area || "Bareilly"}, Bareilly</div>
-                </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* Row 2: Right Scrolling Marquee */}
+            <div className="marquee-container">
+              <div className="marquee-row-right">
+                {[...customerReviews.filter((_, idx) => idx % 2 !== 0), ...customerReviews.filter((_, idx) => idx % 2 !== 0)].map((r: any, i: number) => (
+                  <div 
+                    key={`${r.id || i}-row2`}
+                    className="w-[280px] md:w-[320px] flex-shrink-0 rounded-2xl border border-white/5 bg-[#0a0a0a]/60 backdrop-blur-sm p-6 flex flex-col justify-between hover:border-gold-600/30 hover:bg-gold-600/[0.01] hover:-translate-y-1 hover:shadow-[0_12px_25px_rgba(201,168,76,0.04)] transition duration-300 select-none cursor-default group"
+                  >
+                    <div>
+                      <div className="flex gap-1 mb-3">
+                        {[...Array(r.rating || 5)].map((_, j) => (
+                          <Star key={j} className="w-3.5 h-3.5 fill-gold-400 text-gold-400 group-hover:scale-110 transition-transform duration-300" />
+                        ))}
+                      </div>
+                      <blockquote className="font-accent text-[12px] md:text-[13px] leading-relaxed text-white/80 mb-4 italic">
+                        "{r.comment}"
+                      </blockquote>
+                    </div>
+                    <div className="border-t border-white/5 pt-3 mt-2 flex justify-between items-center">
+                      <div>
+                        <div className="text-xs font-bold text-white">{r.userName}</div>
+                        <div className="text-[10px] text-white/40 mt-0.5">{r.area || "Bareilly"}, Bareilly</div>
+                      </div>
+                      <span className="text-[9px] text-gold-600/80 font-bold uppercase tracking-widest luxe-subtitle border border-gold-600/10 bg-gold-600/5 px-2 py-0.5 rounded">
+                        Client
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 max-w-4xl mx-auto">
-            {customerReviews.slice(3).map((r: any, i: number) => (
-              <div 
-                key={r.id || i}
-                className="rounded-2xl border border-white/5 bg-[#0a0a0a] p-6 flex flex-col justify-between hover:border-gold-600/30 hover:shadow-[0_0_20px_rgba(201,168,76,0.05)] transition duration-300"
-              >
-                <div>
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(r.rating || 5)].map((_, j) => (
-                      <Star key={j} className="w-3.5 h-3.5 fill-gold-400 text-gold-400" />
-                    ))}
-                  </div>
-                  <blockquote className="font-accent text-[13px] leading-relaxed text-white/85 mb-5 italic">
-                    "{r.comment}"
-                  </blockquote>
-                </div>
-                <div className="border-t border-white/5 pt-4 mt-2">
-                  <div className="text-xs font-bold text-white">{r.userName}</div>
-                  <div className="text-[10px] text-white/40 mt-0.5">{r.area || "Bareilly"}, Bareilly</div>
-                </div>
-              </div>
-            ))}
+          {/* CTA: Share Experience */}
+          <div className="text-center mt-12">
+            <button
+              onClick={() => setIsReviewModalOpen(true)}
+              className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full border border-gold-600/40 bg-gold-600/5 text-xs text-gold-500 font-bold uppercase tracking-widest hover:bg-gold-600 hover:text-black transition-all duration-500 shadow-[0_0_20px_rgba(201,168,76,0.07)] hover:shadow-[0_0_30px_rgba(201,168,76,0.2)] hover:scale-102"
+            >
+              <MessageCircle className="w-4 h-4" /> Share Your Experience
+            </button>
           </div>
         </div>
+
+        {/* Rating Submission Modal */}
+        <AnimatePresence>
+          {isReviewModalOpen && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="bg-[#0a0a0a] border border-white/10 rounded-2xl w-full max-w-md p-6 relative shadow-[0_25px_60px_rgba(201,168,76,0.15)]"
+              >
+                <button
+                  onClick={() => setIsReviewModalOpen(false)}
+                  className="absolute top-4 right-4 text-white/40 hover:text-white transition focus:outline-none"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+
+                <div className="text-center mb-6">
+                  <h3 className="font-heading text-lg text-white">Write a Review</h3>
+                  <p className="text-[11px] text-white/50 mt-1">Let Bareilly know about your Hermosa Luxe experience.</p>
+                </div>
+
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    if (!newReviewName || !newReviewComment) {
+                      toast.error("Please fill out your name and comment.");
+                      return;
+                    }
+                    const submitted = {
+                      id: Date.now().toString(),
+                      userName: newReviewName,
+                      area: newReviewArea || "Bareilly",
+                      comment: newReviewComment,
+                      rating: newReviewRating
+                    };
+                    setCustomerReviews((prev) => [submitted, ...prev]);
+                    setIsReviewModalOpen(false);
+                    // Clear inputs
+                    setNewReviewName("");
+                    setNewReviewArea("");
+                    setNewReviewComment("");
+                    setNewReviewRating(5);
+                    toast.success("Thank you! Your review is now live in the spotlight.");
+                  }}
+                  className="space-y-4"
+                >
+                  {/* Name Input */}
+                  <div>
+                    <label className="block text-[10px] uppercase tracking-wider text-white/50 mb-1.5 font-bold">Your Name</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Aanya Sharma"
+                      value={newReviewName}
+                      onChange={(e) => setNewReviewName(e.target.value)}
+                      className="w-full bg-white/3 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white placeholder:text-white/20 focus:outline-none focus:border-gold-600/50 focus:bg-white/5 transition"
+                    />
+                  </div>
+
+                  {/* Area Select */}
+                  <div>
+                    <label className="block text-[10px] uppercase tracking-wider text-white/50 mb-1.5 font-bold">Select Area</label>
+                    <select
+                      value={newReviewArea}
+                      onChange={(e) => setNewReviewArea(e.target.value)}
+                      className="w-full bg-white/3 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-gold-600/50 focus:bg-white/5 transition appearance-none"
+                    >
+                      <option value="" className="bg-[#0a0a0a] text-white">Select Bareilly Area</option>
+                      <option value="Civil Lines" className="bg-[#0a0a0a] text-white">Civil Lines</option>
+                      <option value="Rampur Garden" className="bg-[#0a0a0a] text-white">Rampur Garden</option>
+                      <option value="Sheel Chauraha" className="bg-[#0a0a0a] text-white">Sheel Chauraha</option>
+                      <option value="Subhash Nagar" className="bg-[#0a0a0a] text-white">Subhash Nagar</option>
+                      <option value="DD Puram" className="bg-[#0a0a0a] text-white">DD Puram</option>
+                      <option value="Suresh Sharma Nagar" className="bg-[#0a0a0a] text-white">Suresh Sharma Nagar</option>
+                      <option value="Mahanagar" className="bg-[#0a0a0a] text-white">Mahanagar</option>
+                      <option value="Pilibhit Bypass" className="bg-[#0a0a0a] text-white">Pilibhit Bypass</option>
+                    </select>
+                  </div>
+
+                  {/* Star Rating Input */}
+                  <div>
+                    <label className="block text-[10px] uppercase tracking-wider text-white/50 mb-1.5 font-bold text-center">Your Rating</label>
+                    <div className="flex gap-2 justify-center py-1.5">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <button
+                          key={star}
+                          type="button"
+                          onClick={() => setNewReviewRating(star)}
+                          className="focus:outline-none transition active:scale-90"
+                        >
+                          <Star
+                            className={`w-6 h-6 ${
+                              star <= newReviewRating 
+                                ? "fill-gold-400 text-gold-400 scale-110 drop-shadow-[0_0_6px_rgba(201,168,76,0.3)]" 
+                                : "text-white/20 hover:text-white/40"
+                            } transition-all duration-300`}
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Comment Textarea */}
+                  <div>
+                    <label className="block text-[10px] uppercase tracking-wider text-white/50 mb-1.5 font-bold">Your Review</label>
+                    <textarea
+                      required
+                      rows={3}
+                      placeholder="Share your thoughts about the service, products, hygiene..."
+                      value={newReviewComment}
+                      onChange={(e) => setNewReviewComment(e.target.value)}
+                      className="w-full bg-white/3 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white placeholder:text-white/20 focus:outline-none focus:border-gold-600/50 focus:bg-white/5 transition resize-none"
+                    />
+                  </div>
+
+                  {/* Actions */}
+                  <div className="flex gap-3 pt-2">
+                    <button
+                      type="button"
+                      onClick={() => setIsReviewModalOpen(false)}
+                      className="w-1/2 border border-white/10 bg-white/3 text-white rounded-xl py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-white/5 transition"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      className="w-1/2 bg-gold-600 text-black rounded-xl py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-gold-500 transition shadow-[0_0_15px_rgba(201,168,76,0.2)]"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
       </section>
 
       {/* FAQ SECTION */}
@@ -1817,11 +1478,11 @@ export default function Home() {
                         style={{ background: "linear-gradient(135deg, #dbeafe 0%, #e0f2fe 60%, #bfdbfe 100%)" }}
                       >
                         <img 
-                          src={sub.image} 
+                          src={HermosaImageRegistry.appendVersion(sub.image)} 
                           alt={sub.name} 
                           className="w-full h-full object-cover group-hover:scale-110 transition duration-500" 
                           onError={(e) => {
-                            (e.target as HTMLImageElement).src = "/assets/service-o3-glow-facial.png";
+                            (e.target as HTMLImageElement).src = HermosaImageRegistry.resolveServiceImage("o3-glow-facial", "O3+ Glow Facial", "female-salon", "female");
                           }}
                         />
                       </div>

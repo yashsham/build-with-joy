@@ -97,7 +97,7 @@ function ContactPageContent() {
         </div>
 
         {/* Visual Banner Card */}
-        <div className="relative rounded-3xl overflow-hidden border border-gold-600/20 bg-gradient-to-r from-amber-950/20 via-black to-black p-8 md:p-12 mb-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-[0_0_50px_rgba(201,168,76,0.05)]">
+        <div className="relative rounded-3xl overflow-hidden border border-gold-600/20 bg-gradient-to-r from-amber-950/20 via-black to-black p-8 md:p-12 mb-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-[0_0_50px_rgba(201,168,76,0.05)] contact-banner">
           <div className="space-y-4 text-center md:text-left">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-gold-600/30 bg-gold-600/5 text-[10px] text-gold-600 luxe-subtitle font-bold">
               <Sparkles className="w-3 h-3" /> LUXURY HOME SERVICE SUPPORT

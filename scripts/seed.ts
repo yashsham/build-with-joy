@@ -2,6 +2,7 @@ import { db } from "../src/lib/db/client";
 import { categories, services, cities, promoCodes, users, bookings, addresses, reviews, bookingItems, professionals } from "../src/lib/db/schema";
 import fs from "node:fs";
 import path from "node:path";
+import { HermosaImageRegistry } from "../src/lib/imageRegistry";
 
 async function main() {
   console.log("🌱 Seeding database...");
@@ -142,33 +143,13 @@ async function main() {
   ];
 
   for (const svc of servicesData) {
-    let imgPath = `/assets/service-${svc.slug}.png`;
-    const fullPath = path.join(process.cwd(), "public", imgPath);
-    
-    if (!fs.existsSync(fullPath)) {
-      // Fallback logic
-      imgPath = `/assets/service-${svc.slug.includes("bridal") ? "bridal" : svc.slug.includes("spa") ? "spa" : svc.slug.includes("facial") ? "facial" : svc.slug.includes("hair") ? "hair" : svc.slug.includes("mehendi") ? "mehendi" : "nails"}.jpg`;
-      
-      if (svc.slug.includes("laser")) {
-        imgPath = "/assets/service-laser.png";
-      } else if (svc.slug.includes("hydraglo")) {
-        imgPath = "/assets/service-hydraglo.png";
-      } else if (svc.slug.includes("wax") || svc.slug.includes("waxing")) {
-        imgPath = "/assets/service-waxing.png";
-      } else if (svc.slug.includes("cleanup") || svc.slug.includes("cleansing")) {
-        imgPath = "/assets/service-cleanup.png";
-      } else if (svc.slug.includes("threading")) {
-        imgPath = "/assets/service-threading.png";
-      } else if (svc.slug.includes("polishing")) {
-        imgPath = "/assets/service-body-polishing.png";
-      } else if (svc.slug === "mens-body-massage") {
-        imgPath = "/assets/service-mens-body-massage.png";
-      } else if (svc.slug === "mens-head-shoulder-massage" || (svc.slug.includes("hair") && svc.categoryId === categoryMap["male-grooming"])) {
-        imgPath = "/assets/service-mens-hair-spa.png";
-      } else if (svc.slug.includes("grooming") || svc.slug.includes("beard") || svc.slug.includes("mens-haircut") || (svc.categoryId === categoryMap["male-grooming"])) {
-        imgPath = "/assets/service-malegrooming.png";
-      }
-    }
+    const categorySlug = Object.keys(categoryMap).find(key => categoryMap[key] === svc.categoryId) || "";
+    const imgPath = HermosaImageRegistry.resolveServiceImage(
+      svc.slug,
+      svc.name,
+      categorySlug,
+      svc.gender
+    );
 
     await db.insert(services).values({
       ...svc,

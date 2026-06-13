@@ -1,23 +1,36 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useApp } from "@/lib/context";
-import { Sparkles, Gift, ShoppingCart, Calendar, User, Plus } from "lucide-react";
+import { Sparkles, Gift, ShoppingCart, Calendar, User, Plus, Scissors } from "lucide-react";
 
 export default function MobileBottomNav() {
   const pathname = usePathname();
-  const { cart, setIsChooseServiceOpen } = useApp();
+  const { cart, setIsChooseServiceOpen, gender, setGender } = useApp();
 
   const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
+  // Sync URL query params with global gender state
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const searchParams = new URLSearchParams(window.location.search);
+      const urlGender = searchParams.get("gender");
+      if (urlGender === "male" || urlGender === "female") {
+        if (urlGender !== gender) {
+          setGender(urlGender);
+        }
+      }
+    }
+  }, [pathname, gender, setGender]);
+
   const navItems = [
     {
-      label: "Women",
-      icon: Sparkles,
-      href: "/services?gender=female",
-      active: pathname === "/services" && !pathname.includes("gender=male"),
+      label: gender === "male" ? "Men" : "Women",
+      icon: gender === "male" ? Scissors : Sparkles,
+      href: gender === "male" ? "/services?gender=male" : "/services?gender=female",
+      active: pathname === "/services",
     },
     {
       label: "Refer",
