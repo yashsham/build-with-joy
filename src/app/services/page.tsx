@@ -52,6 +52,7 @@ function ServicesCatalog() {
     if (genderParam) {
       setActiveGender(genderParam);
     }
+    setSearchQuery(searchParam);
     const cat = searchParams.get("category");
     if (cat) {
       setActiveCategorySlug(cat);
@@ -61,7 +62,7 @@ function ServicesCatalog() {
         if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
       }, 300);
     }
-  }, [genderParam, searchParams]);
+  }, [genderParam, searchParams, searchParam]);
 
   // Fetch all services and categories
   useEffect(() => {
