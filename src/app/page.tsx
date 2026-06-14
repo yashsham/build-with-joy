@@ -577,11 +577,15 @@ export default function Home() {
       <AdSlider activeGender={activeGender} />
 
       {/* EXPLORE OUR CATEGORIES SECTION */}
-      <section id="explore-categories" className="py-14 md:py-20 bg-black scroll-mt-24">
+      <section 
+        id="explore-categories" 
+        className="py-14 md:py-20 bg-black scroll-mt-24"
+        style={{ backgroundColor: theme === "light" ? "#fdfcf9" : "#000000" }}
+      >
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center max-w-xl mx-auto mb-10">
-            <h2 className="font-heading text-2xl md:text-4xl text-white">Explore Our Categories</h2>
-            <p className="mt-2 text-xs text-white/50 leading-relaxed">
+            <h2 className="font-heading text-2xl md:text-4xl text-white" style={{ color: theme === "light" ? "#1a1a1e" : "#ffffff" }}>Explore Our Categories</h2>
+            <p className="mt-2 text-xs text-white/50 leading-relaxed" style={{ color: theme === "light" ? "#6a6a80" : "rgba(255, 255, 255, 0.5)" }}>
               Certified salon and wellness rituals delivered directly to your home.
             </p>
           </div>
@@ -590,11 +594,12 @@ export default function Home() {
           <div className="flex justify-center gap-4 mb-10">
             <button
               onClick={() => setActiveGender("female")}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-full border text-xs font-bold transition-all ${
-                activeGender === "female"
-                  ? "border-gold-600/40 bg-gold-600/10 text-gold-600 shadow-[var(--shadow-gold-sm)]"
-                  : "border-white/5 bg-[#0a0a0a] text-white/60 hover:text-white"
-              }`}
+              className="flex items-center gap-2 px-5 py-2.5 rounded-full border text-xs font-bold transition-all"
+              style={{
+                borderColor: activeGender === "female" ? "rgba(201,168,76,0.4)" : (theme === "light" ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.05)"),
+                backgroundColor: activeGender === "female" ? "rgba(201,168,76,0.1)" : (theme === "light" ? "#ffffff" : "#0a0a0a"),
+                color: activeGender === "female" ? "#c9a84c" : (theme === "light" ? "#5c5c70" : "rgba(255,255,255,0.6)")
+              }}
             >
               <div className="w-5 h-5 rounded-full overflow-hidden bg-white/10 flex-shrink-0 border border-gold-600/20">
                 <img src={HermosaImageRegistry.resolveServiceImage("o3-glow-facial", undefined, undefined, "female")} alt="Women" className="w-full h-full object-cover" />
@@ -603,11 +608,12 @@ export default function Home() {
             </button>
             <button
               onClick={() => setActiveGender("male")}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-full border text-xs font-bold transition-all ${
-                activeGender === "male"
-                  ? "border-gold-600/40 bg-gold-600/10 text-gold-600 shadow-[var(--shadow-gold-sm)]"
-                  : "border-white/5 bg-[#0a0a0a] text-white/60 hover:text-white"
-              }`}
+              className="flex items-center gap-2 px-5 py-2.5 rounded-full border text-xs font-bold transition-all"
+              style={{
+                borderColor: activeGender === "male" ? "rgba(201,168,76,0.4)" : (theme === "light" ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.05)"),
+                backgroundColor: activeGender === "male" ? "rgba(201,168,76,0.1)" : (theme === "light" ? "#ffffff" : "#0a0a0a"),
+                color: activeGender === "male" ? "#c9a84c" : (theme === "light" ? "#5c5c70" : "rgba(255,255,255,0.6)")
+              }}
             >
               <div className="w-5 h-5 rounded-full overflow-hidden bg-white/10 flex-shrink-0 border border-gold-600/20">
                 <img src={HermosaImageRegistry.resolveServiceImage("mens-haircut-styling", undefined, undefined, "male")} alt="Men" className="w-full h-full object-cover animate-grayscale" />
@@ -654,7 +660,10 @@ export default function Home() {
                       }}
                     />
                   </div>
-                  <span className="text-[11px] font-bold text-white/80 group-hover:text-gold-600 mt-2.5 leading-snug transition">
+                  <span 
+                    className="text-[11px] font-bold mt-2.5 leading-snug transition group-hover:text-gold-600"
+                    style={{ color: theme === "light" ? "#1a1a1e" : "rgba(255, 255, 255, 0.8)" }}
+                  >
                     {cat.name}
                   </span>
                 </motion.button>
@@ -685,7 +694,10 @@ export default function Home() {
                     >
                       <img src={HermosaImageRegistry.resolveCategoryImage(cat.id, "male")} alt={cat.name} className="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
                     </div>
-                    <span className="text-[11px] font-bold text-white/80 group-hover:text-gold-600 mt-2.5 leading-snug transition">
+                    <span 
+                      className="text-[11px] font-bold mt-2.5 leading-snug transition group-hover:text-gold-600"
+                      style={{ color: theme === "light" ? "#1a1a1e" : "rgba(255, 255, 255, 0.8)" }}
+                    >
                       {cat.name}
                     </span>
                   </LinkNext>

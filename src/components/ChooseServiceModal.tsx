@@ -8,7 +8,7 @@ import { X, ChevronRight } from "lucide-react";
 import { useApp } from "@/lib/context";
 
 export default function ChooseServiceModal() {
-  const { isChooseServiceOpen, setIsChooseServiceOpen } = useApp();
+  const { isChooseServiceOpen, setIsChooseServiceOpen, theme } = useApp();
   const [gender, setGender] = useState<"female" | "male">("female");
   const router = useRouter();
 
@@ -38,29 +38,44 @@ export default function ChooseServiceModal() {
             exit={{ y: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 220 }}
             className="relative w-full max-w-md bg-[#0a0a0a] rounded-t-3xl border-t border-white/10 p-6 z-10 shadow-2xl flex flex-col"
+            style={{ 
+              backgroundColor: theme === "light" ? "#ffffff" : "#0a0a0a", 
+              borderTopColor: theme === "light" ? "rgba(0, 0, 0, 0.08)" : "rgba(255, 255, 255, 0.1)" 
+            }}
           >
             {/* Drag Handle */}
-            <div className="mx-auto w-12 h-1 bg-white/10 rounded-full mb-6" />
+            <div 
+              className="mx-auto w-12 h-1 rounded-full mb-6" 
+              style={{ backgroundColor: theme === "light" ? "rgba(0, 0, 0, 0.15)" : "rgba(255, 255, 255, 0.15)" }}
+            />
 
-            <div className="flex items-center justify-between border-b border-white/5 pb-4 mb-6">
-              <h3 className="font-heading text-lg text-white font-medium">Choose Your Service</h3>
+            <div className="flex items-center justify-between border-b pb-4 mb-6" style={{ borderBottomColor: theme === "light" ? "rgba(0, 0, 0, 0.06)" : "rgba(255, 255, 255, 0.05)" }}>
+              <h3 className="font-heading text-lg font-medium" style={{ color: theme === "light" ? "#1a1a1e" : "#ffffff" }}>Choose Your Service</h3>
               <button
                 onClick={() => setIsChooseServiceOpen(false)}
-                className="h-8 w-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white transition"
+                className="h-8 w-8 rounded-full flex items-center justify-center transition"
+                style={{ 
+                  color: theme === "light" ? "#5c5c70" : "rgba(255, 255, 255, 0.6)",
+                  borderColor: theme === "light" ? "rgba(0, 0, 0, 0.08)" : "rgba(255, 255, 255, 0.1)",
+                  backgroundColor: theme === "light" ? "rgba(0, 0, 0, 0.02)" : "rgba(255, 255, 255, 0.05)"
+                }}
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
             {/* Tab Control */}
-            <div className="flex bg-black border border-white/5 rounded-2xl p-1 mb-6">
+            <div className="flex border rounded-2xl p-1 mb-6" style={{ backgroundColor: theme === "light" ? "#f7f6f2" : "#000000", borderColor: theme === "light" ? "rgba(0,0,0,0.06)" : "rgba(255,255,255,0.05)" }}>
               <button
                 onClick={() => setGender("female")}
                 className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
                   gender === "female"
                     ? "bg-gold-gradient text-dark shadow-sm"
-                    : "text-white/60 hover:text-white"
+                    : ""
                 }`}
+                style={{
+                  color: gender === "female" ? "#000000" : (theme === "light" ? "#5c5c70" : "rgba(255, 255, 255, 0.6)")
+                }}
               >
                 Women
               </button>
@@ -69,8 +84,11 @@ export default function ChooseServiceModal() {
                 className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
                   gender === "male"
                     ? "bg-gold-gradient text-dark shadow-sm"
-                    : "text-white/60 hover:text-white"
+                    : ""
                 }`}
+                style={{
+                  color: gender === "male" ? "#000000" : (theme === "light" ? "#5c5c70" : "rgba(255, 255, 255, 0.6)")
+                }}
               >
                 Men
               </button>
