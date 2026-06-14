@@ -530,4 +530,43 @@ html.light .bg-luxe-mesh {
     radial-gradient(at 90% 80%, rgba(201, 168, 76, 0.03) 0px, transparent 50%);
 }
 
+/* ==========================================
+   SUBCATEGORY POPUP BOTTOM SHEET OVERRIDES
+   ========================================== */
+.luxe-popup-title {
+  color: #ffffff !important;
+}
+html.light .luxe-popup-title {
+  color: #1a1a1e !important;
+}
+
+.luxe-popup-item-name {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+html.light .luxe-popup-item-name {
+  color: #3d3d48 !important;
+}
+
+.luxe-popup-handle {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+html.light .luxe-popup-handle {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.luxe-popup-close {
+  color: rgba(255, 255, 255, 0.6) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+html.light .luxe-popup-close {
+  color: #5c5c70 !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  background-color: rgba(0, 0, 0, 0.02) !important;
+}
+html.light .luxe-popup-close:hover {
+  color: #1a1a1e !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
 

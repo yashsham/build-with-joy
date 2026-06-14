@@ -1450,15 +1450,15 @@ export default function Home() {
               className="relative w-full max-w-md bg-[#0a0a0a] rounded-t-3xl border-t border-white/10 p-6 z-10 shadow-2xl flex flex-col max-h-[75vh]"
             >
               {/* Drag Handle */}
-              <div className="mx-auto w-12 h-1 bg-white/10 rounded-full mb-6" />
+              <div className="mx-auto w-12 h-1 bg-white/10 rounded-full mb-6 luxe-popup-handle" />
 
               <div className="flex items-center justify-between border-b border-white/5 pb-4 mb-6">
-                <h3 className="font-heading text-lg text-white">
+                <h3 className="font-heading text-lg text-white luxe-popup-title">
                   {popupCategoriesData[activePopupCategory].title}
                 </h3>
                 <button
                   onClick={() => setActivePopupCategory(null)}
-                  className="h-8 w-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white"
+                  className="h-8 w-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white luxe-popup-close"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -1486,7 +1486,7 @@ export default function Home() {
                           }}
                         />
                       </div>
-                      <span className="text-[10px] font-bold text-white/70 group-hover:text-gold-600 mt-2 transition leading-tight">
+                      <span className="text-[10px] font-bold text-white/70 group-hover:text-gold-600 mt-2 transition leading-tight luxe-popup-item-name">
                         {sub.name}
                       </span>
                     </LinkNext>
