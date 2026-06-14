@@ -1449,17 +1449,26 @@ export default function Home() {
               exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 220 }}
               className="relative w-full max-w-md bg-[#0a0a0a] rounded-t-3xl border-t border-white/10 p-6 z-10 shadow-2xl flex flex-col max-h-[75vh]"
+              style={{ backgroundColor: theme === "light" ? "#ffffff" : "#0a0a0a", borderTopColor: theme === "light" ? "rgba(0, 0, 0, 0.08)" : "rgba(255, 255, 255, 0.1)" }}
             >
               {/* Drag Handle */}
-              <div className="mx-auto w-12 h-1 bg-white/10 rounded-full mb-6 luxe-popup-handle" />
+              <div 
+                className="mx-auto w-12 h-1 rounded-full mb-6 luxe-popup-handle" 
+                style={{ backgroundColor: theme === "light" ? "rgba(0, 0, 0, 0.15)" : "rgba(255, 255, 255, 0.15)" }}
+              />
 
-              <div className="flex items-center justify-between border-b border-white/5 pb-4 mb-6">
-                <h3 className="font-heading text-lg text-white luxe-popup-title">
+              <div className="flex items-center justify-between border-b pb-4 mb-6" style={{ borderBottomColor: theme === "light" ? "rgba(0, 0, 0, 0.06)" : "rgba(255, 255, 255, 0.05)" }}>
+                <h3 className="font-heading text-lg luxe-popup-title" style={{ color: theme === "light" ? "#1a1a1e" : "#ffffff" }}>
                   {popupCategoriesData[activePopupCategory].title}
                 </h3>
                 <button
                   onClick={() => setActivePopupCategory(null)}
-                  className="h-8 w-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white luxe-popup-close"
+                  className="h-8 w-8 rounded-full flex items-center justify-center luxe-popup-close"
+                  style={{ 
+                    color: theme === "light" ? "#5c5c70" : "rgba(255, 255, 255, 0.6)",
+                    borderColor: theme === "light" ? "rgba(0, 0, 0, 0.08)" : "rgba(255, 255, 255, 0.1)",
+                    backgroundColor: theme === "light" ? "rgba(0, 0, 0, 0.02)" : "rgba(255, 255, 255, 0.05)"
+                  }}
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -1487,11 +1496,17 @@ export default function Home() {
                           }}
                         />
                       </div>
-                      <span className="text-[10px] font-bold text-white/70 group-hover:text-gold-600 mt-2 transition leading-tight luxe-popup-item-name">
+                      <span 
+                        className="text-[10px] font-bold mt-2 transition leading-tight luxe-popup-item-name"
+                        style={{ color: theme === "light" ? "#3d3d48" : "rgba(255, 255, 255, 0.7)" }}
+                      >
                         {sub.name}
                       </span>
                       {sub.tagline && (
-                        <span className="text-[8px] text-white/45 mt-0.5 leading-tight luxe-popup-item-tagline max-w-[85px] line-clamp-2">
+                        <span 
+                          className="text-[8px] mt-0.5 leading-tight luxe-popup-item-tagline max-w-[85px] line-clamp-2"
+                          style={{ color: theme === "light" ? "#7c7c8a" : "rgba(255, 255, 255, 0.45)" }}
+                        >
                           {sub.tagline}
                         </span>
                       )}
