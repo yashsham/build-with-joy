@@ -660,10 +660,7 @@ export default function Home() {
                       }}
                     />
                   </div>
-                  <span 
-                    className="text-[11px] font-bold mt-2.5 leading-snug transition group-hover:text-gold-600"
-                    style={{ color: theme === "light" ? "#1a1a1e" : "rgba(255, 255, 255, 0.8)" }}
-                  >
+                  <span className="text-[11px] font-bold mt-2.5 leading-snug transition group-hover:text-gold-600 luxe-category-name">
                     {cat.name}
                   </span>
                 </motion.button>
@@ -694,10 +691,7 @@ export default function Home() {
                     >
                       <img src={HermosaImageRegistry.resolveCategoryImage(cat.id, "male")} alt={cat.name} className="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
                     </div>
-                    <span 
-                      className="text-[11px] font-bold mt-2.5 leading-snug transition group-hover:text-gold-600"
-                      style={{ color: theme === "light" ? "#1a1a1e" : "rgba(255, 255, 255, 0.8)" }}
-                    >
+                    <span className="text-[11px] font-bold mt-2.5 leading-snug transition group-hover:text-gold-600 luxe-category-name">
                       {cat.name}
                     </span>
                   </LinkNext>
@@ -1470,14 +1464,13 @@ export default function Home() {
               />
 
               <div className="flex items-center justify-between border-b pb-4 mb-6" style={{ borderBottomColor: theme === "light" ? "rgba(0, 0, 0, 0.06)" : "rgba(255, 255, 255, 0.05)" }}>
-                <h3 className="font-heading text-lg luxe-popup-title" style={{ color: theme === "light" ? "#1a1a1e" : "#ffffff" }}>
+                <h3 className="font-heading text-lg luxe-popup-title">
                   {popupCategoriesData[activePopupCategory].title}
                 </h3>
                 <button
                   onClick={() => setActivePopupCategory(null)}
                   className="h-8 w-8 rounded-full flex items-center justify-center luxe-popup-close"
                   style={{ 
-                    color: theme === "light" ? "#5c5c70" : "rgba(255, 255, 255, 0.6)",
                     borderColor: theme === "light" ? "rgba(0, 0, 0, 0.08)" : "rgba(255, 255, 255, 0.1)",
                     backgroundColor: theme === "light" ? "rgba(0, 0, 0, 0.02)" : "rgba(255, 255, 255, 0.05)"
                   }}
@@ -1508,17 +1501,11 @@ export default function Home() {
                           }}
                         />
                       </div>
-                      <span 
-                        className="text-[10px] font-bold mt-2 transition leading-tight luxe-popup-item-name"
-                        style={{ color: theme === "light" ? "#3d3d48" : "rgba(255, 255, 255, 0.7)" }}
-                      >
+                      <span className="text-[10px] font-bold mt-2 transition leading-tight luxe-popup-item-name">
                         {sub.name}
                       </span>
                       {sub.tagline && (
-                        <span 
-                          className="text-[8px] mt-0.5 leading-tight luxe-popup-item-tagline max-w-[85px] line-clamp-2"
-                          style={{ color: theme === "light" ? "#7c7c8a" : "rgba(255, 255, 255, 0.45)" }}
-                        >
+                        <span className="text-[8px] mt-0.5 leading-tight luxe-popup-item-tagline max-w-[85px] line-clamp-2">
                           {sub.tagline}
                         </span>
                       )}

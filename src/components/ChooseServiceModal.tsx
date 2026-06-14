@@ -50,7 +50,7 @@ export default function ChooseServiceModal() {
             />
 
             <div className="flex items-center justify-between border-b pb-4 mb-6" style={{ borderBottomColor: theme === "light" ? "rgba(0, 0, 0, 0.06)" : "rgba(255, 255, 255, 0.05)" }}>
-              <h3 className="font-heading text-lg font-medium" style={{ color: theme === "light" ? "#1a1a1e" : "#ffffff" }}>Choose Your Service</h3>
+              <h3 className="font-heading text-lg font-medium luxe-popup-title">Choose Your Service</h3>
               <button
                 onClick={() => setIsChooseServiceOpen(false)}
                 className="h-8 w-8 rounded-full flex items-center justify-center transition"
