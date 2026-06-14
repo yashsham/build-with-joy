@@ -547,6 +547,13 @@ html.light .luxe-popup-item-name {
   color: #3d3d48 !important;
 }
 
+.luxe-popup-item-tagline {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+html.light .luxe-popup-item-tagline {
+  color: #7c7c8a !important;
+}
+
 .luxe-popup-handle {
   background-color: rgba(255, 255, 255, 0.1) !important;
 }

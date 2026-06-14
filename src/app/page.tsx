@@ -149,7 +149,8 @@ export default function Home() {
     cart, 
     addToCart, 
     removeFromCart, 
-    setIsChooseServiceOpen 
+    setIsChooseServiceOpen,
+    theme
   } = useApp();
   const [customerReviews, setCustomerReviews] = useState<any[]>(STATIC_REVIEWS);
   const [activeStoryIndex, setActiveStoryIndex] = useState(0);
@@ -270,65 +271,65 @@ export default function Home() {
   };
 
   // Subcategories mapping for bottom sheet popups (Women)
-  const popupCategoriesData: Record<string, { title: string; items: { name: string; slug: string; search?: string; image: string }[] }> = {
+  const popupCategoriesData: Record<string, { title: string; items: { name: string; slug: string; search?: string; image: string; tagline?: string }[] }> = {
     "salon-for-women": {
       title: "Salon for Women",
       items: [
-        { name: "Waxing", slug: "waxing", image: "/assets/service-waxing.png" },
-        { name: "Clean-Up", slug: "facial-cleanup", image: "/assets/service-cleanup.png" },
-        { name: "Body Polishing", slug: "female-salon", image: "/assets/service-body-polishing.png" },
-        { name: "Bleach, Dtan & Scrub", slug: "female-salon", image: "/assets/service-premium-dtan-face-neck.png" },
-        { name: "Mani-Pedi", slug: "female-salon", image: "/assets/service-pedi-mani-classic.png" },
-        { name: "Hair", slug: "hair", image: "/assets/service-womens-blowdry-styling.png" },
-        { name: "Facial", slug: "facial-cleanup", image: "/assets/service-o3-glow-facial.png" },
-        { name: "Threading & Face Wax", slug: "female-salon", image: "/assets/service-threading.png" },
+        { name: "Waxing", slug: "waxing", image: "/assets/service-waxing.png", tagline: "Rica & Honey waxing" },
+        { name: "Clean-Up", slug: "facial-cleanup", image: "/assets/service-cleanup.png", tagline: "Dirt & tan extraction" },
+        { name: "Body Polishing", slug: "female-salon", image: "/assets/service-body-polishing.png", tagline: "Full body scrub glow" },
+        { name: "Bleach, Dtan & Scrub", slug: "female-salon", image: "/assets/service-premium-dtan-face-neck.png", tagline: "Instant skin brightening" },
+        { name: "Mani-Pedi", slug: "female-salon", image: "/assets/service-pedi-mani-classic.png", tagline: "Relaxing nail groom" },
+        { name: "Hair", slug: "hair", image: "/assets/service-womens-blowdry-styling.png", tagline: "Hair wash, cut & style" },
+        { name: "Facial", slug: "facial-cleanup", image: "/assets/service-o3-glow-facial.png", tagline: "Signature brand facials" },
+        { name: "Threading & Face Wax", slug: "female-salon", image: "/assets/service-threading.png", tagline: "Precision eyebrow shape" },
       ]
     },
     "spa-for-women": {
       title: "Spa for Women",
       items: [
-        { name: "Spa Services", slug: "spa-massage", image: "/assets/sub-spa-services.png" },
+        { name: "Spa Services", slug: "spa-massage", image: "/assets/sub-spa-services.png", tagline: "Therapeutic body healing" },
       ]
     },
     "hydraglo-facials": {
       title: "HydraGlo Facials",
       items: [
-        { name: "HydraGlo Facials", slug: "hydraglo", image: "/assets/sub-hydra-facial.png" },
-        { name: "HydraGlo Clean-Up", slug: "hydraglo", image: "/assets/sub-hydra-cleanup.png" },
-        { name: "Body Polishing", slug: "spa-massage", image: "/assets/sub-body-polishing.png" },
-        { name: "Intimate Care", slug: "female-salon", image: "/assets/sub-intimate-care.png" },
-        { name: "Add On", slug: "hydraglo", image: "/assets/sub-add-on.png" },
+        { name: "HydraGlo Facials", slug: "hydraglo", image: "/assets/sub-hydra-facial.png", tagline: "US-FDA skin infusion" },
+        { name: "HydraGlo Clean-Up", slug: "hydraglo", image: "/assets/sub-hydra-cleanup.png", tagline: "Deep blackhead removal" },
+        { name: "Body Polishing", slug: "spa-massage", image: "/assets/sub-body-polishing.png", tagline: "Hydrating body scrub" },
+        { name: "Intimate Care", slug: "female-salon", image: "/assets/sub-intimate-care.png", tagline: "Painless & gentle care" },
+        { name: "Add On", slug: "hydraglo", image: "/assets/sub-add-on.png", tagline: "Specialized peel boosters" },
       ]
     },
     "laser-treatments": {
       title: "Laser Treatments",
       items: [
-        { name: "Packages", slug: "laser", image: "/assets/sub-laser-packages.png" },
-        { name: "Laser Hair Reduction", slug: "laser", image: "/assets/sub-laser-hair-reduction.png" },
-        { name: "Laser Facials", slug: "laser", image: "/assets/sub-laser-facials.png" },
-        { name: "Laser Body Polishing", slug: "laser", image: "/assets/sub-laser-body-polishing.png" },
-        { name: "Add-Ons", slug: "laser", image: "/assets/sub-laser-addons.png" },
+        { name: "Packages", slug: "laser", image: "/assets/sub-laser-packages.png", tagline: "Multi-session value packs" },
+        { name: "Laser Hair Reduction", slug: "laser", image: "/assets/sub-laser-hair-reduction.png", tagline: "FDA-approved hair free" },
+        { name: "Laser Facials", slug: "laser", image: "/assets/sub-laser-facials.png", tagline: "Carbon peel laser glow" },
+        { name: "Laser Body Polishing", slug: "laser", image: "/assets/sub-laser-body-polishing.png", tagline: "Skin tone even-out" },
+        { name: "Add-Ons", slug: "laser", image: "/assets/sub-laser-addons.png", tagline: "Small patch treatments" },
       ]
     },
     "body-toning": {
       title: "Body Toning",
       items: [
-        { name: "Packages", slug: "spa-massage", image: "/assets/sub-toning-packages.png" },
-        { name: "Face & Body Toning", slug: "spa-massage", image: "/assets/sub-face-body-toning.png" },
+        { name: "Packages", slug: "spa-massage", image: "/assets/sub-toning-packages.png", tagline: "Slimming & contouring" },
+        { name: "Face & Body Toning", slug: "spa-massage", image: "/assets/sub-face-body-toning.png", tagline: "Firming massage lift" },
       ]
     },
     "makeup-styling": {
       title: "Makeup & Styling",
       items: [
-        { name: "Party Makeup", slug: "bridal", image: "/assets/sub-party-makeup.png" },
-        { name: "Eye Makeup", slug: "bridal", image: "/assets/sub-eye-makeup.png" },
-        { name: "Best Packages", slug: "bridal", image: "/assets/sub-best-packages.png" },
-        { name: "Wedding Packages", slug: "bridal", image: "/assets/sub-wedding-packages.png" },
-        { name: "Hair Style", slug: "bridal", image: "/assets/sub-hair-style.png" },
-        { name: "Saree Draping", slug: "bridal", image: "/assets/sub-saree-draping.png" },
-        { name: "Engagement Makeup", slug: "bridal", image: "/assets/sub-engagement-makeup.png" },
-        { name: "Bridal Makeup", slug: "bridal", image: "/assets/sub-bridal-makeup.png" },
-        { name: "Add On", slug: "bridal", image: "/assets/sub-add-on-makeup.png" },
+        { name: "Party Makeup", slug: "bridal", image: "/assets/sub-party-makeup.png", tagline: "Occasion glam makeover" },
+        { name: "Eye Makeup", slug: "bridal", image: "/assets/sub-eye-makeup.png", tagline: "Smokey/glittery eye art" },
+        { name: "Best Packages", slug: "bridal", image: "/assets/sub-best-packages.png", tagline: "Combo trials & prep" },
+        { name: "Wedding Packages", slug: "bridal", image: "/assets/sub-wedding-packages.png", tagline: "Full bridal glam squad" },
+        { name: "Hair Style", slug: "bridal", image: "/assets/sub-hair-style.png", tagline: "Buns, braids & curls" },
+        { name: "Saree Draping", slug: "bridal", image: "/assets/sub-saree-draping.png", tagline: "Elegant draping & pins" },
+        { name: "Engagement Makeup", slug: "bridal", image: "/assets/sub-engagement-makeup.png", tagline: "Soft elegant celebration glow" },
+        { name: "Bridal Makeup", slug: "bridal", image: "/assets/sub-bridal-makeup.png", tagline: "Airbrush/HD luxury glam" },
+        { name: "Add On", slug: "bridal", image: "/assets/sub-add-on-makeup.png", tagline: "Hair extensions & lashes" },
       ]
     }
   };
@@ -1489,6 +1490,11 @@ export default function Home() {
                       <span className="text-[10px] font-bold text-white/70 group-hover:text-gold-600 mt-2 transition leading-tight luxe-popup-item-name">
                         {sub.name}
                       </span>
+                      {sub.tagline && (
+                        <span className="text-[8px] text-white/45 mt-0.5 leading-tight luxe-popup-item-tagline max-w-[85px] line-clamp-2">
+                          {sub.tagline}
+                        </span>
+                      )}
                     </LinkNext>
                   ))}
                 </div>
